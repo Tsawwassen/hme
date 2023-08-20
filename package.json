@@ -1,0 +1,11 @@
+{
+  "name": "hme",
+  "version": "1.0.0",
+  "description": "HME helper apps",
+  "main": "index.js",
+  "scripts": {
+    "start-client": "cd client && npm start"
+  },
+  "author": "Mitchell Smith",
+  "license": "ISC"
+}
