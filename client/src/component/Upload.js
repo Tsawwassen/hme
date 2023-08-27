@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import { Col, Row, Form, Button } from 'react-bootstrap';
+import FileReaderHelper from '../class/FileReaderHelper';
 
 let fileReader = new FileReader();
 
@@ -26,7 +27,9 @@ class Upload extends Component {
 
     testButtonClicked(){
        // console.log(this.state.expectedFilePath);
-        console.log(this.state.tempData);
+       //console.log(this.state.tempData);
+        //console.log(FileReaderHelper.classTest);
+        //FileReaderHelper.classTestFunction("TEST VARIABLE");
     }
 
     handleFileRead(e){ 
@@ -82,8 +85,8 @@ class Upload extends Component {
             //fileReader.readAsText(this.state.expectedFilePath);
            fileReader.readAsText(this.state.expectedFilePath);
            
-                console.log("temp data read");
-                console.log(this.state.tempData);
+                //console.log("temp data read");
+                //console.log(this.state.tempData);
           
  
             //this.setState(expectedFileData: this.state.tempData);
