@@ -30,8 +30,6 @@ class Upload extends Component {
     }
 
     handleFileRead(e){ 
-
-        
         /**
         * TODO : this code can probably be cleaned up A LOT, but it is working
         *      The first CSV forEach loop can probably be added into the other forEach loops
@@ -83,8 +81,9 @@ class Upload extends Component {
         try{
             //fileReader.readAsText(this.state.expectedFilePath);
            fileReader.readAsText(this.state.expectedFilePath);
-                //console.log("temp data read");
-                //console.log(this.state.tempData);
+           
+                console.log("temp data read");
+                console.log(this.state.tempData);
           
  
             //this.setState(expectedFileData: this.state.tempData);
