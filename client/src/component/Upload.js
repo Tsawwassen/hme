@@ -1,106 +1,55 @@
 import React, { Component } from 'react';
-
 import { Col, Row, Form, Button } from 'react-bootstrap';
-import FileReaderHelper from '../class/FileReaderHelper';
 
-let fileReader = new FileReader();
+import FileReaderHelper from '../class/FileReaderHelper';
 
 class Upload extends Component {
   
     constructor(props){
         super(props);
         this.state = {
-            tempData: [],
             expectedFilePath: {},
-            expectedFileData: []//,
-            /**actualFilePath: {},
-            actualFileData: [] */
+            expectedFileData: [],
+            actualFilePath: {},
+            actualFileData: []
         };
 
         this.expectedFileOnChange = this.expectedFileOnChange.bind(this);
+        this.actualFileOnChange = this.actualFileOnChange.bind(this);
+
         this.submit = this.submit.bind(this);
-        this.handleFileRead = this.handleFileRead.bind(this);
         this.testButtonClicked = this.testButtonClicked.bind(this);
         
-
+        this.setExpectedFileData = this.setExpectedFileData.bind(this);
+        this.setActualFileData = this.setActualFileData.bind(this);
     }
 
-    testButtonClicked(){
-       // console.log(this.state.expectedFilePath);
-       //console.log(this.state.tempData);
-        //console.log(FileReaderHelper.classTest);
-        //FileReaderHelper.classTestFunction("TEST VARIABLE");
+    testButtonClicked(){  
+        console.log(this.state.expectedFileData);
+        console.log(this.state.actualFileData);
     }
 
-    handleFileRead(e){ 
-        /**
-        * TODO : this code can probably be cleaned up A LOT, but it is working
-        *      The first CSV forEach loop can probably be added into the other forEach loops
-        */
-        let content = fileReader.result;
-        //Upload file kept having \r at the end of a row, and \n at the stat of a row
-        //Remove all the \r and split the array on \n
-        content = content.replaceAll("\r","");
-        const csv = content.split('\n');
-
-
-        const headers = csv.shift().split(',');
-        const table = [];
-
-        csv.forEach((row) => {
-            if(row === "") return; //skip row if row is empty, will continue parsing the file
-            table.push(row.split(','));
-        });
-    
-        const tempData = []
-        table.forEach((row, i) => {
-            tempData[i] = {};
-            row.forEach((cell, j) =>{
-                tempData[i][headers[j]] =  cell;
-        
-            });
-        });
-
-        tempData.forEach((row, i)=>{
-            //Convert quantity column values to int
-            tempData[i].quantity = parseInt(tempData[i].quantity);
-        });
-     
-       // console.log(tempData); // Stub test uploaded data
-        //return ("hello world");
-        this.setState({tempData: tempData});
-        //this.props.onClick(tempData);
-
+    setExpectedFileData(data){
+        this.setState({expectedFileData: data});
     }
-    
-  
-    
 
-    submit(){ //Not sure if I can put the handleFileRead function code in this block, and reduce the amount of code tracing, but it works.
-        //console.log(this.state.expectedFilePath);
-        //console.log("Submit");
-        fileReader.onloadend = this.handleFileRead;
-        
-        try{
-            //fileReader.readAsText(this.state.expectedFilePath);
-           fileReader.readAsText(this.state.expectedFilePath);
-           
-                //console.log("temp data read");
-                //console.log(this.state.tempData);
-          
- 
-            //this.setState(expectedFileData: this.state.tempData);
-        } 
-        catch(error){ }; //Would be nice to have something better then this try catch
-           
-           
-          
-  
+    setActualFileData(data){
+        this.setState({actualFileData: data});
+    }
+
+    submit(){
+       FileReaderHelper.getFileContent(this.state.expectedFilePath, this.setExpectedFileData, "Please select an expected inventory file");
+       FileReaderHelper.getFileContent(this.state.actualFilePath, this.setActualFileData, "Please select an actual inventory file");
+       
+       //TODO : Get the FileData to parent component, and show data on screen
     }
 
     expectedFileOnChange(e){
-        //console.log(`file changed ${e.target.files[0].name}`);
         this.setState({expectedFilePath: e.target.files[0]});
+    }
+
+    actualFileOnChange(e){
+        this.setState({actualFilePath: e.target.files[0]});
     }
     
     render() {
@@ -112,6 +61,7 @@ class Upload extends Component {
                     <Form.Group controlId="formFile" className="mb-3">
                         <Form.Label>Input CSV file</Form.Label>
                         <Form.Control type="file" onChange={this.expectedFileOnChange}  />
+                        <Form.Control type="file" onChange={this.actualFileOnChange} />
                     </Form.Group>
                     <Button variant="primary" type="button" onClick={this.submit}>Submit</Button>
                     
@@ -122,4 +72,4 @@ class Upload extends Component {
         </>);
       };
     }
-      export default Upload;
+    export default Upload;
