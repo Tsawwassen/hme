@@ -6,8 +6,8 @@ import { Button } from 'react-bootstrap';
 import Upload from './Upload';
 
 // Variables to change loaded component
-const  UPLOAD = 0;
-const  REPORT = 1;
+const UPLOAD = 0;
+const REPORT = 1;
 
     //-----PLAN OF ACTION ----
     //-----V1----
@@ -73,11 +73,11 @@ class Inventory extends Component {
 
   // Set Functions
   setExpectedFileData(data){
-    this.checkFileData()
+    this.checkFileData();
     EFD = data;
   }
   setActualFileData(data){
-    this.checkFileData()
+    this.checkFileData();
     AFD = data;
   }
     
