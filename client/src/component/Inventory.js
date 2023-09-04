@@ -30,13 +30,13 @@ const REPORT = 1;
     //Scan items and create a list with part number and update quantity as they are scanned
     //Show report comparing the two files and give option to export report
 
-    //TODO : The two variables used to hold the file data should probably be placed somwhere else...
-    let EFD = [];
-    let AFD = [];
+
 class Inventory extends Component {
   constructor(props){
     super(props);
     this.state = {
+      expectedData: [],
+      actualData: [],
       view: UPLOAD
     };
 
@@ -44,47 +44,42 @@ class Inventory extends Component {
     this.testButtonClicked = this.testButtonClicked.bind(this);
 
     // Set Functions
-    this.setExpectedFileData = this.setExpectedFileData.bind(this);
-    this.setActualFileData = this.setActualFileData.bind(this);
+    this.setData = this.setData.bind(this);
 
+    // Data Check Function
     this.checkFileData = this.checkFileData.bind(this);
     
   }
 
   //Button to test state values
   testButtonClicked(){
-    //console.log("Test Button clicked");
-    //console.log(this.state.view);
-    //this.setState({view: REPORT});
-    //console.log(this.state.view);
-    //console.log(this.state.excpectedTable);
-    //actualFileData([1, 2, 3]);
-    //console.log(this.state.expectedFileData);
-    //console.log(this.state.actualFileData);
-    console.log(EFD);
-    console.log(AFD);
+    console.log(this.state.expectedData);
+    console.log(this.state.actualData);
   }
 
-  checkFileData(){
-    if((EFD.length > 0) || (AFD.length > 0)){
-       this.setState({view: REPORT});
+  // Check if the received data is not empty
+  // Probably could do a better data check, but its working for test files.
+  checkFileData(EFD, AFD){
+    return ((EFD.length > 0) || (AFD.length > 0))
+  }
+
+  //Set expected and actual data (if valid) and change the view
+  setData(expected, actual){
+    //This data check might be redundant.
+    if (this.checkFileData(expected, actual)){
+      this.setState({
+        expectedData: expected,
+        actualData: actual,
+        view: REPORT
+      })
     }
   }
 
-  // Set Functions
-  setExpectedFileData(data){
-    this.checkFileData();
-    EFD = data;
-  }
-  setActualFileData(data){
-    this.checkFileData();
-    AFD = data;
-  }
     
     render() {
       return (<>
         <h1>Inventory Screen</h1>
-        {this.state.view === UPLOAD && <Upload setters={[this.setExpectedFileData, this.setActualFileData]} />}
+        {this.state.view === UPLOAD && <Upload setters={this.setData} />}
         {this.state.view === REPORT && <h2>REPORT</h2>}
         {/** Test Button to see component state variables */}<br /><Button variant="primary" type="button" onClick={this.testButtonClicked}>INVENTORY TEST</Button>
         </>);
