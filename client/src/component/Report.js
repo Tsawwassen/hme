@@ -20,7 +20,9 @@ class Report extends Component {
 
     // Format file data props to be used by report component when mounted
     componentDidMount(){
-        this.generateReport(this.props.data[0], this.props.data[1])
+        let report = this.generateReport(this.props.data[0], this.props.data[1])
+
+        this.setState({report: report});
     }
 
     // Test Button
@@ -52,7 +54,7 @@ class Report extends Component {
                     actual_qty: part.quantity};
             }
         });
-        this.setState({report:r});
+        return r;
     }
 
     
