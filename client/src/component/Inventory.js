@@ -81,7 +81,7 @@ class Inventory extends Component {
       return (<>
         <h1>Inventory Screen</h1>
         {this.state.view === UPLOAD && <Upload setters={this.setData} />}
-        {this.state.view === REPORT && <Report />}
+        {this.state.view === REPORT && <Report data={[this.state.expectedData, this.state.actualData]}/>}
         {/** Test Button to see component state variables */}<br /><Button variant="primary" type="button" onClick={this.testButtonClicked}>INVENTORY TEST</Button>
         </>);
     }
