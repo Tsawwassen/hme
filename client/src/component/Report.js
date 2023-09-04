@@ -14,7 +14,7 @@ class Report extends Component {
         // Combine the two file data into one JSON object
         this.generateReport = this.generateReport.bind(this);
 
-        //Test Button
+        // Test Button
         this.testButton = this.testButton.bind(this);
     }
 
@@ -23,31 +23,33 @@ class Report extends Component {
         this.generateReport(this.props.data[0], this.props.data[1])
     }
 
-    //Test Button
+    // Test Button
     testButton(){
         console.log(this.state.report);
     }
 
     // Combine the two file data into one JSON object
+    // Function does handle if given variables have different part numbers
     generateReport(expected, actual){
         let r = {};
 
-        //Loop expected array
+        // Loop expected array
         expected.forEach(part => {
-            // // Add part_number, expected quantity from expected array, and set actual quantity to 0
+            // Add part_number, expected quantity from expected array, and set actual quantity to 0
             r[part.part_number] = {expected_qty: part.quantity,
                                     actual_qty: 0};
         });
-        //Loop actual array
+
+        // Loop actual array
         actual.forEach(part => {
-            // // Check if part_number is in r object
+            // Check if part_number is in r object
             if(r.hasOwnProperty(part.part_number)){
-                // // // Update actual quantity from actual array
+                // Update actual quantity from actual array
                 r[part.part_number].actual_qty = part.quantity;
             }
-            // // Else (part number is not in array) 
+            // Else (part number is not in array) 
             else {
-                // // // Add part_number, set expected quantity to 0, set actual quantity from actual array
+                // Add part_number, set expected quantity to 0, set actual quantity from actual array
                 r[part.part_number] = {expected_qty: 0,
                     actual_qty: part.quantity};
             }
