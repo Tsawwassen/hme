@@ -1,41 +1,58 @@
 // React imports
 import React, { Component } from 'react';
-//import { Col, Row, Form, Button } from 'react-bootstrap';
+import {  Button } from 'react-bootstrap';
 
 
 // Report component
 class Report extends Component {
-  
-
     constructor(props){
         super(props);
         this.state = {
-            report: []
+            report: {}
         };
 
+        // Combine the two file data into one JSON object
         this.generateReport = this.generateReport.bind(this);
+
+        //Test Button
+        this.testButton = this.testButton.bind(this);
     }
 
+    // Format file data props to be used by report component when mounted
     componentDidMount(){
-        
-  
-        //console.log(expected);
-        //console.log(actual);
         this.generateReport(this.props.data[0], this.props.data[1])
-
     }
 
+    //Test Button
+    testButton(){
+        console.log(this.state.report);
+    }
+
+    // Combine the two file data into one JSON object
     generateReport(expected, actual){
-        let r = [];
+        let r = {};
 
         //Loop expected array
-        // // Add part_number, expected quantity from expected array, and set actual quantity to 0
+        expected.forEach(part => {
+            // // Add part_number, expected quantity from expected array, and set actual quantity to 0
+            r[part.part_number] = {expected_qty: part.quantity,
+                                    actual_qty: 0};
+        });
         //Loop actual array
-        // // Check if part_number is in array
-        // // // Update actual quantity from actual array
-        // // Else (part number is not in array)
-        // // // Add part_number, set expected quantity to 0, set actual quantity from actual array
-
+        actual.forEach(part => {
+            // // Check if part_number is in r object
+            if(r.hasOwnProperty(part.part_number)){
+                // // // Update actual quantity from actual array
+                r[part.part_number].actual_qty = part.quantity;
+            }
+            // // Else (part number is not in array) 
+            else {
+                // // // Add part_number, set expected quantity to 0, set actual quantity from actual array
+                r[part.part_number] = {expected_qty: 0,
+                    actual_qty: part.quantity};
+            }
+        });
+        this.setState({report:r});
     }
 
     
@@ -43,7 +60,7 @@ class Report extends Component {
     render() {
         return (<>
             <h2>Report COMPONENT</h2>
-            
+            {/** Test Button to see component state variables */}<br /><Button variant="primary" type="button" onClick={this.testButton}>REPORT TEST</Button>
         </>);
       };
     }
