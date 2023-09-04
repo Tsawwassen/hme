@@ -28,7 +28,6 @@ class FileReaderHelper {
             tempData[i] = {};
             row.forEach((cell, j) =>{
                 tempData[i][headers[j]] =  cell;
-          
             });
         });
 
