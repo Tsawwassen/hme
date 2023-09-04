@@ -14,46 +14,21 @@ class Upload extends Component {
         super(props);
         this.state = {
             expectedFilePath: {},
-            expectedFileData: [],
             actualFilePath: {},
-            actualFileData: []
         };
 
         // OnChange functions
         this.expectedFileOnChange = this.expectedFileOnChange.bind(this);
         this.actualFileOnChange = this.actualFileOnChange.bind(this);
 
-        // Set Functions
-        this.setExpectedFileData = this.setExpectedFileData.bind(this);
-        this.setActualFileData = this.setActualFileData.bind(this);
-
         //Submit function
         this.submit = this.submit.bind(this);
-
-        // Helper button to show state variables
-        this.testButtonClicked = this.testButtonClicked.bind(this);
-    }
-
-    // Helper button to show state variables
-    testButtonClicked(){  
-        console.log(this.state.expectedFileData);
-        console.log(this.state.actualFileData);
-    }
-
-    // Set Functions
-    setExpectedFileData(data){
-        this.setState({expectedFileData: data});
-    }
-    setActualFileData(data){
-        this.setState({actualFileData: data});
     }
 
     // Submit input files paths to be parsed
     submit(){
-       FileReaderHelper.getFileContent(this.state.expectedFilePath, this.setExpectedFileData, "Please select an expected inventory file");
-       FileReaderHelper.getFileContent(this.state.actualFilePath, this.setActualFileData, "Please select an actual inventory file");
-       
-       //TODO : Get the FileData to parent component, and show data on screen
+       FileReaderHelper.getFileContent(this.state.expectedFilePath, this.props.setters[0], "Please select an expected inventory file");
+       FileReaderHelper.getFileContent(this.state.actualFilePath, this.props.setters[1], "Please select an actual inventory file");
     }
 
     // OnChange functions
@@ -81,7 +56,6 @@ class Upload extends Component {
                 </Form>
                 </Col>
             </Row>
-            {/** Test Button to see component state variables */}<Button variant="primary" type="button" onClick={this.testButtonClicked}>UPLOAD TEST</Button>
         </>);
       };
     }
