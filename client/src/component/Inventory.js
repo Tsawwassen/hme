@@ -4,6 +4,7 @@ import { Button } from 'react-bootstrap';
 
 // Upload component
 import Upload from './Upload';
+import Report from './Report';
 
 // Variables to change loaded component
 const UPLOAD = 0;
@@ -80,7 +81,7 @@ class Inventory extends Component {
       return (<>
         <h1>Inventory Screen</h1>
         {this.state.view === UPLOAD && <Upload setters={this.setData} />}
-        {this.state.view === REPORT && <h2>REPORT</h2>}
+        {this.state.view === REPORT && <Report />}
         {/** Test Button to see component state variables */}<br /><Button variant="primary" type="button" onClick={this.testButtonClicked}>INVENTORY TEST</Button>
         </>);
     }
