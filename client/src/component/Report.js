@@ -46,9 +46,7 @@ class Report extends Component {
             if(r.hasOwnProperty(part.part_number)){
                 // Update actual quantity from actual array
                 r[part.part_number].actual_qty = part.quantity;
-            }
-            // Else (part number is not in array) 
-            else {
+            } else { // part number is not in array
                 // Add part_number, set expected quantity to 0, set actual quantity from actual array
                 r[part.part_number] = {expected_qty: 0,
                     actual_qty: part.quantity};
