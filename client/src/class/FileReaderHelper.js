@@ -39,23 +39,37 @@ class FileReaderHelper {
         return tempData;
     };
     
-    // Get content from given file
+    // Get content from given files
     // Show error message if file cannot be opened
-    // Return file as JSON object array to callback function
-    static getFileContent(path, callback, errorMessage){
-
+    // Once both files are parsed, send them both to callback function
+    // TODO : Not a fan of this nested double code, but I needed a way to get data from both files and then send them up to Inventory component.
+    static getFileContent(expectedPath, actualPath, callback, expectedErrorMessage, actualErrorMessage){
+        let efd = [];
+        let afd = [];
         let fileReader = new FileReader();
+        
         fileReader.onloadend = () => {
-            // Parse file, return to callback
-            callback(this.formatData(fileReader.result));
+            efd = this.formatData(fileReader.result);
+            fileReader.onloadend = () => {
+                afd = this.formatData(fileReader.result);
+                callback(efd, afd);
+            };
+            try{
+                // Read file from given path
+                fileReader.readAsText(actualPath);
+             } 
+             catch(error){ 
+                // Show alert message if file cannot be opened
+                alert(actualErrorMessage);
+            };
         };
         try{
             // Read file from given path
-            fileReader.readAsText(path);
+            fileReader.readAsText(expectedPath);
          } 
          catch(error){ 
-            //Show alert message if file cannot be opened
-            alert(errorMessage);
+            // Show alert message if file cannot be opened
+            alert(expectedErrorMessage);
         }; 
     } 
 }
