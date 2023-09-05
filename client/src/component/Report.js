@@ -2,6 +2,8 @@
 import React, { Component } from 'react';
 import {  Button } from 'react-bootstrap';
 
+import ReportTable from './ReportTable';
+
 
 // Report component
 class Report extends Component {
@@ -20,9 +22,7 @@ class Report extends Component {
 
     // Format file data props to be used by report component when mounted
     componentDidMount(){
-        let report = this.generateReport(this.props.data[0], this.props.data[1])
-
-        this.setState({report: report});
+        this.setState({report: this.generateReport(this.props.data[0], this.props.data[1])});
     }
 
     // Test Button
@@ -54,6 +54,7 @@ class Report extends Component {
                     actual_qty: part.quantity};
             }
         });
+        //TODO : Add difference quantity? Currently getting calculated in ReportTable component
         return r;
     }
 
@@ -62,6 +63,7 @@ class Report extends Component {
     render() {
         return (<>
             <h2>Report COMPONENT</h2>
+            <ReportTable values={this.state.report} />
             {/** Test Button to see component state variables */}<br /><Button variant="primary" type="button" onClick={this.testButton}>REPORT TEST</Button>
         </>);
       };
