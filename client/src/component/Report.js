@@ -64,6 +64,7 @@ class Report extends Component {
         return (<>
             <h2>Report COMPONENT</h2>
             <ReportTable values={this.state.report} />
+            {/** TODO : Add button to export table to CSV file */}
             {/** Test Button to see component state variables */}<br /><Button variant="primary" type="button" onClick={this.testButton}>REPORT TEST</Button>
         </>);
       };
