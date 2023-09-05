@@ -23,4 +23,7 @@ Improve the process for counting inventory
 - After casually working on the app on weekends for a couple weeks, I have data from two differnet files being read, and the information from those files moving up to the 'parent' Inventory Component, allowing the data to be passed to a different component.
 - All this time I have been organizing the code for that the expected file it always first, and then the actual file is second.
 - Today after writing code to pass a setter function down the Upload Component and making sure I put it in the correct order, I realized I should have organized it in alphabetical order... (ie 'A'ctual first and 'E'xpected second)
+## 09/04/2023
+- V1 plan of action is done
+- Two files are getting parsed, file data is getting merged, and merged data is rendered on a table
 
