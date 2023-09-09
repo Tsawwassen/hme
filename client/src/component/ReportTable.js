@@ -1,6 +1,7 @@
 //TODO : Work on the CSS for the table. 
 //      - Use react-bootstrap tables?
-import '../styles/ReportTable.css';
+//import '../styles/ReportTable.css';
+import Table from 'react-bootstrap/Table';
 
 function ReportTable(props) {
     
@@ -9,7 +10,7 @@ function ReportTable(props) {
     let keys = Object.keys(props.values);
     return (
       <>
-          <table>
+          <Table striped bordered hover>
             <thead>
             <tr>
                 <th>Part Number</th>
@@ -29,7 +30,7 @@ function ReportTable(props) {
                         </tr>
             })}
             </tbody>
-          </table>
+          </Table>
       </>
     );
   }
