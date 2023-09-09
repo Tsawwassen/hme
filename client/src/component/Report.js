@@ -1,6 +1,7 @@
 // React imports
 import React, { Component } from 'react';
 import {  Button } from 'react-bootstrap';
+import { CSVLink } from "react-csv";
 
 import ReportTable from './ReportTable';
 
@@ -10,13 +11,15 @@ class Report extends Component {
     constructor(props){
         super(props);
         this.state = {
-            report: {}
+            report: {}, 
+            csvData: []
         };
 
         // Combine the two file data into one JSON object
         this.generateReport = this.generateReport.bind(this);
 
-        this.exportReport = this.exportReport.bind(this);
+        // Function to map JSON Object report to a 2D array for exporting
+        this.exportMap = this.exportMap.bind(this);
 
         // Test Button
         this.testButton = this.testButton.bind(this);
@@ -32,9 +35,20 @@ class Report extends Component {
         console.log(this.state.report);
     }
 
-    exportReport(){
-        console.log("Export Button Clicked");
+    // Function to map JSON Object report to a 2D array for exporting
+    exportMap(){
+        // Create new 2D array so that if the export button is clicked twice, it does not add report variables mutliple times
+        let tempCSV = [
+            ["Part Number", "Expected", "Actual", "Difference"],
+          ];
+
+        Object.keys(this.state.report).forEach(part =>{
+            tempCSV.push([part, this.state.report[part].expected_qty, this.state.report[part].actual_qty, this.state.report[part].difference ]);
+        })
+
+        this.setState({csvData: tempCSV});
     }
+
 
     // Combine the two file data into one JSON object
     // Function does handle if given variables have different part numbers
@@ -76,7 +90,7 @@ class Report extends Component {
         return (<>
             <h2>Report COMPONENT</h2>
             <ReportTable values={this.state.report} />
-            {/** TODO : Add button to export table to CSV file */}<br /><Button variant="primary" type="button" onClick={this.exportReport}>Export Report</Button>
+            < br /><CSVLink data={this.state.csvData} filename={"report.csv"} className="btn btn-primary" onClick={this.exportMap} >Export</CSVLink>
             {/** Test Button to see component state variables */}<br /><Button variant="primary" type="button" onClick={this.testButton}>REPORT TEST</Button>
         </>);
       };
