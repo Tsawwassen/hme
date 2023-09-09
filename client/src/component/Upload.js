@@ -48,7 +48,7 @@ class Upload extends Component {
     // Render two file inputs and submit button.
     render() {
         return (<>
-            <h2>Upload COMPONENT</h2>
+            <h2>Upload V1 COMPONENT</h2>
             <Row>
                 <Col>
                 <Form>
