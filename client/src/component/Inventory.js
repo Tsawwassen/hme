@@ -1,9 +1,10 @@
 // React imports
 import React, { Component } from 'react';
-import { Button } from 'react-bootstrap';
+import { Button, Tab, Tabs } from 'react-bootstrap';
 
 // Upload component
 import Upload from './Upload';
+import UploadV2 from './UploadV2';
 import Report from './Report';
 
 // Variables to change loaded component
@@ -77,9 +78,21 @@ class Inventory extends Component {
     render() {
       return (<>
         <h1>Inventory Screen</h1>
-        {this.state.view === UPLOAD && <Upload setters={this.setData} />}
-        {this.state.view === REPORT && <Report data={[this.state.expectedData, this.state.actualData]}/>}
+        <Tabs
+          defaultActiveKey="v1"
+          id="uncontrolled-tab-example"
+          className="mb-3"
+        >
+        <Tab eventKey="v1" title="V1">
+          {this.state.view === UPLOAD && <Upload setters={this.setData} />}
+          {this.state.view === REPORT && <Report data={[this.state.expectedData, this.state.actualData]}/>}
+        </Tab>
+        <Tab eventKey="v2" title="V2">
+          {this.state.view === UPLOAD && <UploadV2 setters={this.setData} />}
+          {this.state.view === REPORT && <Report data={[this.state.expectedData, this.state.actualData]}/>}
+        </Tab>
         {/** Test Button to see component state variables */}<br /><Button variant="primary" type="button" onClick={this.testButtonClicked}>INVENTORY TEST</Button>
+        </Tabs>
         </>);
     }
   }
