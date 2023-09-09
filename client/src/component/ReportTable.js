@@ -20,13 +20,12 @@ function ReportTable(props) {
             </thead>
             <tbody>
             {keys.map((part, i) => {
-                // DEV NOTE : might need to do 'actual_qty - expected_qty' and not 'expected_qty - actual_qty'
-                //              -Check with end user
+                
                 return <tr key={i}>
                             <td>{part}</td>
                             <td>{props.values[keys[i]].expected_qty}</td>
                             <td>{props.values[keys[i]].actual_qty}</td>
-                            <td>{ props.values[keys[i]].expected_qty - props.values[keys[i]].actual_qty}</td>
+                            <td>{props.values[keys[i]].difference}</td>
                         </tr>
             })}
             </tbody>
