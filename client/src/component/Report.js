@@ -16,6 +16,8 @@ class Report extends Component {
         // Combine the two file data into one JSON object
         this.generateReport = this.generateReport.bind(this);
 
+        this.exportReport = this.exportReport.bind(this);
+
         // Test Button
         this.testButton = this.testButton.bind(this);
     }
@@ -28,6 +30,10 @@ class Report extends Component {
     // Test Button
     testButton(){
         console.log(this.state.report);
+    }
+
+    exportReport(){
+        console.log("Export Button Clicked");
     }
 
     // Combine the two file data into one JSON object
@@ -54,7 +60,13 @@ class Report extends Component {
                     actual_qty: part.quantity};
             }
         });
-        //TODO : Add difference quantity? Currently getting calculated in ReportTable component
+        
+        // DEV NOTE : might need to do 'actual_qty - expected_qty' and not 'expected_qty - actual_qty'
+        //              -Check with end user
+        Object.keys(r).forEach(part =>{
+            r[part].difference = r[part].expected_qty - r[part].actual_qty;
+        })
+        
         return r;
     }
 
@@ -64,7 +76,7 @@ class Report extends Component {
         return (<>
             <h2>Report COMPONENT</h2>
             <ReportTable values={this.state.report} />
-            {/** TODO : Add button to export table to CSV file */}
+            {/** TODO : Add button to export table to CSV file */}<br /><Button variant="primary" type="button" onClick={this.exportReport}>Export Report</Button>
             {/** Test Button to see component state variables */}<br /><Button variant="primary" type="button" onClick={this.testButton}>REPORT TEST</Button>
         </>);
       };
