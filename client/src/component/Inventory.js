@@ -27,10 +27,6 @@ const REPORT = 1;
     //Scan items and create a list with part number and update quantity as they are scanned
     //Show report comparing the two files
 
-    //----V4----
-    //Get expected values from database
-    //Scan items and create a list with part number and update quantity as they are scanned
-    //Show report comparing the two files and give option to export report
 
 
 class Inventory extends Component {
