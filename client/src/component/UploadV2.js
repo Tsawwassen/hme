@@ -62,12 +62,15 @@ class UploadV2 extends Component {
     // ---Clear input field
     // ---Set focus back to input field
     partNumberOnExit(e){
-        //console.log("onExit Function")
-        let temp = this.state.actualPartList;
-        temp.push(this.state.activePartNumber);
-        e.target.value = "";
+        if(this.state.activePartNumber.length !== 0){
+            //console.log("onExit Function")
+            let temp = this.state.actualPartList;
+            temp.push(this.state.activePartNumber);
+            e.target.value = "";
+            
+            this.setState({actualPartList: temp, activePartNumber: ""});
+        }
         e.target.focus();
-        this.setState({actualPartList: temp, activePartNumber: ""});
     }
 
     //Handle enter key stroke to prevent page from submitting 
