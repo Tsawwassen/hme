@@ -1,6 +1,6 @@
 // React imports
 import React, { Component } from 'react';
-
+import { Col, Row, Form, Button, ListGroup  } from 'react-bootstrap';
 
 // Helper Class
 import FileReaderHelper from '../class/FileReaderHelper';
@@ -14,24 +14,30 @@ class UploadV2 extends Component {
         super(props);
         this.state = {
             expectedFilePath: {},
-            actualFilePath: {},
+            activePartNumber: "",
+            actualPartList: [1,2,3,4 ]
         };
 
         // OnChange functions
         this.expectedFileOnChange = this.expectedFileOnChange.bind(this);
-        this.actualFileOnChange = this.actualFileOnChange.bind(this);
+        this.activePartNumberOnChange = this.activePartNumberOnChange.bind(this);
+
+        // OnExit functions
+        this.partNumberOnExit = this.partNumberOnExit.bind(this);
 
         //Submit function
         this.submit = this.submit.bind(this);
+
+        //Test Button Test
+        this.testButtonClicked = this.testButtonClicked.bind(this);
     }
 
     // Submit input files paths to be parsed
-    submit(){       
+    submit(){  
+        //This helper function needs to be updates     
        FileReaderHelper.getFileContent(this.state.expectedFilePath, 
-                                        this.state.actualFilePath,
                                         this.props.setters, 
                                         "Please select an expected inventory file",
-                                        "Please select an actual inventory file"
                                         );
       
        
@@ -41,15 +47,45 @@ class UploadV2 extends Component {
     expectedFileOnChange(e){
         this.setState({expectedFilePath: e.target.files[0]});
     }
-    actualFileOnChange(e){
-        this.setState({actualFilePath: e.target.files[0]});
+    activePartNumberOnChange(e){
+        this.setState({activePartNumber: e.target.value});
     }
+
+    //OnExit Function
+    partNumberOnExit(){
+        console.log("onExit Function")
+    }
+
+    //Test Button Function
+    testButtonClicked(){
+        console.log(this.state.activePartNumber);
+    }
+
+
     
     // Render two file inputs and submit button.
     render() {
         return (<>
             <h2>Upload V2 COMPONENT</h2>
-            
+            <Row>
+                <Col>
+                <Form>
+                    <Form.Group controlId="formFile" className="mb-3">
+                        <Form.Label>Expected Inventory file</Form.Label>
+                        <Form.Control type="file" onChange={this.expectedFileOnChange}  />
+                        <Form.Label>Scanned Part Number</Form.Label>
+                        <Form.Control autoFocus type="text" placeholder="Part Number" onChange={this.activePartNumberOnChange} onExit={this.partNumberOnExit} />
+                    </Form.Group>
+                    <Button variant="primary" type="button" onClick={this.submit}>Submit</Button>
+                </Form>
+                </Col>
+            </Row>
+            <ListGroup>
+                {this.state.actualPartList.map( (l, i) => {
+                    return <ListGroup.Item key={i}>{l}</ListGroup.Item>
+                })}
+            </ListGroup>
+            {/** Test Button to see component state variables */}<br /><Button variant="primary" type="button" onClick={this.testButtonClicked}>testButtonClicked</Button>
         </>);
       };
     }
