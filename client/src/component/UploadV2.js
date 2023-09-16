@@ -28,6 +28,10 @@ class UploadV2 extends Component {
         //Submit function
         this.submit = this.submit.bind(this);
 
+        //Handle enter key stroke to prevent page from submitting 
+        //--Mostly for scanner functionality
+        this.handleKeyDown = this.handleKeyDown.bind(this);
+
         //Test Button Test
         this.testButtonClicked = this.testButtonClicked.bind(this);  
         
@@ -35,7 +39,7 @@ class UploadV2 extends Component {
 
     // Submit input files paths to be parsed
     submit(){  
-        //This helper function needs to be updates     
+        //This helper function needs to be updated for V2     
        FileReaderHelper.getFileContent(this.state.expectedFilePath, 
                                         this.props.setters, 
                                         "Please select an expected inventory file",
@@ -66,6 +70,16 @@ class UploadV2 extends Component {
         this.setState({actualPartList: temp, activePartNumber: ""});
     }
 
+    //Handle enter key stroke to prevent page from submitting 
+    //--Mostly for scanner functionality
+    //--Treat enter key press the same as tab key pressed
+    handleKeyDown(e) {
+        if (e.keyCode === 13 ) {
+            e.preventDefault();
+            this.partNumberOnExit(e);
+        }
+    }
+
     //Test Button Function
     testButtonClicked(){
         console.log(this.state.activePartNumber);
@@ -73,7 +87,7 @@ class UploadV2 extends Component {
 
 
     
-    // Render two file inputs and submit button.
+    // Render one file input, text field to add part numbers, and table for added part numbers and submit button.
     render() {
         return (<>
             <h2>Upload V2 COMPONENT</h2>
@@ -84,7 +98,7 @@ class UploadV2 extends Component {
                         <Form.Label>Expected Inventory file</Form.Label>
                         <Form.Control type="file" onChange={this.expectedFileOnChange}  />
                         <Form.Label>Scanned Part Number</Form.Label>
-                        <Form.Control autoFocus type="text" placeholder="Part Number" onChange={this.activePartNumberOnChange} onBlur={this.partNumberOnExit} />
+                        <Form.Control autoFocus type="text" placeholder="Part Number" onChange={this.activePartNumberOnChange} onBlur={this.partNumberOnExit} onKeyDown={this.handleKeyDown}/>
                     </Form.Group>
                     <Button variant="primary" type="button" onClick={this.submit}>Submit</Button>
                 </Form>
