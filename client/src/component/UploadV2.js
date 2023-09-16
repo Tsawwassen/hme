@@ -15,7 +15,7 @@ class UploadV2 extends Component {
         this.state = {
             expectedFilePath: {},
             activePartNumber: "",
-            actualPartList: [1,2,3,4 ]
+            actualPartList: []
         };
 
         // OnChange functions
@@ -52,8 +52,12 @@ class UploadV2 extends Component {
     }
 
     //OnExit Function
-    partNumberOnExit(){
-        console.log("onExit Function")
+    partNumberOnExit(e){
+        //console.log("onExit Function")
+        let temp = this.state.actualPartList;
+        temp.push(this.state.activePartNumber);
+        e.target.value = "";
+        this.setState({actualPartList: temp, activePartNumber: ""});
     }
 
     //Test Button Function
@@ -74,7 +78,7 @@ class UploadV2 extends Component {
                         <Form.Label>Expected Inventory file</Form.Label>
                         <Form.Control type="file" onChange={this.expectedFileOnChange}  />
                         <Form.Label>Scanned Part Number</Form.Label>
-                        <Form.Control autoFocus type="text" placeholder="Part Number" onChange={this.activePartNumberOnChange} onExit={this.partNumberOnExit} />
+                        <Form.Control autoFocus type="text" placeholder="Part Number" onChange={this.activePartNumberOnChange} onBlur={this.partNumberOnExit} />
                     </Form.Group>
                     <Button variant="primary" type="button" onClick={this.submit}>Submit</Button>
                 </Form>
