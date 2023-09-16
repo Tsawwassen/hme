@@ -43,7 +43,7 @@ class FileReaderHelper {
     // Show error message if file cannot be opened
     // Once both files are parsed, send them both to callback function
     // TODO : Not a fan of this nested double code, but I needed a way to get data from both files and then send them up to Inventory component.
-    static getFileContent(expectedPath, actualPath, callback, expectedErrorMessage, actualErrorMessage){
+    static getDoubleFileContent(expectedPath, actualPath, callback, expectedErrorMessage, actualErrorMessage){
         let efd = [];
         let afd = [];
         let fileReader = new FileReader();
@@ -71,6 +71,9 @@ class FileReaderHelper {
             // Show alert message if file cannot be opened
             alert(expectedErrorMessage);
         }; 
-    } 
+    }
+    static getSingleFileContent(expectedPath, scannedParts, callback, expectedErrorMessage){
+        console.log("inside NEW GET FILE CONTENT");
+    }
 }
 export default FileReaderHelper;

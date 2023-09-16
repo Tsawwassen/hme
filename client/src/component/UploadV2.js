@@ -39,8 +39,12 @@ class UploadV2 extends Component {
 
     // Submit input files paths to be parsed
     submit(){  
-        //This helper function needs to be updated for V2     
-       FileReaderHelper.getFileContent(this.state.expectedFilePath, 
+        //This helper function needs to be updated for V2   
+        //TODO :
+        // - Create new FileReader Helper function to parse one file
+        // - Format this.state.actualPartList to be same format as file content (ie headers, and do pivot table like function to get quantites)
+       FileReaderHelper.getSingleFileContent(this.state.expectedFilePath,
+                                        this.actualPartList, 
                                         this.props.setters, 
                                         "Please select an expected inventory file",
                                         );

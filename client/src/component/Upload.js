@@ -27,7 +27,7 @@ class Upload extends Component {
 
     // Submit input files paths to be parsed
     submit(){       
-       FileReaderHelper.getFileContent(this.state.expectedFilePath, 
+       FileReaderHelper.getDoubleFileContent(this.state.expectedFilePath, 
                                         this.state.actualFilePath,
                                         this.props.setters, 
                                         "Please select an expected inventory file",
