@@ -5,8 +5,8 @@ import { Col, Row, Form, Button, ListGroup  } from 'react-bootstrap';
 // Helper Class
 import FileReaderHelper from '../class/FileReaderHelper';
 
-// Upload component
-// Render two file inputs, and submit button
+// UploadV2 component
+// Render one file input and text field for multiple parts, and submit button
 class UploadV2 extends Component {
   
     // Store two file paths and two file data as JSON array
@@ -29,7 +29,8 @@ class UploadV2 extends Component {
         this.submit = this.submit.bind(this);
 
         //Test Button Test
-        this.testButtonClicked = this.testButtonClicked.bind(this);
+        this.testButtonClicked = this.testButtonClicked.bind(this);  
+        
     }
 
     // Submit input files paths to be parsed
@@ -51,12 +52,17 @@ class UploadV2 extends Component {
         this.setState({activePartNumber: e.target.value});
     }
 
-    //OnExit Function
+    // OnExit Function
+    // -On focus exit of Scanned Part number input field:
+    // ---Add new part number to list
+    // ---Clear input field
+    // ---Set focus back to input field
     partNumberOnExit(e){
         //console.log("onExit Function")
         let temp = this.state.actualPartList;
         temp.push(this.state.activePartNumber);
         e.target.value = "";
+        e.target.focus();
         this.setState({actualPartList: temp, activePartNumber: ""});
     }
 
