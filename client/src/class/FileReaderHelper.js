@@ -3,7 +3,7 @@
 class FileReaderHelper {
 
     //Format CSV data to JSON object array
-    static formatData(data){
+    static formatCSVData(data){
 
         // CSV files were showing '\r' and '\n' when file was parsed
         // Remove '\r' and split rows on '\n'
@@ -38,6 +38,39 @@ class FileReaderHelper {
 
         return tempData;
     };
+
+    //Format an array of parts
+    // If the part is listed multiple times, increase the quantity
+    // return format is [... {part_number: STRING, quantity: INT}...]
+    static formatScannedData(data, k){
+        //Loop data array
+        // //Check if the current part number is in the return array
+        // // // if it is, add +1 to quantity
+        // // // Else, add current part number to return array, and set quantity to 1
+
+        // Loop data, and make a JSON object of {...,part_number: quantity,...}, then loop that object to make the return format array.
+        let temp = {};
+        data.forEach(part =>{
+            if(temp.hasOwnProperty(part)){
+                temp[part] = temp[part] + 1; 
+            }
+            else{
+                temp[part] = 1;
+            }
+        });
+    
+        //Parse JSON Object to create return array that will be used in the report component.
+        let r = [];
+        Object.keys(temp).forEach(function(part) {
+            let t = {};
+             t[this[0]] = part;
+             t[this[1]] = temp[part];
+        
+            r.push(t)
+        }, k); // DEV NOTE : Can't use an arrow function and have the 'thisValue' available inside the block. Need to use 'forEach(function(part ... {}, thisValue))
+        
+        return r;
+    }
     
     // Get content from given files
     // Show error message if file cannot be opened
@@ -49,9 +82,9 @@ class FileReaderHelper {
         let fileReader = new FileReader();
         
         fileReader.onloadend = () => {
-            efd = this.formatData(fileReader.result);
+            efd = this.formatCSVData(fileReader.result);
             fileReader.onloadend = () => {
-                afd = this.formatData(fileReader.result);
+                afd = this.formatCSVData(fileReader.result);
                 callback(efd, afd);
             };
             try{
@@ -72,8 +105,29 @@ class FileReaderHelper {
             alert(expectedErrorMessage);
         }; 
     }
+
+    // Get content from given file
+    // Show error message if file cannot be opened
+    // Once file is parsed, format scannedParts list to be same as expectedPath data, then send them both to callback function
     static getSingleFileContent(expectedPath, scannedParts, callback, expectedErrorMessage){
-        console.log("inside NEW GET FILE CONTENT");
+        //console.log("inside NEW GET FILE CONTENT");
+        let efd = [];
+        let afd = [];
+        let fileReader = new FileReader();
+                
+        fileReader.onloadend = () => {
+            efd = this.formatCSVData(fileReader.result);
+            afd = this.formatScannedData(scannedParts, Object.keys(efd[0]));
+            callback(efd, afd);
+        };
+        try{
+            // Read file from given path
+            fileReader.readAsText(expectedPath);
+        } 
+        catch(error){ 
+            // Show alert message if file cannot be opened
+            alert(expectedErrorMessage);
+        };
     }
 }
 export default FileReaderHelper;
