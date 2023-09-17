@@ -26,4 +26,10 @@ Improve the process for counting inventory
 ## 09/04/2023
 - V1 plan of action is done
 - Two files are getting parsed, file data is getting merged, and merged data is rendered on a table
+## 09/16/2023
+- V2 plan of action is done
+- Scanned data is captured, and formated, given file is formated (done in V1), and a report is generated comparing the scanned data and the uploaded file.
+- Supper happy how well I was organizing my components and function to be re-used. Once I formatted the scanned data, I easily sent it to my Report component and it worked as expected.
+- I think this was the first time that planning ahead really payed off.
+- The FileReaderHelper class could use a new name as it is also handeling formatting the scanned data to be passed to the report component, but it is organized and the process flows down to it and back up very clean.
 
