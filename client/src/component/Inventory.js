@@ -19,9 +19,9 @@ const REPORT = 1;
     // NOTE : Add export button here? - DONE (09/09/2023)
 
     //-----V2----
-    //Upload expected values (file will contain part number and quantity columns)
-    //Scan items and create a list with part number and update quantity as they are scanned
-    //Show report comparing the two files
+    //Upload expected values (file will contain part number and quantity columns) - DONE in V1
+    //Scan items and create a list with part number and update quantity as they are scanned - DONE (09/16/2023)
+    //Show report comparing the two files - DONE (09/16/2023)
 
     //----V3----
     //Get expected values from database
