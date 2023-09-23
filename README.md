@@ -32,4 +32,10 @@ Improve the process for counting inventory
 - Supper happy how well I was organizing my components and function to be re-used. Once I formatted the scanned data, I easily sent it to my Report component and it worked as expected.
 - I think this was the first time that planning ahead really payed off.
 - The FileReaderHelper class could use a new name as it is also handeling formatting the scanned data to be passed to the report component, but it is organized and the process flows down to it and back up very clean.
+## 09/23/2023
+- Weekly thoughts / plan for today
+- - The FileReaderHelper class should be called 'ReportMapper'
+- - - At first it only handled parsing / formatting the given files, but when V2 was finished, it also formatted the scanned input for it to be used in the report. Changing it's name to this would make the function of the helper class more clear.
+- - When the tab is changed (v1, v2, or v3) set the view back to upload, clear the expected and actual arrays. Currently when you change tabs after a report is on screen, the report is still visible.
+- - Get backend database. fetch data, map scanned input, show report
 
