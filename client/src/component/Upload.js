@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { Col, Row, Form, Button } from 'react-bootstrap';
 
 // Helper Class
-import FileReaderHelper from '../class/FileReaderHelper';
+import ReportMapperHelper from '../class/ReportMapperHelper';
 
 // Upload component
 // Render two file inputs, and submit button
@@ -27,7 +27,7 @@ class Upload extends Component {
 
     // Submit input files paths to be parsed
     submit(){       
-       FileReaderHelper.getDoubleFileContent(this.state.expectedFilePath, 
+        ReportMapperHelper.getDoubleFileContent(this.state.expectedFilePath, 
                                         this.state.actualFilePath,
                                         this.props.setters, 
                                         "Please select an expected inventory file",

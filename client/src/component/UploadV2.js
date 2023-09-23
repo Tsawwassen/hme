@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { Col, Row, Form, Button, ListGroup  } from 'react-bootstrap';
 
 // Helper Class
-import FileReaderHelper from '../class/FileReaderHelper';
+import ReportMapperHelper from '../class/ReportMapperHelper';
 
 // UploadV2 component
 // Render one file input and text field for multiple parts, and submit button
@@ -41,10 +41,10 @@ class UploadV2 extends Component {
     submit(){  
         //This helper function needs to be updated for V2   
         //TODO :
-        // - don't go into FileReaderHelper if this.actualPartList is empty
+        // - don't go into ReportMapperHelper if this.actualPartList is empty
         // - Create new FileReader Helper function to parse one file
         // - Format this.state.actualPartList to be same format as file content (ie headers, and do pivot table like function to get quantites)
-       FileReaderHelper.getSingleFileContent(this.state.expectedFilePath,
+        ReportMapperHelper.getSingleFileContent(this.state.expectedFilePath,
                                         this.state.actualPartList, 
                                         this.props.setters, 
                                         "Please select an expected inventory file",
