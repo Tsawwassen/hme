@@ -72,6 +72,15 @@ class Inventory extends Component {
         view: REPORT
       })
     }
+    this.changeTab = this.changeTab.bind(this);
+  }
+
+  changeTab(key){
+    this.setState({
+      expectedData: [],
+      actualData: [],
+      view: UPLOAD
+    })
   }
 
     
@@ -82,6 +91,7 @@ class Inventory extends Component {
           defaultActiveKey="v1"
           id="uncontrolled-tab-example"
           className="mb-3"
+          onSelect={(k) => this.changeTab(k)}
         >
         <Tab eventKey="v1" title="V1">
           {this.state.view === UPLOAD && <Upload setters={this.setData} />}
