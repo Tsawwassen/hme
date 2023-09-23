@@ -41,3 +41,8 @@ Improve the process for counting inventory
 - Post notes
 - - To make changes when the Tab is changed, make a function call to the onSelect Tabs props function - DONE
 - - rename FileReaderHelper to ReportMapper helper. - DONE
+
+# Long Term goals
+- Update for the inventory data is formatted to be something like [... {part_number: , count:{ expected: , actual: , difference: }}...]
+- - The way it is currently getting created does not have the part_number key, which means I need to hard code the report table headers. 
+- - Better design is to have the keys used as headers
