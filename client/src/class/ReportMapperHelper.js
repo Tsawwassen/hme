@@ -1,6 +1,6 @@
-//Helper class to read and parse CSV files
+//Helper class to map input for from different places into a way the report component can render the data
 
-class FileReaderHelper {
+class ReportMapperHelper {
 
     //Format CSV data to JSON object array
     static formatCSVData(data){
@@ -130,4 +130,4 @@ class FileReaderHelper {
         };
     }
 }
-export default FileReaderHelper;
+export default ReportMapperHelper;
