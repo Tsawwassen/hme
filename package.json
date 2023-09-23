@@ -4,7 +4,8 @@
   "description": "HME helper apps",
   "main": "index.js",
   "scripts": {
-    "start-client": "cd client && npm start"
+    "start-client": "cd client && npm start",
+    "start-server": "cd server && npm start"
   },
   "author": "Mitchell Smith",
   "license": "ISC"
