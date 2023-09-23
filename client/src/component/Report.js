@@ -40,7 +40,8 @@ class Report extends Component {
         // Create new 2D array so that if the export button is clicked twice, it does not add report variables mutliple times
         let tempCSV = [
             ["Part Number", "Expected", "Actual", "Difference"],
-          ];
+          ]; // Shouldn't this code use keys from the array and not hard coded??!
+          
 
         Object.keys(this.state.report).forEach(part =>{
             tempCSV.push([part, this.state.report[part].expected_qty, this.state.report[part].actual_qty, this.state.report[part].difference ]);
