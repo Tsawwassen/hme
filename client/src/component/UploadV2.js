@@ -42,8 +42,6 @@ class UploadV2 extends Component {
         //This helper function needs to be updated for V2   
         //TODO :
         // - don't go into ReportMapperHelper if this.actualPartList is empty
-        // - Create new FileReader Helper function to parse one file
-        // - Format this.state.actualPartList to be same format as file content (ie headers, and do pivot table like function to get quantites)
         ReportMapperHelper.getSingleFileContent(this.state.expectedFilePath,
                                         this.state.actualPartList, 
                                         this.props.setters, 
