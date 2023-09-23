@@ -36,6 +36,7 @@ Improve the process for counting inventory
 - Weekly thoughts / plan for today
 - - The FileReaderHelper class should be called 'ReportMapper'
 - - - At first it only handled parsing / formatting the given files, but when V2 was finished, it also formatted the scanned input for it to be used in the report. Changing it's name to this would make the function of the helper class more clear.
-- - When the tab is changed (v1, v2, or v3) set the view back to upload, clear the expected and actual arrays. Currently when you change tabs after a report is on screen, the report is still visible.
+- - When the tab is changed (v1, v2, or v3) set the view back to upload, clear the expected and actual arrays. Currently when you change tabs after a report is on screen, the report is still visible. - DONE
 - - Get backend database. fetch data, map scanned input, show report
-
+- Post notes
+- - To make changes when the Tab is changed, make a function call to the onSelect Tabs props function - DONE
