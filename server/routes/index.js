@@ -33,7 +33,7 @@ async function getAllInventory(res) {
     })
   }
 
-  res.send(r);
+  res.json(r);
   
   } finally {
   }
