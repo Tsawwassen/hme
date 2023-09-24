@@ -11,37 +11,41 @@ router.get('/', function(req, res, next) {
 });
 
 async function getAllInventory(res) {
-  let r = [];
-  try {
-    const database = client.db('hme');
-    const collection = database.collection('inventory');
+    let r = [];
+    try {
+        const database = client.db('hme');
+        const collection = database.collection('inventory');
 
-    // Execute query 
-    const query = {};
-    const options = {};
-    const cursor = collection.find(query, options);
+        // Execute query 
+        const query = {};
+        const options = {};
+        const cursor = collection.find(query, options);
 
-  // Print a message if no documents were found
-  if ((await collection.countDocuments(query)) === 0) {
-    console.log("No documents found!");
-  }
-  // push documents to return array
-  for await (const doc of cursor) {
-    r.push({
-      part_number: doc.part_number,
-      quantity: doc.quantity
-    })
-  }
-
-  res.json(r);
+        // Print a message if no documents were found
+        if ((await collection.countDocuments(query)) === 0) {
+            console.log("No documents found!");
+        }
+        // push documents to return array
+        for await (const doc of cursor) {
+            r.push({
+                part_number: doc.part_number,
+                quantity: doc.quantity
+            })
+        }
   
-  } finally {
-  }
+        res.set('Access-Control-Allow-Origin', '*');
+
+        res.json(r);
+        res.end();
+  
+    }catch(e){
+        console.log(e);
+    }
 }
 
 
 router.get('/inventory', function(req, res, next) {
-  getAllInventory(res);
+    getAllInventory(res);
 });
 
 
