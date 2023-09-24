@@ -37,12 +37,21 @@ Improve the process for counting inventory
 - - The FileReaderHelper class should be called 'ReportMapper'  - DONE
 - - - At first it only handled parsing / formatting the given files, but when V2 was finished, it also formatted the scanned input for it to be used in the report. Changing it's name to this would make the function of the helper class more clear. - DONE
 - - When the tab is changed (v1, v2, or v3) set the view back to upload, clear the expected and actual arrays. Currently when you change tabs after a report is on screen, the report is still visible. - DONE
-- - Get backend database. fetch data, map scanned input, show report
+- - Get backend database. fetch data, map scanned input, show report - DONE
 - Post notes
 - - To make changes when the Tab is changed, make a function call to the onSelect Tabs props function - DONE
 - - rename FileReaderHelper to ReportMapper helper. - DONE
+## 09/24/2023
+- All versions of the inventory app are done.
+
+
 
 # Long Term goals
 - Update for the inventory data is formatted to be something like [... {part_number: , count:{ expected: , actual: , difference: }}...]
 - - The way it is currently getting created does not have the part_number key, which means I need to hard code the report table headers. 
 - - Better design is to have the keys used as headers
+- Learn more about the serverless MonogoDB
+- - Did not expect MongoDB to be running in the cloud, but I got it working for what I need it to do.
+- Learn more about Async problems
+- - Had troubles with accessing data that was outside fetch blocks, or data inside the fetch block getting used outside
+- - Did get it working with trial and error, but not totally sure how it's working
