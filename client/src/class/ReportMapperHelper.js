@@ -133,13 +133,36 @@ class ReportMapperHelper {
         };
     }
 
-    //Get content from server and format scanned data
-    // TODO : don't like that I have the headers/keys hard coded, but it works.
-    static mapServerAndScannedData(scannedParts, callback){
-        
-        let afd = this.formatScannedData(scannedParts, ["part_number",	"quantity"]);
-        
+    //Async function to get data from server.
+    //// Still need to work on Async function handeling.
+    //// Would have liked to use 'fetch.then' functions, but I was having asynchronous issues 
+    ////// When I tried the fetch.then inside the map function, any variable outside of the fetch block was not accessible.
+    ////// When I tried to put the fetch.then inside a async helper function, the server data was not getting received by the time it was needed.
+    //// TODO : read up on async solutions on frontend and backend examples.
+    // return format is [... {part_number: STRING, quantity: INT}...]
+    // DEV NOTE : Assume that the server does not have duplicate part_numbers
+    static async getServerData(){
+        try {
+            const url = 'http://localhost:8080/inventory';
+            const response = await fetch(url);
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            const data = await response.json();
+     
+            return data;
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
     }
 
+    //Get content from server and format scanned data
+    // TODO : don't like that I have the headers/keys hard coded, but it works.
+    static async mapServerAndScannedData(scannedParts, callback){
+        let afd = this.formatScannedData(scannedParts, ["part_number",	"quantity"]);
+        let efd = await this.getServerData();
+        callback(efd, afd);
+    }
 }
+
 export default ReportMapperHelper;
