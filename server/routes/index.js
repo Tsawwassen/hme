@@ -1,8 +1,13 @@
 var express = require('express');
 var router = express.Router();
 
+// Use .env file to store environment variables
+// Access with dotenv package
+// https://www.coderrocketfuel.com/article/store-mongodb-credentials-as-environment-variables-in-nodejs
 const dotenv = require("dotenv")
 dotenv.config()
+
+
 const { MongoClient } = require("mongodb");
 const uri = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.2fbrmbe.mongodb.net/?retryWrites=true&w=majority`;
 const client = new MongoClient(uri);
