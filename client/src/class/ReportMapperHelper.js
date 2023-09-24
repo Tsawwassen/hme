@@ -1,5 +1,8 @@
 //Helper class to map input for from different places into a way the report component can render the data
 
+//TODO : All the get functions should be renamed to say what they are mapping.
+//      The format function names are clear
+
 class ReportMapperHelper {
 
     //Format CSV data to JSON object array
@@ -129,5 +132,14 @@ class ReportMapperHelper {
             alert(expectedErrorMessage);
         };
     }
+
+    //Get content from server and format scanned data
+    // TODO : don't like that I have the headers/keys hard coded, but it works.
+    static mapServerAndScannedData(scannedParts, callback){
+        
+        let afd = this.formatScannedData(scannedParts, ["part_number",	"quantity"]);
+        
+    }
+
 }
 export default ReportMapperHelper;
