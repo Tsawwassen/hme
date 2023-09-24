@@ -1,8 +1,10 @@
 var express = require('express');
 var router = express.Router();
 
+const dotenv = require("dotenv")
+dotenv.config()
 const { MongoClient } = require("mongodb");
-const uri = "mongodb+srv://mitchell:Zxbpx068rq3RhRIB@cluster0.2fbrmbe.mongodb.net/?retryWrites=true&w=majority";
+const uri = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.2fbrmbe.mongodb.net/?retryWrites=true&w=majority`;
 const client = new MongoClient(uri);
 
 /* GET home page. */
