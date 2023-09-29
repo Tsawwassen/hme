@@ -1,6 +1,5 @@
 // React imports
 import React, { Component } from 'react';
-import {  Button } from 'react-bootstrap';
 import { CSVLink } from "react-csv";
 
 import ReportTable from './ReportTable';
@@ -20,19 +19,11 @@ class Report extends Component {
 
         // Function to map JSON Object report to a 2D array for exporting
         this.exportMap = this.exportMap.bind(this);
-
-        // Test Button
-        this.testButton = this.testButton.bind(this);
     }
 
     // Format file data props to be used by report component when mounted
     componentDidMount(){
         this.setState({report: this.generateReport(this.props.data[0], this.props.data[1])});
-    }
-
-    // Test Button
-    testButton(){
-        console.log(this.state.report);
     }
 
     // Function to map JSON Object report to a 2D array for exporting
@@ -92,7 +83,6 @@ class Report extends Component {
             <h2>Report COMPONENT</h2>
             <ReportTable values={this.state.report} />
             < br /><CSVLink data={this.state.csvData} filename={"report.csv"} className="btn btn-primary" onClick={this.exportMap} >Export</CSVLink>
-            {/** Test Button to see component state variables */}<br /><Button variant="primary" type="button" onClick={this.testButton}>REPORT TEST</Button>
         </>);
       };
     }
