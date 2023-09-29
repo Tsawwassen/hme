@@ -75,38 +75,32 @@ class ReportMapperHelper {
         return r;
     }
     
+    // Read file asyncronously
+    //return promise
+    static readUploadedFileAsText(inputFile) {
+        const fr = new FileReader();
+        return new Promise((resolve, reject) => {
+          fr.onerror = () => {
+            fr.abort();
+            reject(new DOMException("Problem parsing input file."));
+          };
+      
+          fr.onloadend = () => {
+            resolve(fr.result);
+          };
+          fr.readAsText(inputFile);
+        });
+      };
+
     // Get content from given files
-    // Show error message if file cannot be opened
+    // TODO : now that the code is running asyncronously, need to show and catch better error messages. Keeping error message variables for future use.
     // Once both files are parsed, send them both to callback function
-    // TODO : Not a fan of this nested double code, but I needed a way to get data from both files and then send them up to Inventory component.
-    static getDoubleFileContent(expectedPath, actualPath, callback, expectedErrorMessage, actualErrorMessage){
-        let efd = [];
-        let afd = [];
-        let fileReader = new FileReader();
-        
-        fileReader.onloadend = () => {
-            efd = this.formatCSVData(fileReader.result);
-            fileReader.onloadend = () => {
-                afd = this.formatCSVData(fileReader.result);
-                callback(efd, afd);
-            };
-            try{
-                // Read file from given path
-                fileReader.readAsText(actualPath);
-             } 
-             catch(error){ 
-                // Show alert message if file cannot be opened
-                alert(actualErrorMessage);
-            };
-        };
-        try{
-            // Read file from given path
-            fileReader.readAsText(expectedPath);
-         } 
-         catch(error){ 
-            // Show alert message if file cannot be opened
-            alert(expectedErrorMessage);
-        }; 
+    static async getDoubleFileContent(expectedPath, actualPath, callback, expectedErrorMessage, actualErrorMessage){ 
+        callback(
+            this.formatCSVData(await this.readUploadedFileAsText(expectedPath)),
+            this.formatCSVData(await this.readUploadedFileAsText(actualPath)),
+        )
+     
     }
 
     // Get content from given file
