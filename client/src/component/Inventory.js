@@ -25,9 +25,9 @@ const REPORT = 1;
     //Show report comparing the two files - DONE (09/16/2023)
 
     //----V3----
-    //Get expected values from database
-    //Scan items and create a list with part number and update quantity as they are scanned
-    //Show report comparing the two files
+    //Get expected values from database - DONE (09/23/2023)
+    //Scan items and create a list with part number and update quantity as they are scanned - DONE (09/23/2023)
+    //Show report comparing the two files - DONE (09/23/2023)
 
 
 
