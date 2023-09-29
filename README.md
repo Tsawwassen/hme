@@ -43,6 +43,9 @@ Improve the process for counting inventory
 - - rename FileReaderHelper to ReportMapper helper. - DONE
 ## 09/24/2023
 - All versions of the inventory app are done.
+## 09/29/2023
+- Cleaned up the file reading functions to work asyncronously.
+- Cleaned up testing code (test buttons), old console logs, and old function calls (ie function calls that were copied into v3 from v2, but never used in v3)
 
 
 
