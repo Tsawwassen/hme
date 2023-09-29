@@ -1,6 +1,6 @@
 // React imports
 import React, { Component } from 'react';
-import { Button, Tab, Tabs } from 'react-bootstrap';
+import {  Tab, Tabs } from 'react-bootstrap';
 
 // Upload component
 import Upload from './Upload';
@@ -40,8 +40,6 @@ class Inventory extends Component {
       view: UPLOAD
     };
 
-    //Button to test state values
-    this.testButtonClicked = this.testButtonClicked.bind(this);
 
     // Set Functions
     this.setData = this.setData.bind(this);
@@ -51,11 +49,7 @@ class Inventory extends Component {
     
   }
 
-  //Button to test state values
-  testButtonClicked(){
-    console.log(this.state.expectedData);
-    console.log(this.state.actualData);
-  }
+
 
   // Check if the received data is not empty
   // Probably could do a better data check, but its working for test files.
@@ -106,7 +100,6 @@ class Inventory extends Component {
           {this.state.view === UPLOAD && <UploadV3 setters={this.setData} />}
           {this.state.view === REPORT && <Report data={[this.state.expectedData, this.state.actualData]}/>}
         </Tab>
-        {/** Test Button to see component state variables */}<br /><Button variant="primary" type="button" onClick={this.testButtonClicked}>INVENTORY TEST</Button>
         </Tabs>
         </>);
     }
