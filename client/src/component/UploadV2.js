@@ -31,9 +31,6 @@ class UploadV2 extends Component {
         //Handle enter key stroke to prevent page from submitting 
         //--Mostly for scanner functionality
         this.handleKeyDown = this.handleKeyDown.bind(this);
-
-        //Test Button Test
-        this.testButtonClicked = this.testButtonClicked.bind(this);  
         
     }
 
@@ -87,13 +84,6 @@ class UploadV2 extends Component {
         }
     }
 
-    //Test Button Function
-    testButtonClicked(){
-        console.log(this.state.activePartNumber);
-    }
-
-
-    
     // Render one file input, text field to add part numbers, and table for added part numbers and submit button.
     render() {
         return (<>
@@ -116,7 +106,6 @@ class UploadV2 extends Component {
                     return <ListGroup.Item key={i}>{l}</ListGroup.Item>
                 })}
             </ListGroup>
-            {/** Test Button to see component state variables */}<br /><Button variant="primary" type="button" onClick={this.testButtonClicked}>testButtonClicked</Button>
         </>);
       };
     }
