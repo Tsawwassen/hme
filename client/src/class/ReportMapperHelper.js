@@ -139,9 +139,10 @@ class ReportMapperHelper {
     //Get content from server and format scanned data
     // TODO : don't like that I have the headers/keys hard coded, but it works.
     static async mapServerAndScannedData(scannedParts, callback){
-        let afd = this.formatScannedData(scannedParts, ["part_number",	"quantity"]);
-        let efd = await this.getServerData();
-        callback(efd, afd);
+        callback(
+            await this.getServerData(), 
+            this.formatScannedData(scannedParts, ["part_number", "quantity"])
+            );
     }
 }
 
