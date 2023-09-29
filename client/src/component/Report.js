@@ -55,7 +55,7 @@ class Report extends Component {
     // Function does handle if given variables have different part numbers
     generateReport(expected, actual){
         let r = {};
-
+        
         // Loop expected array
         expected.forEach(part => {
             // Add part_number, expected quantity from expected array, and set actual quantity to 0
