@@ -38,6 +38,7 @@ class UploadV2 extends Component {
     }
 
     // Submit input files paths to be parsed
+      //TODO : Check file paths here, and show error if needed before going into ReportMapperHelper
     submit(){  
         //This helper function needs to be updated for V2   
         //TODO :

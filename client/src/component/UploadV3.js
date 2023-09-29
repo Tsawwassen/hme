@@ -68,6 +68,7 @@ class UploadV3 extends Component {
     }
 
     // Submit input files paths to be parsed
+      //TODO : Check file paths here, and show error if needed before going into ReportMapperHelper
     submit(){
         ReportMapperHelper.mapServerAndScannedData(this.state.actualPartList, this.props.setters)
        /*  ReportMapperHelper.getDoubleFileContent(this.state.expectedFilePath, 

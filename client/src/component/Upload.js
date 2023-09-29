@@ -26,6 +26,7 @@ class Upload extends Component {
     }
 
     // Submit input files paths to be parsed
+    //TODO : Check file paths here, and show error if needed before going into ReportMapperHelper
     submit(){       
         ReportMapperHelper.getDoubleFileContent(this.state.expectedFilePath, 
                                         this.state.actualFilePath,
