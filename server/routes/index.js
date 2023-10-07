@@ -55,6 +55,31 @@ router.get('/inventory', function(req, res, next) {
     getAllInventory(res);
 });
 
+// Get Orders
+router.get('/orders', function (req, res, next){
+    //console.log("GET ORDERS");
+    //res.send("GET ORDERS");
+});
+
+// Add Orders
+router.post('/orders', function(req, res, next){
+    //console.log("Add ORDERS");
+    //res.send("Add ORDERS");
+});
+
+// Update orders
+router.post('/orders', function( req, res, next){
+    //console.log("UPDATE ORDERS");
+    //res.send("UPDATE ORDERS");
+});
+
+//Delete Orders
+router.delete('/orders', function(req, res, next){
+    //console.log("DELETE ORDERS");
+    //res.send("DELETE ORDERS");
+});
+
+
 
 module.exports = router;
 
