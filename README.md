@@ -13,10 +13,18 @@ Improve the process for counting inventory
 * Output
   - File/Report comparing the two files. Report will show items that were missed, over counted, and under counted.
 
-# Versions 
+###  Versions 
 * V1 - The two input files will be a CSV file.
 * V2 - The expected file will be uploaded, and the physical count will be created inside the app.
 * V3 - The expected file will be pulled from Windward (API), and the physical count will be created inside the app.
+
+## Stale Order Helper
+Improve the process for checking stale orders
+* Input
+  - List of current orders on the shelf
+  - List of orders from last stale order check
+* Output
+  - Report organized by sale rep showing orders that are currently on the shelf, highlighting orders that were on the previous weeks report
 
 # Journal
 ## 09/03/2023
