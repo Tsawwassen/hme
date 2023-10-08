@@ -3,6 +3,7 @@ var router = express.Router();
 
 //import mongoose from 'mongoose';
 var mongoose = require('mongoose');
+const Orders = require("../models/orders");
 
 // Use .env file to store environment variables
 // Access with dotenv package
@@ -65,53 +66,61 @@ router.get('/inventory', function(req, res, next) {
     getAllInventory(res);
 });
 
-// Get Orders
-// router.get('/orders', function (req, res, next){
-//     console.log("GET ORDERS");
-//     res.send("GET ORDERS");
-// });
-
-// Add Orders
-// router.put('/orders', function(req, res, next){
-//     console.log("Add ORDERS");
-//     res.send("Add ORDERS");
-// });
-
-// Update orders
-// router.post('/orders', function( req, res, next){
-//     console.log("UPDATE ORDERS");
-//     res.send("UPDATE ORDERS");
-// });
-
-//Delete Orders
-// router.delete('/orders', function(req, res, next){
-//     console.log("DELETE ORDERS");
-//     res.send("DELETE ORDERS");
-// });
 
 router.route('/orders')
     .all(function (req, res, next) {
         console.log("inside /orders ALL");
+        //This code block will always run when server receives any /orders route requests, then go to the 
         next()
     })
     .get(function (req, res, next) {
         console.log("GET ORDERS!!");
-        res.send("GET ORDERS!!");
+        //res.send("GET ORDERS!!");
+        Orders.find({})
+        .then (order => {
+            //console.log(order);
+            res.json({status: "success", data: order});
+        }).catch(error => {
+            res.json({status: "error", data: error});
+        });
     })
     .put(function (req, res, next) {
-        console.log("PUT / Add ORDERS!!");
-        res.send("PUT / Add ORDERS!!");
+        console.log("PUT / UPDATE ORDERS!!");
+        //res.send("PUT / UPDATE ORDERS!!");
+        Orders.findOne({})
+        .then(order => {
+            order.rep = order.rep + "1";
+            order.save();
+            res.json({status: "success", data: order});
+        })
+        .catch(error => {
+            res.json({status: "error", data: error});
+        });
     })
     .post(function (req, res, next) {
-        console.log("POST / UPDATE ORDERS!!");
-        res.send("POST / UPDATE ORDERS!!");
+        console.log("POST / ADD ORDERS!!");
+        //res.send("POST / ADD ORDERS!!");
+        Orders.create({
+            orderNumber: "ORDER NUMBER TEST",
+            rep: "TEST REP"
+        }).then( order => {
+            res.json({status: "success", data: order})
+        }).catch(error => {
+            res.json({status: "error", data: error});
+        });
     })
     .delete(function (req, res, next) {
         console.log("DELETE ORDERS!!");
-        res.send("DELETE ORDERS!!");
+        //res.send("DELETE ORDERS!!");
+        Orders.findOneAndDelete({})
+        .then(order => {
+            order.delete;
+            res.json({status: "success", data: order});
+        })
+        .catch(error => {
+            res.json({status: "error", data: error});
+        });
     })
-
-
 
 module.exports = router;
 
