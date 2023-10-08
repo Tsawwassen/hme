@@ -1,6 +1,9 @@
 var express = require('express');
 var router = express.Router();
 
+//import mongoose from 'mongoose';
+var mongoose = require('mongoose');
+
 // Use .env file to store environment variables
 // Access with dotenv package
 // https://www.coderrocketfuel.com/article/store-mongodb-credentials-as-environment-variables-in-nodejs
@@ -11,6 +14,13 @@ dotenv.config()
 const { MongoClient } = require("mongodb");
 const uri = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.2fbrmbe.mongodb.net/?retryWrites=true&w=majority`;
 const client = new MongoClient(uri);
+
+mongoose.connect(uri)
+.then(() => {
+    console.log('Mongoose Connected!');
+    });
+
+
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -56,28 +66,50 @@ router.get('/inventory', function(req, res, next) {
 });
 
 // Get Orders
-router.get('/orders', function (req, res, next){
-    //console.log("GET ORDERS");
-    //res.send("GET ORDERS");
-});
+// router.get('/orders', function (req, res, next){
+//     console.log("GET ORDERS");
+//     res.send("GET ORDERS");
+// });
 
 // Add Orders
-router.post('/orders', function(req, res, next){
-    //console.log("Add ORDERS");
-    //res.send("Add ORDERS");
-});
+// router.put('/orders', function(req, res, next){
+//     console.log("Add ORDERS");
+//     res.send("Add ORDERS");
+// });
 
 // Update orders
-router.post('/orders', function( req, res, next){
-    //console.log("UPDATE ORDERS");
-    //res.send("UPDATE ORDERS");
-});
+// router.post('/orders', function( req, res, next){
+//     console.log("UPDATE ORDERS");
+//     res.send("UPDATE ORDERS");
+// });
 
 //Delete Orders
-router.delete('/orders', function(req, res, next){
-    //console.log("DELETE ORDERS");
-    //res.send("DELETE ORDERS");
-});
+// router.delete('/orders', function(req, res, next){
+//     console.log("DELETE ORDERS");
+//     res.send("DELETE ORDERS");
+// });
+
+router.route('/orders')
+    .all(function (req, res, next) {
+        console.log("inside /orders ALL");
+        next()
+    })
+    .get(function (req, res, next) {
+        console.log("GET ORDERS!!");
+        res.send("GET ORDERS!!");
+    })
+    .put(function (req, res, next) {
+        console.log("PUT / Add ORDERS!!");
+        res.send("PUT / Add ORDERS!!");
+    })
+    .post(function (req, res, next) {
+        console.log("POST / UPDATE ORDERS!!");
+        res.send("POST / UPDATE ORDERS!!");
+    })
+    .delete(function (req, res, next) {
+        console.log("DELETE ORDERS!!");
+        res.send("DELETE ORDERS!!");
+    })
 
 
 
