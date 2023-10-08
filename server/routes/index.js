@@ -29,6 +29,10 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
+/**
+ * TODO : Change the below database code to use mongoose
+ * 
+ */
 async function getAllInventory(res) {
     let r = [];
     try {
@@ -61,7 +65,6 @@ async function getAllInventory(res) {
         console.log(e);
     }
 }
-
 
 router.get('/inventory', function(req, res, next) {
     getAllInventory(res);
