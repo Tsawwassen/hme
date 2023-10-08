@@ -3,7 +3,8 @@ var router = express.Router();
 
 //import mongoose from 'mongoose';
 var mongoose = require('mongoose');
-const Orders = require("../models/orders");
+
+const Orders = require("../models/Order");
 
 // Use .env file to store environment variables
 // Access with dotenv package
@@ -13,14 +14,14 @@ dotenv.config()
 
 
 const { MongoClient } = require("mongodb");
-const uri = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.2fbrmbe.mongodb.net/?retryWrites=true&w=majority`;
+const uri = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.2fbrmbe.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`;
 const client = new MongoClient(uri);
 
 mongoose.connect(uri)
 .then(() => {
+    
     console.log('Mongoose Connected!');
-    });
-
+});
 
 
 /* GET home page. */
