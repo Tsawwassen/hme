@@ -38,7 +38,6 @@ router.route('/inventory')
 .get(function (req, res, next) {
      Inventory.find({})
      .then(inventory=>{
-         
          res.json(inventory);
          res.end();
      }).catch(error => {
@@ -49,24 +48,21 @@ router.route('/inventory')
 
 router.route('/orders')
     .all(function (req, res, next) {
-        console.log("inside /orders ALL");
-        //This code block will always run when server receives any /orders route requests, then go to the 
+        //This code block will always run when server receives any /orders route requests, then go to the
+        res.set('Access-Control-Allow-Origin', '*'); 
         next()
     })
     .get(function (req, res, next) {
-        console.log("GET ORDERS!!");
-        //res.send("GET ORDERS!!");
+        //Get Order
         Orders.find({})
         .then (order => {
-            //console.log(order);
             res.json({status: "success", data: order});
         }).catch(error => {
             res.json({status: "error", data: error});
         });
     })
     .put(function (req, res, next) {
-        console.log("PUT / UPDATE ORDERS!!");
-        //res.send("PUT / UPDATE ORDERS!!");
+        //Update Order
         Orders.findOne({})
         .then(order => {
             order.rep = order.rep + "1";
@@ -78,8 +74,7 @@ router.route('/orders')
         });
     })
     .post(function (req, res, next) {
-        console.log("POST / ADD ORDERS!!");
-        //res.send("POST / ADD ORDERS!!");
+        //Add Order
         Orders.create({
             orderNumber: "ORDER NUMBER TEST",
             rep: "TEST REP"
@@ -90,8 +85,7 @@ router.route('/orders')
         });
     })
     .delete(function (req, res, next) {
-        console.log("DELETE ORDERS!!");
-        //res.send("DELETE ORDERS!!");
+        //Delete Order
         Orders.findOneAndDelete({})
         .then(order => {
             order.delete;
