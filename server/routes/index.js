@@ -5,6 +5,7 @@ var router = express.Router();
 var mongoose = require('mongoose');
 
 const Orders = require("../models/Order");
+const Inventory = require("../models/Inventory");
 
 // Use .env file to store environment variables
 // Access with dotenv package
@@ -19,7 +20,6 @@ const client = new MongoClient(uri);
 
 mongoose.connect(uri)
 .then(() => {
-    
     console.log('Mongoose Connected!');
 });
 
@@ -29,46 +29,22 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-/**
- * TODO : Change the below database code to use mongoose
- * 
- */
-async function getAllInventory(res) {
-    let r = [];
-    try {
-        const database = client.db('hme');
-        const collection = database.collection('inventory');
 
-        // Execute query 
-        const query = {};
-        const options = {};
-        const cursor = collection.find(query, options);
-
-        // Print a message if no documents were found
-        if ((await collection.countDocuments(query)) === 0) {
-            console.log("No documents found!");
-        }
-        // push documents to return array
-        for await (const doc of cursor) {
-            r.push({
-                part_number: doc.part_number,
-                quantity: doc.quantity
-            })
-        }
-  
-        res.set('Access-Control-Allow-Origin', '*');
-
-        res.json(r);
-        res.end();
-  
-    }catch(e){
-        console.log(e);
-    }
-}
-
-router.get('/inventory', function(req, res, next) {
-    getAllInventory(res);
-});
+router.route('/inventory')
+.all(function (req, res, next) {
+    res.set('Access-Control-Allow-Origin', '*');
+    next()
+})
+.get(function (req, res, next) {
+     Inventory.find({})
+     .then(inventory=>{
+         
+         res.json(inventory);
+         res.end();
+     }).catch(error => {
+         res.json({status: "error", data: error});
+     });
+})
 
 
 router.route('/orders')
