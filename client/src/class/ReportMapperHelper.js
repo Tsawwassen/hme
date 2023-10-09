@@ -114,25 +114,32 @@ class ReportMapperHelper {
     }
 
     //Async function to get data from server.
-    //// Still need to work on Async function handeling.
-    //// Would have liked to use 'fetch.then' functions, but I was having asynchronous issues 
-    ////// When I tried the fetch.then inside the map function, any variable outside of the fetch block was not accessible.
-    ////// When I tried to put the fetch.then inside a async helper function, the server data was not getting received by the time it was needed.
-    //// TODO : read up on async solutions on frontend and backend examples.
     // return format is [... {part_number: STRING, quantity: INT}...]
     // DEV NOTE : Assume that the server does not have duplicate part_numbers
-    static async getServerData(){
-        try {
-            const url = 'http://localhost:8080/inventory';
-            const response = await fetch(url);
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            const data = await response.json();
-            return data;
-        } catch (error) {
-            console.error('Error fetching data:', error);
-        }
+
+    /**
+     * ---Async / Await / Fetch Notes---
+     * Misc notes that might help me understand this function for future code
+     * * 'await' can only be used inside async functions
+     * * If a function is making an API call, like getServerData, the function must return a Promise
+     * * * The code that is calling the API function needs await before the code is ran so that it knows to wait for a return value before continueing the code.
+     * * The Fetch code returns a response, that response is returned as a JSON, and then used in the last Then block.
+     * ---Still Need to Learn---
+     * Tried playing around with the response object, not sure how it changes to data in the next Then block
+     */
+    static getServerData(){
+        return new Promise((resolve, reject) => {
+            fetch("http://localhost:8080/inventory")
+            .then(response => {
+                return response.json();
+            }).then(data => {
+                resolve(data);
+            })
+            .catch(error => {
+                console.error(error);
+                reject(error);
+            });
+        });
     }
 
     //Get content from server and format scanned data
