@@ -1,9 +1,6 @@
 var express = require('express');
 var router = express.Router();
 
-//import mongoose from 'mongoose';
-var mongoose = require('mongoose');
-
 const Orders = require("../models/Order");
 const Inventory = require("../models/Inventory");
 
@@ -13,11 +10,8 @@ const Inventory = require("../models/Inventory");
 const dotenv = require("dotenv")
 dotenv.config()
 
-
-const { MongoClient } = require("mongodb");
+var mongoose = require('mongoose');
 const uri = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.2fbrmbe.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`;
-const client = new MongoClient(uri);
-
 mongoose.connect(uri)
 .then(() => {
     console.log('Mongoose Connected!');
