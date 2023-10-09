@@ -17,18 +17,38 @@ import React, { Component } from 'react';
  * - Use input file to complete task
  */
 
+
 class StaleOrder extends Component  {
     constructor(props){
       super(props);
       this.state = {
+        orders: []
       };
+
     }
+
     
+    
+    componentDidMount(){
+      //let table = await getServerData()
+      fetch("http://localhost:8080/orders")
+      .then(response => {
+        return response.json();
+      }).then(data => {
+        console.log(data.data);
+        this.setState({orders: data.data});
+        return data;
+      });
+    }
 
     render() {
         return (<>
-            {console.log("inside StaleOrder")}
             <h1>StaleOrder</h1>
+            <ul>
+            {this.state.orders.map((order, i) => {
+                return <li key={i}>{order.orderNumber}</li>
+            })}
+            </ul>
         </>);
       }
   }
