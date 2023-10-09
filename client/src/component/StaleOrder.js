@@ -28,7 +28,6 @@ class StaleOrder extends Component  {
     }
 
     componentDidMount(){
-      //let table = await getServerData()
       fetch("http://localhost:8080/orders")
       .then(response => {
         return response.json();
