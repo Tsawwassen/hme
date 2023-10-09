@@ -17,6 +17,19 @@ import React, { Component } from 'react';
  * - Use input file to complete task
  */
 
+/**
+ * Plan of Action
+ * - Delete all data from database
+ * - Parse given NEW order file (columns should be order number and rep)
+ * - compare NEW orders with OLD orders (from database)
+ * - - If NEW order.order_number is in OLD orders
+ * - - - Add NEW order to return list
+ * - - If NEW order.order_number is not in OLD orders
+ * - - - Add NEW order to return list
+ * - - If OLD order.order_number is not in NEW orders
+ * - - - Delete from server
+ */
+
 
 class StaleOrder extends Component  {
     constructor(props){
