@@ -67,15 +67,8 @@ function formatCSVData(data){
   }
 
   async submit(){       
-    console.log("submit");
-    console.log(formatCSVData( await readUploadedFileAsText(this.state.uploadFilePath)));
-    
     this.props.set(formatCSVData( await readUploadedFileAsText(this.state.uploadFilePath)));
-    //let data =  await readUploadedFileAsText(this.state.uploadFilePath)
-    //console.log( data );
-  
-   
-}
+  }
     
     render() {
       return (
