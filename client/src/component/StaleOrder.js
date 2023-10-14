@@ -37,13 +37,54 @@ class StaleOrder extends Component  {
       
       this.setOrders = this.setOrders.bind(this);
       this.removeDuplicates = this.removeDuplicates.bind(this);
+      this.compareNewAndOldOrders = this.compareNewAndOldOrders.bind(this);
+
+      this.intersectingOrders = this.intersectingOrders.bind(this);
     }
 
     removeDuplicates(data){
       return data.filter((data, index, self) =>
         index === self.findIndex((t) => (t.orderNumber === data.orderNumber )))
-      
     }
+
+    intersectingOrders(oldOrders, newOrders){
+      var result = [];
+      
+      oldOrders.forEach(oldOrder => {
+        // iterating over second array
+        newOrders.forEach(newOrder => {
+            // push into output array only if total is 90 & tip is 0
+            if (oldOrder.orderNumber === newOrder.orderNumber )  {
+                result.push(oldOrder);
+            }
+        });
+      });
+      return result;
+    }
+    compareNewAndOldOrders(newOrders){
+      /** 
+      * 3. Compare orders with database and update as needed
+      * 3a.* - - If NEW order.order_number is in OLD orders
+      * - - - Add NEW order to return list
+      * - - If NEW order.order_number is not in OLD orders
+      * - - - Add NEW order to return list
+      * - - If OLD order.order_number is not in NEW orders
+      * - - - Delete from server
+      */
+      let oldOrders = this.state.orders;
+
+      // Find orders intersecting (orders that where recorded last time the audit was done)
+      let intersectingOrders = this.intersectingOrders(oldOrders, newOrders);
+      // Find orders that are only in oldOrders (to be deleted)
+      // Merge intersection orders and newOrders (remove duplicates, keep comment)
+      console.log("---New Order---");
+      console.log(newOrders);
+      console.log("---Old Order---");
+      console.log(oldOrders);
+      console.log("---Intersecting Order---");
+      console.log(intersectingOrders)
+    }
+
     //Would rather pass the setState function to the UploadOldOrders component and not have a function to handle this
     // // Not sure what way of doing it is good practise.
     setOrders(data){
@@ -60,7 +101,7 @@ class StaleOrder extends Component  {
       */
       
       data = this.removeDuplicates (data);
-      console.log(data);
+      this.compareNewAndOldOrders(data);
       this.setState({orders: data});
     }
 
