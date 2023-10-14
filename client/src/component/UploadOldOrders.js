@@ -1,4 +1,4 @@
-function UploadFile(props) {
+function UploadOldOrders(props) {
     
     //Need to initialize keys variable to be used in the tbody render
     //Might be a better way of doing this, but not sure how to reference the keys array inside the map function
@@ -10,4 +10,4 @@ function UploadFile(props) {
     );
   }
   
-  export default UploadFile;
+  export default UploadOldOrders;
