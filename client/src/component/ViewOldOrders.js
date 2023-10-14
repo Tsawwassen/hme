@@ -1,16 +1,31 @@
+import Table from 'react-bootstrap/Table';
+
 function ViewOldOrders(props) {
-    
-    //Need to initialize keys variable to be used in the tbody render
-    //Might be a better way of doing this, but not sure how to reference the keys array inside the map function
-    
+
     return (
       <>
           <h2>ViewOldOrders</h2>
-          <ul>
-            {props.data.map((order, i) => {
-                return <li key={i}>{order.orderNumber}</li>
+          
+
+            <Table striped bordered hover>
+            <thead>
+            <tr>
+                <th>Rep</th>
+                <th>Order Number</th>
+                <th>Comment</th>
+            </tr>
+            </thead>
+            <tbody>
+            {props.data.map((part, i) => {
+                
+                return <tr key={i}>
+                            <td>{part.rep}</td>
+                            <td>{part.orderNumber}</td>
+                            <td>{part.comment}</td>
+                        </tr>
             })}
-            </ul>
+            </tbody>
+          </Table>
       </>
     );
   }
