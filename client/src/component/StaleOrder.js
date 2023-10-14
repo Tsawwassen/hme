@@ -43,7 +43,12 @@ class StaleOrder extends Component  {
 
     }
 
+    /**  Not sure if this fetch call should be in the UploadOldOrders component or left here
+     * The thinking behind leaving it here is that when the component is mounted, it should get the old data, and then updated when a file is uploaded
+     * The thinking behind putting it in the UploadOldOrders component is that the component is getting a setState prop that would get used when a file is uploaded
+    */
     componentDidMount(){
+      
       fetch("http://localhost:8080/orders")
       .then(response => {
         return response.json();
