@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import UploadFile from './UploadFile';
-import OldOrders from './OldOrders';
+import ViewOldOrders from './ViewOldOrders';
 
 
 /**
@@ -62,7 +62,7 @@ class StaleOrder extends Component  {
             <h1>StaleOrder</h1>
             <UploadFile setter={this.setState} />
             
-            <OldOrders data={this.state.orders} />
+            <ViewOldOrders data={this.state.orders} />
         </>);
       }
   }
