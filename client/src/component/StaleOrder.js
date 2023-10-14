@@ -40,7 +40,11 @@ class StaleOrder extends Component  {
         orders: []
       };
       
+      this.setOrders = this.setOrders.bind(this);
+    }
 
+    setOrders(data){
+      this.setState({orders: data});
     }
 
     /**  Not sure if this fetch call should be in the UploadOldOrders component or left here
@@ -65,8 +69,7 @@ class StaleOrder extends Component  {
     render() {
         return (<>
             <h1>StaleOrder</h1>
-            <UploadOldOrders setter={this.setState} />
-            
+            <UploadOldOrders set={this.setOrders} />
             <ViewOldOrders data={this.state.orders} />
         </>);
       }

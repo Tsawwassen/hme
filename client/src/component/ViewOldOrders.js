@@ -9,7 +9,6 @@ function ViewOldOrders(props) {
           <ul>
             {props.data.map((order, i) => {
                 return <li key={i}>{order.orderNumber}</li>
-                //return <p>hello</p>
             })}
             </ul>
       </>
