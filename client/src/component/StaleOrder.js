@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import UploadFile from './UploadFile';
+import OldOrders from './OldOrders';
 
 
 /**
@@ -37,6 +39,7 @@ class StaleOrder extends Component  {
       this.state = {
         orders: []
       };
+      
 
     }
 
@@ -57,11 +60,9 @@ class StaleOrder extends Component  {
     render() {
         return (<>
             <h1>StaleOrder</h1>
-            <ul>
-            {this.state.orders.map((order, i) => {
-                return <li key={i}>{order.orderNumber}</li>
-            })}
-            </ul>
+            <UploadFile setter={this.setState} />
+            
+            <OldOrders data={this.state.orders} />
         </>);
       }
   }
