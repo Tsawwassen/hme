@@ -40,6 +40,7 @@ class StaleOrder extends Component  {
       this.compareNewAndOldOrders = this.compareNewAndOldOrders.bind(this);
 
       this.intersectingOrders = this.intersectingOrders.bind(this);
+      this.deliveredOrders = this.deliveredOrders.bind(this);
     }
 
     removeDuplicates(data){
@@ -47,13 +48,12 @@ class StaleOrder extends Component  {
         index === self.findIndex((t) => (t.orderNumber === data.orderNumber )))
     }
 
+    //Return list of orders that are in both arrays
     intersectingOrders(oldOrders, newOrders){
       var result = [];
-      
       oldOrders.forEach(oldOrder => {
         // iterating over second array
         newOrders.forEach(newOrder => {
-            // push into output array only if total is 90 & tip is 0
             if (oldOrder.orderNumber === newOrder.orderNumber )  {
                 result.push(oldOrder);
             }
@@ -61,6 +61,12 @@ class StaleOrder extends Component  {
       });
       return result;
     }
+
+    //Return list of arrays that are ONLY in oldOrders
+    deliveredOrders(oldOrders, newOrders){
+      return oldOrders.filter(ar => !newOrders.find(rm => (rm.orderNumber === ar.orderNumber) ))
+    }
+    
     compareNewAndOldOrders(newOrders){
       /** 
       * 3. Compare orders with database and update as needed
@@ -76,13 +82,16 @@ class StaleOrder extends Component  {
       // Find orders intersecting (orders that where recorded last time the audit was done)
       let intersectingOrders = this.intersectingOrders(oldOrders, newOrders);
       // Find orders that are only in oldOrders (to be deleted)
+      let deliveredOrders = this.deliveredOrders(oldOrders, newOrders);
       // Merge intersection orders and newOrders (remove duplicates, keep comment)
       console.log("---New Order---");
       console.log(newOrders);
       console.log("---Old Order---");
       console.log(oldOrders);
       console.log("---Intersecting Order---");
-      console.log(intersectingOrders)
+      console.log(intersectingOrders);
+      console.log("---Delivered Order---");
+      console.log(deliveredOrders);
     }
 
     //Would rather pass the setState function to the UploadOldOrders component and not have a function to handle this
