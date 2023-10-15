@@ -66,7 +66,7 @@ class StaleOrder extends Component  {
     deliveredOrders(oldOrders, newOrders){
       return oldOrders.filter(ar => !newOrders.find(rm => (rm.orderNumber === ar.orderNumber) ))
     }
-    
+
     compareNewAndOldOrders(newOrders){
       /** 
       * 3. Compare orders with database and update as needed
@@ -84,6 +84,13 @@ class StaleOrder extends Component  {
       // Find orders that are only in oldOrders (to be deleted)
       let deliveredOrders = this.deliveredOrders(oldOrders, newOrders);
       // Merge intersection orders and newOrders (remove duplicates, keep comment)
+      // Need to add newOrders to intersectingOrders so that the database records is in the array first
+      // Dev Note - This logic might not be correct. Need to try some examples to see if this is true.
+      let keepOrders = intersectingOrders.concat(newOrders);
+      //Need to keep records that have _id key
+      let cleanKeepOrders = this.removeDuplicates(keepOrders);
+
+
       console.log("---New Order---");
       console.log(newOrders);
       console.log("---Old Order---");
@@ -92,6 +99,12 @@ class StaleOrder extends Component  {
       console.log(intersectingOrders);
       console.log("---Delivered Order---");
       console.log(deliveredOrders);
+      console.log("---Keep Order---");
+      console.log(keepOrders);
+      console.log("---Clean Keep Order---");
+      console.log(cleanKeepOrders);
+
+      
     }
 
     //Would rather pass the setState function to the UploadOldOrders component and not have a function to handle this
