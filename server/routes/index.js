@@ -40,54 +40,54 @@ router.route('/inventory')
 
 
 router.route('/orders')
-    .all( function (req, res, next) {
-        next();
-    })
-    .options(function (req, res, next){
-        next ();
-    })
-    .get(function (req, res, next) {
-        //Get Order
-        Orders.find({})
-        .then (order => {
-            res.json({status: "success", data: order});
-        }).catch(error => {
-            res.json({status: "error", data: error});
-        });
-    })
-    .put(function (req, res, next) {
-        //Update Order
-        //TODO : Need to actually update the correct order record
-        Orders.findOne({})
-        .then(order => {
-            order.rep = order.rep + "1";
-            order.save();
-            res.json({status: "success", data: order});
-        })
-        .catch(error => {
-            res.json({status: "error", data: error});
-        });
-    })
-    .post(function (req, res, next) {
-        //Add Order
-        Orders.create(req.body).then( order => {
-            res.json({status: "success", data: order})
-        }).catch(error => {
-            res.json({status: "error", data: error});
-        });
-    })
-    .delete(function (req, res, next) {
-        //Delete Order
-        //TODO : Need to actually delete the sent order
-        Orders.findOneAndDelete({})
-        .then(order => {
-            order.delete;
-            res.json({status: "success", data: order});
-        })
-        .catch(error => {
-            res.json({status: "error", data: error});
-        });
+.all( function (req, res, next) {
+    next();
+})
+.options(function (req, res, next){
+    next ();
+})
+.get(function (req, res, next) {
+    //Get Order
+    Orders.find({})
+    .then (order => {
+        res.json({status: "success", data: order});
+    }).catch(error => {
+        res.json({status: "error", data: error});
     });
+})
+.put(function (req, res, next) {
+    //Update Order
+    //TODO : Need to actually update the correct order record
+    Orders.findOne({})
+    .then(order => {
+        order.rep = order.rep + "1";
+        order.save();
+        res.json({status: "success", data: order});
+    })
+    .catch(error => {
+        res.json({status: "error", data: error});
+    });
+})
+.post(function (req, res, next) {
+    //Add Order
+    Orders.create(req.body).then( order => {
+        res.json({status: "success", data: order})
+    }).catch(error => {
+        res.json({status: "error", data: error});
+    });
+})
+.delete(function (req, res, next) {
+    //Delete Order
+    //TODO : Need to actually delete the sent order
+    Orders.findOneAndDelete({})
+    .then(order => {
+        order.delete;
+        res.json({status: "success", data: order});
+    })
+    .catch(error => {
+        res.json({status: "error", data: error});
+    });
+});
 
 module.exports = router;
 
