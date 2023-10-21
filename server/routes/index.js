@@ -57,10 +57,9 @@ router.route('/orders')
 })
 .put(function (req, res, next) {
     //Update Order
-    //TODO : Need to actually update the correct order record
-    Orders.findOne({})
+    Orders.findById(req.body._id)
     .then(order => {
-        order.rep = order.rep + "1";
+        order.weeksOld += 1;
         order.save();
         res.json({status: "success", data: order});
     })
@@ -70,6 +69,8 @@ router.route('/orders')
 })
 .post(function (req, res, next) {
     //Add Order
+    req.body.comment = "";
+    req.body.weeksOld = 0;
     Orders.create(req.body).then( order => {
         res.json({status: "success", data: order})
     }).catch(error => {
