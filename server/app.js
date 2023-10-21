@@ -19,6 +19,22 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+/** 
+ * Cors settings need to go before custom routes
+ * The below settings are probably overkill (ie they allow more then what I actually need), but the REACT app is talking with the Node backend 
+ * This CORS code was taking from user 'first' from the below StackOverflow post
+ * https://stackoverflow.com/questions/43871637/no-access-control-allow-origin-header-is-present-on-the-requested-resource-whe
+ * TODO : Read up on CORS
+ * 
+*/
+const cors = require('cors');
+app.use(cors({
+    origin: 'http://localhost:3000', // use your actual domain name (or localhost), using * is not recommended
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'HEAD', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Origin', 'X-Requested-With', 'Accept', 'x-client-key', 'x-client-token', 'x-client-secret', 'Authorization'],
+    credentials: false
+}));
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
