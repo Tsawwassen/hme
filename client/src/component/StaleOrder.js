@@ -71,18 +71,18 @@ class StaleOrder extends Component  {
       /** 
       * 3. Compare orders with database and update as needed
       * 3a.* - - If NEW order.order_number is in OLD orders
-      * - - - Add NEW order to return list
+      * - - - Add NEW order to return list (intersecting order)
       * - - If NEW order.order_number is not in OLD orders
-      * - - - Add NEW order to return list
+      * - - - Add NEW order to return list (keep order / clean keep order)
       * - - If OLD order.order_number is not in NEW orders
-      * - - - Delete from server
+      * - - - Delete from server (delivered orders)
       */
       let oldOrders = this.state.orders;
 
       // Find orders intersecting (orders that where recorded last time the audit was done)
       let intersectingOrders = this.intersectingOrders(oldOrders, newOrders);
       // Find orders that are only in oldOrders (to be deleted)
-      let deliveredOrders = this.deliveredOrders(oldOrders, newOrders);
+      let deliveredOrders = this.deliveredOrders(oldOrders, newOrders); // Orders that needs to be deleted / field updated on the database
       // Merge intersection orders and newOrders (remove duplicates, keep comment)
       // Need to add newOrders to intersectingOrders so that the database records is in the array first
       // Dev Note - This logic might not be correct. Need to try some examples to see if this is true.
@@ -90,41 +90,61 @@ class StaleOrder extends Component  {
       //Need to keep records that have _id key
       let cleanKeepOrders = this.removeDuplicates(keepOrders);
 
-
-      console.log("---New Order---");
-      console.log(newOrders);
-      console.log("---Old Order---");
-      console.log(oldOrders);
-      console.log("---Intersecting Order---");
-      console.log(intersectingOrders);
-      console.log("---Delivered Order---");
-      console.log(deliveredOrders);
-      console.log("---Keep Order---");
-      console.log(keepOrders);
-      console.log("---Clean Keep Order---");
-      console.log(cleanKeepOrders);
-
       
+
+      //Loop cleanKeep orders
+      // if order has _id key -> update
+      // Else add order
+
+      let  requestOptions = {
+        method: 'POST', // *GET, POST, PUT, DELETE, etc.
+        mode: 'cors', // no-cors, *cors, same-origin
+        cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+        credentials: 'same-origin', // include, *same-origin, omit
+        headers: {
+          'Content-Type': 'application/json',
+          // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        redirect: 'follow', // manual, *follow, error
+        referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+        //body: JSON.stringify(order), // body data type must match "Content-Type" header
+      };
+
+      cleanKeepOrders.forEach(order => {
+
+        requestOptions.body = JSON.stringify(order);
+        
+        if(order.hasOwnProperty('_id')) {
+          requestOptions.method = 'PUT';
+          
+        }else {
+          requestOptions.method = 'POST';
+        }
+  
+         fetch('http://localhost:8080/orders', requestOptions)
+         .then(response => {
+           return response.json();
+         }).then(data => {
+           return data;
+         })
+         .catch(error => {
+           console.error(error);
+         });
+         
+
+      });
+      //Loop delivered orders
+      // delete (?) from database
+
+      //TODO: Update the table after updates have been named
+      // Need to work on the PUT calls, the database module, and then how the REACT variable / table is updated.
+      this.setState({orders: cleanKeepOrders});
     }
 
     //Would rather pass the setState function to the UploadOldOrders component and not have a function to handle this
     // // Not sure what way of doing it is good practise.
     setOrders(data){
-      /** Plan of action
-      * 1. check for duplicate order numbers
-      * 2. Sort data by rep, then order number
-      * 3. Compare orders with database and update as needed
-      * 3a.* - - If NEW order.order_number is in OLD orders
-      * - - - Add NEW order to return list
-      * - - If NEW order.order_number is not in OLD orders
-      * - - - Add NEW order to return list
-      * - - If OLD order.order_number is not in NEW orders
-      * - - - Delete from server
-      */
-      
-      data = this.removeDuplicates (data);
-      this.compareNewAndOldOrders(data);
-      this.setState({orders: data});
+      this.compareNewAndOldOrders(this.removeDuplicates(data));
     }
 
     /**  Not sure if this fetch call should be in the UploadOldOrders component or left here
@@ -136,7 +156,6 @@ class StaleOrder extends Component  {
       .then(response => {
         return response.json();
       }).then(data => {
-        //console.log(data.data);
         this.setState({orders: data.data});
       })
       .catch(error => {
