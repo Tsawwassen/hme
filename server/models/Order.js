@@ -9,6 +9,8 @@ const { Schema, model } = mongoose;
 const OrderSchema = new Schema({
   orderNumber: String,
   rep: String,
+  comment: String,
+  weeksOld: Number,
 },
 {
     collection: 'orders'
