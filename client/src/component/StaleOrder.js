@@ -29,6 +29,7 @@ import ViewOldOrders from './ViewOldOrders';
  * - Delete order if it is not in the upload file but is on the database
  * - - DEV NOTE : Might be a good idea to learn about testing to make this easier to test
  * - Have rendered table update after file is uploaded
+ * - Add function to add comment to stale order
  * - Mark function as complete ??
  */
 
