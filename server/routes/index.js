@@ -57,6 +57,7 @@ router.route('/orders')
     })
     .put(function (req, res, next) {
         //Update Order
+        //TODO : Need to actually update the correct order record
         Orders.findOne({})
         .then(order => {
             order.rep = order.rep + "1";
@@ -80,6 +81,7 @@ router.route('/orders')
     })
     .delete(function (req, res, next) {
         //Delete Order
+        //TODO : Need to actually delete the sent order
         Orders.findOneAndDelete({})
         .then(order => {
             order.delete;
