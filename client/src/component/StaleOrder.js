@@ -47,6 +47,8 @@ class StaleOrder extends Component  {
 
       this.intersectingOrders = this.intersectingOrders.bind(this);
       this.deliveredOrders = this.deliveredOrders.bind(this);
+
+      this.getOrders = this.getOrders.bind(this);
     }
 
     removeDuplicates(data){
@@ -142,9 +144,24 @@ class StaleOrder extends Component  {
       //Loop delivered orders
       // delete (?) from database
 
-      //TODO: Update the table after updates have been named
-      // Need to work on the PUT calls, the database module, and then how the REACT variable / table is updated.
-      this.setState({orders: cleanKeepOrders});
+      
+    }
+    
+    async getOrders(){
+      return new Promise((resolve, reject) => {
+        fetch("http://localhost:8080/orders")
+        .then(response => {
+          return response.json();
+        }).then(data => {
+          //console.log("inside promise");
+          this.setState({orders: data.data});
+          resolve(data);
+        })
+        .catch(error => {
+          console.error(error);
+          reject(error);
+        });
+      });
     }
 
     //Would rather pass the setState function to the UploadOldOrders component and not have a function to handle this
