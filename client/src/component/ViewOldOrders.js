@@ -8,15 +8,18 @@ function ViewOldOrders(props) {
             <tr>
                 <th>Rep</th>
                 <th>Order Number</th>
+                <th>Weeks Old</th>
                 <th>Comment</th>
+
             </tr>
             </thead>
             <tbody>
-            {props.data.map((part, i) => {
+            {props.data.map((order, i) => {
                 return <tr key={i}>
-                            <td>{part.rep}</td>
-                            <td>{part.orderNumber}</td>
-                            <td>{part.comment}</td>
+                            <td>{order.rep}</td>
+                            <td>{order.orderNumber}</td>
+                            <td>{order.weeksOld}</td>
+                            <td>{order.comment}</td>
                         </tr>
             })}
             </tbody>
