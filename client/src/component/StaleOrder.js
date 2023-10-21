@@ -138,7 +138,6 @@ class StaleOrder extends Component  {
       }).then(data => {
         //console.log(data.data);
         this.setState({orders: data.data});
-        //return data;
       })
       .catch(error => {
         console.error(error);
