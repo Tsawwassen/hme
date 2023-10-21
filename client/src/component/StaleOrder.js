@@ -119,7 +119,6 @@ class StaleOrder extends Component  {
       };
 
       cleanKeepOrders.forEach(order => {
-
         requestOptions.body = JSON.stringify(order);
 
         if(order.hasOwnProperty('_id')) {
@@ -129,7 +128,7 @@ class StaleOrder extends Component  {
           requestOptions.method = 'POST';
         }
   
-         fetch('http://localhost:8080/orders', requestOptions)
+        fetch('http://localhost:8080/orders', requestOptions)
          .then(response => {
            return response.json();
          }).then(data => {
@@ -146,7 +145,6 @@ class StaleOrder extends Component  {
 
       
     }
-    
     async getOrders(){
       return new Promise((resolve, reject) => {
         fetch("http://localhost:8080/orders")
@@ -166,8 +164,11 @@ class StaleOrder extends Component  {
 
     //Would rather pass the setState function to the UploadOldOrders component and not have a function to handle this
     // // Not sure what way of doing it is good practise.
-    setOrders(data){
+    async setOrders(data){
+      
       this.compareNewAndOldOrders(this.removeDuplicates(data));
+      await this.getOrders();
+
     }
 
     /**  Not sure if this fetch call should be in the UploadOldOrders component or left here
@@ -175,15 +176,7 @@ class StaleOrder extends Component  {
      * The thinking behind putting it in the UploadOldOrders component is that the component is getting a setState prop that would get used when a file is uploaded
     */
     componentDidMount(){
-      fetch("http://localhost:8080/orders")
-      .then(response => {
-        return response.json();
-      }).then(data => {
-        this.setState({orders: data.data});
-      })
-      .catch(error => {
-        console.error(error);
-      });
+      this.getOrders();
     }
 
     render() {
