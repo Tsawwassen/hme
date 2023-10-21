@@ -69,9 +69,15 @@ router.route('/orders')
 })
 .post(function (req, res, next) {
     //Add Order
-    req.body.comment = "";
-    req.body.weeksOld = 0;
-    Orders.create(req.body).then( order => {
+    newOrder = new Order({
+        comment: "",
+        weeksOld: 0,
+        orderNumber: req.body.orderNumber,
+        rep: req.body.rep
+
+    });
+
+    Orders.create(newOrder).then( order => {
         res.json({status: "success", data: order})
     }).catch(error => {
         res.json({status: "error", data: error});
