@@ -70,10 +70,7 @@ router.route('/orders')
     })
     .post(function (req, res, next) {
         //Add Order
-        Orders.create({
-            orderNumber: "ORDER NUMBER TEST",
-            rep: "TEST REP"
-        }).then( order => {
+        Orders.create(req.body).then( order => {
             res.json({status: "success", data: order})
         }).catch(error => {
             res.json({status: "error", data: error});
