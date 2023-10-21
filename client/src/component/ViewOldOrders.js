@@ -1,13 +1,9 @@
 import Table from 'react-bootstrap/Table';
 
 function ViewOldOrders(props) {
-
-    return (
-      <>
-          <h2>ViewOldOrders</h2>
-          
-
-            <Table striped bordered hover>
+    return (<>
+        <h2>ViewOldOrders</h2>
+        <Table striped bordered hover>
             <thead>
             <tr>
                 <th>Rep</th>
@@ -17,7 +13,6 @@ function ViewOldOrders(props) {
             </thead>
             <tbody>
             {props.data.map((part, i) => {
-                
                 return <tr key={i}>
                             <td>{part.rep}</td>
                             <td>{part.orderNumber}</td>
@@ -25,9 +20,8 @@ function ViewOldOrders(props) {
                         </tr>
             })}
             </tbody>
-          </Table>
-      </>
-    );
+        </Table>
+    </>);
   }
   
   export default ViewOldOrders;
