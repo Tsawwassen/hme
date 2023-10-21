@@ -36,7 +36,7 @@ router.route('/inventory')
      }).catch(error => {
          res.json({status: "error", data: error});
      });
-})
+});
 
 
 router.route('/orders')
@@ -88,7 +88,7 @@ router.route('/orders')
         .catch(error => {
             res.json({status: "error", data: error});
         });
-    })
+    });
 
 module.exports = router;
 
