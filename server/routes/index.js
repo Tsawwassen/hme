@@ -26,8 +26,7 @@ router.get('/', function(req, res, next) {
 
 router.route('/inventory')
 .all(function (req, res, next) {
-    res.set('Access-Control-Allow-Origin', '*');
-    next()
+    next();
 })
 .get(function (req, res, next) {
      Inventory.find({})
@@ -41,10 +40,11 @@ router.route('/inventory')
 
 
 router.route('/orders')
-    .all(function (req, res, next) {
-        //This code block will always run when server receives any /orders route requests, then go to the
-        res.set('Access-Control-Allow-Origin', '*'); 
-        next()
+    .all( function (req, res, next) {
+        next();
+    })
+    .options(function (req, res, next){
+        next ();
     })
     .get(function (req, res, next) {
         //Get Order
