@@ -26,7 +26,7 @@ Improve the process for checking stale orders
 * Output
   - Report organized by sale rep showing orders that are currently on the shelf, highlighting orders that were on the previous weeks report
 
-# Journal
+# Journal - Inventory Helper
 ## 09/03/2023
 - After casually working on the app on weekends for a couple weeks, I have data from two differnet files being read, and the information from those files moving up to the 'parent' Inventory Component, allowing the data to be passed to a different component.
 - All this time I have been organizing the code for that the expected file it always first, and then the actual file is second.
@@ -55,6 +55,23 @@ Improve the process for checking stale orders
 - Cleaned up the file reading functions to work asyncronously.
 - Cleaned up testing code (test buttons), old console logs, and old function calls (ie function calls that were copied into v3 from v2, but never used in v3)
 
+# Journal - Stale Order Helper
+## 10/7/23 to 10/21/23
+- Didnt notice that journal notes have not been updated since the stale order function was implemented (hence the long date above).
+- copied the same code for reading csv file that the inventory helper uses, might clean this up later.
+- GET call was working fine. able to copy the same routing as the inventory API calls
+- POST AND PUT had many issues
+- - the consistant error I would get is a CORS req/res error
+- - Searched the error on Google and got a lot of different things to try. the resolution was to add a CORS package and set options
+- - The current CORS settings are probably not ideal/ secure, need to learn more about CORS / Node+Express / React / MongoDB Atlas security
+- When making git commits on large amounts of changes, do the following steps to make commit message to specific changes and not the file as a whole. The old way would add a message to the whole file and not updated block by updated block. Since getting the CORS working took much more work then I expected, I felt adding commit messages to each block of code thats updated would be a better way or organizing my git. When doing small and frequent commits, the old way would be effective. 
+- - Have code and terminal side by side
+- - split the terminal panel to have two terminals. top one should be big enough to see large chunks of git diff, bottom one just one or two lines for typing 'git commit -m' commands
+- - type 'git diff' on a file, and ctrl+click the @@ lines to jump to that change in the code
+- - on the selected code window (?) click the + in the top right to stage that code for commit
+- - type 'git commit -m' command in the lower window to add a message to that update
+- - If you want to commit multiple updates on one message, stage multiple updates then input the message
+- - To get to another section of code to stage, either do another diff and click the @@ or click the coloured block (located right of line number. colours means GREEN is new line, BLUE is updated line, RED is deleted line)
 
 
 # Long Term goals
