@@ -128,6 +128,8 @@ class StaleOrder extends Component  {
 
         requestOptions.body = JSON.stringify(order);
 
+        // if order has _id key -> update
+        // Else add order
         if(order.hasOwnProperty('_id')) {
           requestOptions.method = 'PUT';
           
