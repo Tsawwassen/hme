@@ -49,6 +49,7 @@ class StaleOrder extends Component  {
       this.deliveredOrders = this.deliveredOrders.bind(this);
 
       this.getOrders = this.getOrders.bind(this);
+      this.updateOrder = this.updateOrder.bind(this);
     }
 
     //Remove duplicate orderNumbrs from array
