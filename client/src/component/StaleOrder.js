@@ -104,9 +104,6 @@ class StaleOrder extends Component  {
       
 
       //Loop cleanKeep orders
-      // if order has _id key -> update
-      // Else add order
-
       let  requestOptions = {
         method: 'POST', // *GET, POST, PUT, DELETE, etc.
         mode: 'cors', // no-cors, *cors, same-origin
