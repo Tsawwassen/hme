@@ -86,8 +86,9 @@ router.route('/orders')
 .delete(function (req, res, next) {
     //Delete Order
     //TODO : Need to actually delete the sent order
-    Orders.findOneAndDelete({})
+    Orders.findOneAndDelete(req.body)
     .then(order => {
+        console.log(`deleted ${order}`)
         order.delete;
         res.json({status: "success", data: order});
     })
