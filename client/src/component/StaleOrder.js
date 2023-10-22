@@ -117,7 +117,7 @@ class StaleOrder extends Component  {
         referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
         //body: JSON.stringify(order), // body data type must match "Content-Type" header
       };
-
+  
       /**
        * Dev Note:
        * array.forEach does not allow async/await
