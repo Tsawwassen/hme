@@ -155,18 +155,11 @@ class StaleOrder extends Component  {
          .then(response => {
            return response.json();
          }).then(data => {
-           return data;
-         })
-         .catch(error => {
+          resolve(data);
+         }).catch(error => {
            console.error(error);
          });
-         
-
       });
-      //Loop delivered orders
-      // delete (?) from database
-
-      
     }
     async getOrders(){
       return new Promise((resolve, reject) => {
