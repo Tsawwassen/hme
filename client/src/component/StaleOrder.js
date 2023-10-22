@@ -136,8 +136,22 @@ class StaleOrder extends Component  {
         }else {
           requestOptions.method = 'POST';
         }
-  
-        fetch('http://localhost:8080/orders', requestOptions)
+
+        await this.updateOrder(requestOptions);
+      }));
+
+      //});
+      //Loop delivered orders
+      // delete (?) from database
+
+      
+    }
+
+    // Update Order Table
+    // fetch options are set before entering this function (PUT or POST)
+    async updateOrder(options){
+      return new Promise((resolve, reject) => {
+        fetch('http://localhost:8080/orders', options)
          .then(response => {
            return response.json();
          }).then(data => {
