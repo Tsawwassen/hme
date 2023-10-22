@@ -69,7 +69,7 @@ router.route('/orders')
 })
 .post(function (req, res, next) {
     //Add Order
-    newOrder = new Order({
+    newOrder = new Orders({
         comment: "",
         weeksOld: 0,
         orderNumber: req.body.orderNumber,
