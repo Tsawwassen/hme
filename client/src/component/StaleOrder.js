@@ -118,7 +118,14 @@ class StaleOrder extends Component  {
         //body: JSON.stringify(order), // body data type must match "Content-Type" header
       };
 
-      cleanKeepOrders.forEach(order => {
+      /**
+       * Dev Note:
+       * array.forEach does not allow async/await
+       * Need to use array.map and Promise.all
+       * See below syntax for handeling looping an array that needs to wait for a process to finish.
+       */
+      await Promise.all(cleanKeepOrders.map(async (order)=>{
+
         requestOptions.body = JSON.stringify(order);
 
         if(order.hasOwnProperty('_id')) {
