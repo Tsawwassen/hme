@@ -161,6 +161,9 @@ class StaleOrder extends Component  {
          });
       });
     }
+    
+    // Get Order Table
+    // Might be better to return database data rather then doing the setState function inside of the fetch blocks
     async getOrders(){
       return new Promise((resolve, reject) => {
         fetch("http://localhost:8080/orders")
