@@ -158,6 +158,7 @@ class StaleOrder extends Component  {
           resolve(data);
          }).catch(error => {
            console.error(error);
+           reject(error);
          });
       });
     }
