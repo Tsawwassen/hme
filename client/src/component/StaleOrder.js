@@ -189,7 +189,6 @@ class StaleOrder extends Component  {
     async setOrders(data){
       await this.compareNewAndOldOrders(this.removeDuplicates(data));
       await this.getOrders();
-
     }
 
     /**  Not sure if this fetch call should be in the UploadOldOrders component or left here
