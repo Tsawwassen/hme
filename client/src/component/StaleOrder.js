@@ -51,6 +51,7 @@ class StaleOrder extends Component  {
       this.getOrders = this.getOrders.bind(this);
     }
 
+    //Remove duplicate orderNumbrs from array
     removeDuplicates(data){
       return data.filter((data, index, self) =>
         index === self.findIndex((t) => (t.orderNumber === data.orderNumber )))
@@ -75,7 +76,8 @@ class StaleOrder extends Component  {
       return oldOrders.filter(ar => !newOrders.find(rm => (rm.orderNumber === ar.orderNumber) ))
     }
 
-    compareNewAndOldOrders(newOrders){
+    // Compare orders that are in the given file and orders that are in the database
+    async compareNewAndOldOrders(newOrders){
       /** 
       * 3. Compare orders with database and update as needed
       * 3a.* - - If NEW order.order_number is in OLD orders
