@@ -25,10 +25,10 @@ import ViewOldOrders from './ViewOldOrders';
  * - Delete all data from database - DONE
  * - Parse given NEW order file (columns should be order number and rep)- DONE
  * - compare NEW orders with OLD orders (from database)- DONE
- * - Add 'weeks old' column to Order model and update order number when file is uploaded, and the other number is in the file (ie its still sitting on the shelf)
+ * - Add 'weeks old' column to Order model and update order number when file is uploaded, and the other number is in the file (ie its still sitting on the shelf) - DONE
  * - Delete order if it is not in the upload file but is on the database
  * - - DEV NOTE : Might be a good idea to learn about testing to make this easier to test
- * - Have rendered table update after file is uploaded
+ * - Have rendered table update after file is uploaded - DONE
  * - Add function to add comment to stale order
  * - Mark function as complete ??
  */
