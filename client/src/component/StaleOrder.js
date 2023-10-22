@@ -170,7 +170,6 @@ class StaleOrder extends Component  {
         .then(response => {
           return response.json();
         }).then(data => {
-          //console.log("inside promise");
           this.setState({orders: data.data});
           resolve(data);
         })
