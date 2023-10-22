@@ -50,6 +50,7 @@ class StaleOrder extends Component  {
 
       this.getOrders = this.getOrders.bind(this);
       this.updateOrder = this.updateOrder.bind(this);
+      this.deleteOrder = this.deleteOrder.bind(this);
     }
 
     //Remove duplicate orderNumbrs from array
@@ -132,19 +133,33 @@ class StaleOrder extends Component  {
         // Else add order
         if(order.hasOwnProperty('_id')) {
           requestOptions.method = 'PUT';
-          
         }else {
           requestOptions.method = 'POST';
         }
-
         await this.updateOrder(requestOptions);
       }));
 
-      //});
       //Loop delivered orders
-      // delete (?) from database
+      await Promise.all(deliveredOrders.map(async(order)=>{
+        requestOptions.method = 'DELETE';
+        requestOptions.body = JSON.stringify(order);
+        await this.deleteOrder(requestOptions);
+      }));
+    }
 
-      
+    //Delete Order
+    async deleteOrder(option){
+      return new Promise((resolve, reject) => {
+      fetch('http://localhost:8080/orders', option)
+         .then(response => {
+           return response.json();
+         }).then(data => {
+          resolve(data);
+         }).catch(error => {
+           console.error(error);
+           reject(error);
+         });
+      });
     }
 
     // Update Order Table
