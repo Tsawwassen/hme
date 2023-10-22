@@ -180,11 +180,14 @@ class StaleOrder extends Component  {
       });
     }
 
-    //Would rather pass the setState function to the UploadOldOrders component and not have a function to handle this
-    // // Not sure what way of doing it is good practise.
+    /**  
+     * Set order helper function that is passed to UploadOldOrders component 
+     * Once file has been parsed, the setOrder prop receive the file data
+     * File orders are compared with database orders, and updated as needed
+     * Once orders have been updated, get orders from database and render updated table
+    */
     async setOrders(data){
-      
-      this.compareNewAndOldOrders(this.removeDuplicates(data));
+      await this.compareNewAndOldOrders(this.removeDuplicates(data));
       await this.getOrders();
 
     }
