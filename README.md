@@ -85,3 +85,9 @@ Improve the process for checking stale orders
 - - Did get it working with trial and error, but not totally sure how it's working
 
 remote branch test
+
+# Git Branch Cheat sheet
+- creating a new remote branch
+- - 1. create a new branch ( git checkout -b {newBranchName} )
+- - 2. Point head to new branch ( git push -u origin HEAD )
+- - 3. Update code while on the new branch and commit/push as usual
