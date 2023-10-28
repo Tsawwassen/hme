@@ -94,3 +94,5 @@ remote branch test
 4. When ready to merge with main, change to main branch ( git checkout main )( git merge {newBranchName} )
 5. Make a commit to recorde when the merge took place ( git commit -m "Merging main with branch {newBranchName} )
 6. Push to main ( git push )
+- If the branch is not needed after this point, you can delete it here ( git branch -d {newBranchName} )
+- If the branch is marged with main and not deleted, and main gets updated, do this to merge main into the branch
