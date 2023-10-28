@@ -86,8 +86,11 @@ Improve the process for checking stale orders
 
 remote branch test
 
-# Git Branch Cheat sheet
+# Git Remote Branch Cheat sheet
 - creating a new remote branch
 - - 1. create a new branch ( git checkout -b {newBranchName} )
 - - 2. Point head to new branch ( git push -u origin HEAD )
 - - 3. Update code while on the new branch and commit/push as usual
+- - 4. When ready to merge with main, change to main branch ( git checkout -b main )
+- - 5. Make a commit to recorde when the merge took place ( git commit -m "Merging main with branch {newBranchName} )
+- - 6. Push to main ( git push )
