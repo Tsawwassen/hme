@@ -85,6 +85,15 @@ Improve the process for checking stale orders
 - The React App needs to be running for the Electron window to load the app
 - Was able to make an executable, but feels janky
 - The executable portion is 'functioning' (I use that word lightly) in the exeTest branch
+## Final note
+- Yes it is possible to make an executable file that will run the React app, but...
+- - You still need to have the React App running on the web
+- - Its janky to set up. The best steps I found was using the electron-forge package
+- - Would need to play with it more to really understand what it is doing
+- - one of the electron-forge scripts changed my npm scripts so that it would only run the app in electron (ie won't open the app in the browser). Might have this wrong
+- - Would need to clean up the npm scripts to make electron scripts and react scrips both be functional
+
+
 
 # Long Term goals
 - Update for the inventory data is formatted to be something like [... {part_number: , count:{ expected: , actual: , difference: }}...]
