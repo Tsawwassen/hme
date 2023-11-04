@@ -73,6 +73,18 @@ Improve the process for checking stale orders
 - - If you want to commit multiple updates on one message, stage multiple updates then input the message
 - - To get to another section of code to stage, either do another diff and click the @@ or click the coloured block (located right of line number. colours means GREEN is new line, BLUE is updated line, RED is deleted line)
 
+# Journal - Executable
+## 10/28/23
+- Starting to try the local executable. Using Tyler Pott video as a guide ( https://www.youtube.com/watch?v=TkAiVKfWtjI )
+- - New node package that will be used - Electron, https://github.com/electron/electron-packager
+1. npm install --save-dev electron-packager
+- First Note : I think I need to add a file that opens a window (using the electron package) and then create the exe from that new file
+- - I hope that I can more or less point to the react client (might be client/public/index.html, client/src/index.js, client/src/App.js, or something different ).
+## 11/04/2023
+- Ended up using Electron-Forge (https://www.electronforge.io/)
+- The React App needs to be running for the Electron window to load the app
+- Was able to make an executable, but feels janky
+- The executable portion is 'functioning' (I use that word lightly) in the exeTest branch
 
 # Long Term goals
 - Update for the inventory data is formatted to be something like [... {part_number: , count:{ expected: , actual: , difference: }}...]
