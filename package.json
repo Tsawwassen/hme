@@ -4,9 +4,14 @@
   "description": "HME helper apps",
   "main": "index.js",
   "scripts": {
-    "start-client": "cd client && npm start",
+    "start-electron": "cd client && npm start",
+    "start-client": "cd client && npx react-scripts start",
     "start-server": "cd server && npm start"
   },
   "author": "Mitchell Smith",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^27.0.2",
+    "electron-packager": "^17.1.2"
+  }
 }
