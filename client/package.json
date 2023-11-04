@@ -1,12 +1,18 @@
 {
   "name": "client",
+  "author": "Alice and Bob",
+  "description": "An example Electron app",
   "version": "0.1.0",
   "private": true,
+  "productName": "Test Exe",
+  "main": "public/electron.js",
+  "homepage": "./",
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "bootstrap": "^5.3.1",
+    "electron-squirrel-startup": "^1.0.0",
     "react": "^18.2.0",
     "react-bootstrap": "^2.8.0",
     "react-csv": "^2.2.2",
@@ -16,19 +22,69 @@
     "web-vitals": "^2.1.4"
   },
   "devDependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "7.21.11"
+    "@babel/plugin-proposal-private-property-in-object": "7.21.11",
+    "@electron-forge/cli": "^6.4.2",
+    "@electron-forge/maker-deb": "^6.4.2",
+    "@electron-forge/maker-rpm": "^6.4.2",
+    "@electron-forge/maker-squirrel": "^6.4.2",
+    "@electron-forge/maker-zip": "^6.4.2",
+    "@electron-forge/plugin-auto-unpack-natives": "^6.4.2",
+    "electron": "^27.0.2"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "electron-forge start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "electron": "electron .",
+    "start-electron": "set ELECTRON_START_URL=http://localhost:3000 && electron .",
+    "package": "electron-forge package",
+    "publish": "electron-packager build --mac --win --publish always",
+    "make": "electron-forge make"
   },
   "eslintConfig": {
     "extends": [
       "react-app",
       "react-app/jest"
     ]
+  },
+  "config": {
+    "forge": {
+      "packagerConfig": {},
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "name": "electron_quick_start"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-zip",
+          "platforms": [
+            "darwin"
+          ]
+        },
+        {
+          "name": "@electron-forge/maker-deb",
+          "config": {}
+        },
+        {
+          "name": "@electron-forge/maker-rpm",
+          "config": {}
+        }
+      ],
+      "publishers": [
+        {
+        "name": "@electron-forge/publisher-s3",
+        "platforms": ["darwin", "linux"],
+          "config": {
+            "bucket": "my-bucket",
+            "folder": "my/key/prefix"
+          }
+        }
+      ]
+      
+    }
   },
   "browserslist": {
     "production": [
@@ -41,5 +97,16 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "build": {
+    "files": [
+      "build/**/*",
+      "node_modules/**/*"
+    ],
+    "publish": {
+      "provider": "github",
+      "private": true,
+      "owner": "Github Owner"
+    }
   }
 }
