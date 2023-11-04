@@ -56,7 +56,7 @@ Improve the process for checking stale orders
 - Cleaned up testing code (test buttons), old console logs, and old function calls (ie function calls that were copied into v3 from v2, but never used in v3)
 
 # Journal - Stale Order Helper
-## 10/7/23 to 10/21/23
+## 10/7/2023 to 10/21/2023
 - Didnt notice that journal notes have not been updated since the stale order function was implemented (hence the long date above).
 - copied the same code for reading csv file that the inventory helper uses, might clean this up later.
 - GET call was working fine. able to copy the same routing as the inventory API calls
@@ -74,7 +74,7 @@ Improve the process for checking stale orders
 - - To get to another section of code to stage, either do another diff and click the @@ or click the coloured block (located right of line number. colours means GREEN is new line, BLUE is updated line, RED is deleted line)
 
 # Journal - Executable
-## 10/28/23
+## 10/28/2023
 - Starting to try the local executable. Using Tyler Pott video as a guide ( https://www.youtube.com/watch?v=TkAiVKfWtjI )
 - - New node package that will be used - Electron, https://github.com/electron/electron-packager
 1. npm install --save-dev electron-packager
@@ -93,7 +93,10 @@ Improve the process for checking stale orders
 - - one of the electron-forge scripts changed my npm scripts so that it would only run the app in electron (ie won't open the app in the browser). Might have this wrong
 - - Would need to clean up the npm scripts to make electron scripts and react scrips both be functional
 
-
+# Journal - Labels
+## 11/04/2023
+- Starting label printer function
+- Labels will be 3'x2' and will have demo number, barcode of the demo number, serial number, make(?), model(?), size(?)
 
 # Long Term goals
 - Update for the inventory data is formatted to be something like [... {part_number: , count:{ expected: , actual: , difference: }}...]
