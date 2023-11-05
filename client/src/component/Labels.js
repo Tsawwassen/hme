@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import Form from 'react-bootstrap/Form';
 
-
+import ShelfLabel from './ShelfLabel.js';
 
 // Upload component
 // Render two file inputs, and submit button
@@ -38,10 +38,8 @@ class Labels extends Component {
             </Form.Group>
             </Form>
             {this.state.selectedLabelType === "0"}
-            {this.state.selectedLabelType === "1" && <h3>Shelf Label</h3>}
+            {this.state.selectedLabelType === "1" && <ShelfLabel />}
             {this.state.selectedLabelType === "2" && <h3>Inventory Label</h3>}
-            <h3> test</h3>
-
         
         </>);
       };

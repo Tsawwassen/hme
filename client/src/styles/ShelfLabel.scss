@@ -1,0 +1,52 @@
+$enable-rfs: true;
+
+.label {
+    height:2.75in;
+    width:5in;
+    border-style: solid;
+    display:table-cell;
+}
+.label_row{
+    display:table-row;
+}
+.label_page{
+    display:table;
+    margin-left:40px;
+    margin-top:10px;
+}
+table{
+    margin-top: 5px;
+    width:4.75in;
+    height:100%;
+    
+}
+
+
+.supplier{
+    text-align:left;
+    padding-left:20px;
+    height:10%;
+    font-size: 20px;
+}
+.description{
+    font-size: 200%;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+
+.barcode{
+    bottom:0;
+    height:35%;
+}
+
+
+
+
+@media print {
+    .navbar {
+        display: none!important;
+    }
+    .label_page{
+        page-break-after: always;
+    }
+}
