@@ -96,7 +96,7 @@ Improve the process for checking stale orders
 # Journal - Labels
 ## 11/04/2023
 - Starting label printer function
-- Labels will be 3'x2' and will have demo number, barcode of the demo number, serial number, make(?), model(?), size(?)
+- Labels will be 3"x2" and will have demo number, barcode of the demo number, serial number, make(?), model(?), size(?)
 
 # Long Term goals
 - Update for the inventory data is formatted to be something like [... {part_number: , count:{ expected: , actual: , difference: }}...]
