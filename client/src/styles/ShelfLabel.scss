@@ -43,10 +43,13 @@ table{
 
 
 @media print {
-    .navbar {
+    .navbar, .navbar-brand, #label-select{
         display: none!important;
     }
     .label_page{
         page-break-after: always;
+    }
+    @page{
+        margin: 0
     }
 }
