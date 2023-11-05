@@ -50,11 +50,7 @@ class ShelfLabel extends Component {
       });
     });
      
-    //console.log(tempData); // Stub test uploaded data
     this.setState({fileData: tempData});
-    
-    //CHANGE THIS LINE TO SHOW LABELS
-    //this.props.onClick(tempData);
   };
 
   buttonClicked(){ //Not sure if I can put the handleFileRead function code in this block, and reduce the amount of code tracing, but it works.
