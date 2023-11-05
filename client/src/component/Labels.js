@@ -14,8 +14,15 @@ class Labels extends Component {
         this.state = {
             selectedLabelType: "0",
         };
+
+        this.labelOnChange = this.labelOnChange.bind(this);
     }
     
+    labelOnChange(e){
+        //console.log(e.target.value);
+        this.setState({selectedLabelType: e.target.value});
+        
+    }
   
     render() {
         return (<>
