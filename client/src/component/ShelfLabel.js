@@ -32,7 +32,7 @@ class ShelfLabel extends Component {
      *      The first CSV forEach loop can probably be added into the other forEach loops
      */
     const content = fileReader.result;
-    
+
     const csv = content.split('\n');
     const headers = csv.shift().split(',');
     const table = [];
