@@ -3,6 +3,8 @@ import './App.css';
 import Home from './component/Home.js';
 import Inventory from './component/Inventory.js';
 import StaleOrder from './component/StaleOrder.js';
+import Labels from './component/Labels.js';
+
 //Modules
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
@@ -18,6 +20,7 @@ function App() {
             <Route path="home" element={<Home />} />
             <Route path="inventory" element={<Inventory />} />
             <Route path="staleOrder" element={<StaleOrder />} />
+            <Route path="labels" element={<Labels />} />
         </Routes>
     </BrowserRouter>
     </div>
