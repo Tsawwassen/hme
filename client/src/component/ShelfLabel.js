@@ -35,8 +35,6 @@ class ShelfLabel extends Component {
      * fileReader.result returns content of file
      * Keeping the middle variable here for future reference, but sending it dirently to parse CSV helper function
      * 
-     * TODO : this code can probably be cleaned up A LOT, but it is working
-     *    The first CSV forEach loop can probably be added into the other forEach loops
     */
     //const content = fileReader.result;
     this.setState({fileData: FileReaderHelper.ParseCSV(fileReader.result)});
