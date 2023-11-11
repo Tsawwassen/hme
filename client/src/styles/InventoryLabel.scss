@@ -1,0 +1,36 @@
+$enable-rfs: true;
+
+.label {
+    height:2in;
+    width:3in;
+    border-style: solid;
+    display:table-cell;
+}
+
+table{
+    margin-top: 5px;
+    width:4.75in;
+    height:100%;
+    
+}
+
+
+.barcode{
+    bottom:0;
+    height:35%;
+}
+
+
+
+
+@media print {
+    .navbar, .navbar-brand, #label-select, h2{
+        display: none!important;
+    }
+    .label{
+        page-break-after: always;
+    }
+    @page{
+        margin: 0
+    }
+}
