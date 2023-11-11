@@ -22,8 +22,7 @@ class ShelfLabel extends Component {
     this.handleFileRead = this.handleFileRead.bind(this);
   }
 
-
-
+  //Handle file selected on change
   fileOnChange(event){
     //console.log(`file changed ${event.target.files[0].name}`);
     this.setState({filePath: event.target.files[0]});
