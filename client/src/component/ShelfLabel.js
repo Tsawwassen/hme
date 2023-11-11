@@ -51,7 +51,8 @@ class ShelfLabel extends Component {
     this.setState({fileData: FileReaderHelper.ParseCSV(fileReader.result)});
   };
 
-  buttonClicked(){ //Not sure if I can put the handleFileRead function code in this block, and reduce the amount of code tracing, but it works.
+  // Parse file when button is clicked
+  buttonClicked(){ 
     fileReader.onloadend = this.handleFileRead;
   
    try{
