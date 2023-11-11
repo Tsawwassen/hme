@@ -30,15 +30,6 @@ class ShelfLabel extends Component {
 
   //Read file of given file path
   handleFileRead(e)  {
-
-    const content = fileReader.result;
-
-    //Remove \r character that appears when file is parsed, then split rows on \n
-    const csv = content.replaceAll('\r', '').split('\n');
-
-    //First row is headers
-    const headers = csv.shift().split(',');
-
     /**
      * --==DEV NOTE==-- 
      * fileReader.result returns content of file
