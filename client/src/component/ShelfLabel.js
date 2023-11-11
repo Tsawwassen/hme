@@ -3,6 +3,9 @@ import { Col, Container, Row, Form, Button } from 'react-bootstrap';
 
 import ShelfLabelPrint from './ShelfLabelPrint.js';
 
+import FileReaderHelper from '../class/FileReaderHelper';
+
+
 let fileReader = new FileReader();
 
 class ShelfLabel extends Component {
