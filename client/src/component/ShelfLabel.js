@@ -28,6 +28,7 @@ class ShelfLabel extends Component {
     this.setState({filePath: event.target.files[0]});
   }
 
+  //Read file of given file path
   handleFileRead(e)  {
 
     const content = fileReader.result;
