@@ -40,9 +40,10 @@ class ShelfLabel extends Component {
     const headers = csv.shift().split(',');
 
     /**
-     * -Create return table
-     * -Add rows to return table, skipping empty rows
-     *
+     * --==DEV NOTE==-- 
+     * fileReader.result returns content of file
+     * Keeping the middle variable here for future reference, but sending it dirently to parse CSV helper function
+     * 
      * TODO : this code can probably be cleaned up A LOT, but it is working
      *    The first CSV forEach loop can probably be added into the other forEach loops
      */
