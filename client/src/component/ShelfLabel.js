@@ -47,21 +47,8 @@ class ShelfLabel extends Component {
      * TODO : this code can probably be cleaned up A LOT, but it is working
      *    The first CSV forEach loop can probably be added into the other forEach loops
     */
-    const table = [];
-    csv.forEach((row) => {
-      if(row === "") return; //skip row if row is empty, will continue parsing the file
-      table.push(row.split(','));
-    });
-    
-    const tempData = []
-    table.forEach((row, i) => {
-      tempData[i] = {};
-      row.forEach((cell, j) =>{
-        tempData[i][headers[j]] =  cell;
-      });
-    });
-     
-    this.setState({fileData: tempData});
+    //const content = fileReader.result;
+    this.setState({fileData: FileReaderHelper.ParseCSV(fileReader.result)});
   };
 
   buttonClicked(){ //Not sure if I can put the handleFileRead function code in this block, and reduce the amount of code tracing, but it works.
