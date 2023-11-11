@@ -101,6 +101,16 @@ Improve the process for checking stale orders
 - Imported the shelf label component into the HME project
 - Had to do minor changes on how the component is mounted, but it wasn't too bad
 - Also added the @page->margin to SCSS file so that the user does not need to change the margin when printing
+## 11/11/2023
+- Cleaned up the Shelf Label component by moving the file parsing code into a FileReader helper function
+- Updated label options to specify batch or single
+- Start inventory label
+- - 3'x2' label
+- - Include Serial number, Asset number (demo/rental), Make, Model
+- - Asset number will be a barcode
+- - Use the @media / @print CSS for print render (ie: page break after, forcing margin)
+- - Create single label with input from form
+- - Create batch labels with input from CSV
 
 # Long Term goals
 - Update for the inventory data is formatted to be something like [... {part_number: , count:{ expected: , actual: , difference: }}...]
