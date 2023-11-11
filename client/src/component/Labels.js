@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import Form from 'react-bootstrap/Form';
 
 import ShelfLabel from './ShelfLabel.js';
+import InventoryLabel from './InventoryLabel.js';
 
 // Upload component
 // Render two file inputs, and submit button
@@ -33,15 +34,17 @@ class Labels extends Component {
                     <Form.Label>Select Label to Print</Form.Label>
                     <Form.Select aria-label="Default select example" onChange={this.labelOnChange}>
                         <option value="0" >Select Label to Print</option>
-                        <option value="1" >Shelf Label</option>
-                        <option value="2">Inventory Label</option>
+                        <option value="1" >Shelf Label Batch</option>
+                        <option value="2">Inventory Label Single</option>
+                        <option value="3">Inventory Label Batch</option>
                     </Form.Select>
                 </Form.Group>
                 </Form>
             </div>
             {this.state.selectedLabelType === "0"}
             {this.state.selectedLabelType === "1" && <ShelfLabel />}
-            {this.state.selectedLabelType === "2" && <h3>Inventory Label</h3>}
+            {this.state.selectedLabelType === "2" && <InventoryLabel batch="false" />}
+            {this.state.selectedLabelType === "3" && <InventoryLabel batch="true" />}
         
         </>);
       };
