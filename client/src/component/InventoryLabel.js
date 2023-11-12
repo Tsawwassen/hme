@@ -106,8 +106,50 @@ function LabelForm(props)
     </>) ;
 } 
 
-function LabelBatch(){
-    return <h1>Label Batch</h1>;
+function LabelBatch(props){
+
+    const [path, setPath] = useState({});
+
+    const updatePath = e => {
+        setPath(e.target.files[0]);
+    }
+
+    function handleFileRead(e) {
+        /**
+         * --==DEV NOTE==-- 
+         * fileReader.result returns content of file
+         * Keeping the middle variable here for future reference, but sending it dirently to parse CSV helper function
+         * 
+        */
+        //const content = fileReader.result;
+        //console.log("inside handleFileRead");
+        
+        props.setter(FileReaderHelper.ParseCSV(fileReader.result))
+      };
+    
+
+    function handleSubmit(e) {
+        // Prevent the browser from reloading the page
+        e.preventDefault();
+
+        fileReader.onloadend = handleFileRead;
+        try{
+          fileReader.readAsText(path);
+         } catch(error){ }; //Would be nice to have something better then this try catch
+        // For the rest of the app to work, the setter input needs to be an array. 
+        // Just making it an array here since the batch version will return an array by default
+        //props.setter([data]);
+    }
+
+    return (<>
+        <Form>
+            <Form.Group controlId="formFile" className="mb-3">
+                <Form.Label>Input CSV file</Form.Label>
+                <Form.Control type="file" onChange={updatePath}  />
+            </Form.Group>
+            <Button variant="primary" type="button" onClick={handleSubmit}>Submit</Button>
+        </Form>
+    </>)
 }
 
 class InventoryLabel extends Component {
