@@ -48,6 +48,16 @@ function Label(props){
 
 function LabelForm(props)
 {
+    //Doing the below state variable and setter allows the form data to be easily used when submit button is clicked
+    const [data, setData] = useState({});
+    
+    const updateData = e => {
+        setData({
+            ...data,
+            [e.target.id]: e.target.value
+        })
+    }
+
     function handleSubmit(e) {
         // Prevent the browser from reloading the page
         e.preventDefault();
