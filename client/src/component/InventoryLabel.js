@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { useState } from 'react'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import FileReaderHelper from '../class/FileReaderHelper';
 
 import '../styles/InventoryLabel.scss';
 
@@ -71,6 +72,7 @@ function LabelForm(props)
 
         // For the rest of the app to work, the setter input needs to be an array. 
         // Just making it an array here since the batch version will return an array by default
+        console.log(data);
         props.setter([data]);
     }
     //Clear form
@@ -179,10 +181,6 @@ class InventoryLabel extends Component {
             { (this.props.batch === "false") && this.state.labels.length === 0 && <LabelForm setter={this.setLabels} />}
             { (this.props.batch === "true") && this.state.labels.length === 0 && <LabelBatch setter={this.setLabels}/>}
             { (this.state.labels.length > 0) && <Label data={this.state.labels} onClick={this.clearClick} /> }
-            
-           
-            
-        
         </>);
       };
     }
