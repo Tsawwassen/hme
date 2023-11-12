@@ -134,6 +134,10 @@ class InventoryLabel extends Component {
             { (this.props.batch === "false") && this.state.labels.length === 0 && <LabelForm setter={this.setLabels} />}
             { (this.props.batch === "true") && this.state.labels.length === 0 && <LabelBatch />}
             { (this.state.labels.length > 0) && <Label data={this.state.labels} onClick={this.clearClick} /> }
+            
+           
+            
+        
         </>);
       };
     }
