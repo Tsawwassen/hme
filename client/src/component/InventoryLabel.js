@@ -65,25 +65,27 @@ function LabelForm(props)
     }
     
     return(<>
-        <form onSubmit={handleSubmit}>
-            <label>
-                Make: <input name="makeInput" />
-            </label>
-            <hr />
-            <label>
-                Model: <input name="modelInput" />
-            </label>
-            <hr />
-            <label>
-                Serial Number: <input name="serialNumberInput" />
-            </label>
-            <hr />
-            <label>
-                Asset Number: <input name="assetNumberInput" />
-            </label>
-            <hr />
-            <button type="submit">Submit form</button>
-        </form>
+        <Form onSubmit={handleSubmit}>
+            <Form.Group className="mb-3" controlId="makeInput">
+                <Form.Label>Make:</Form.Label>
+                <Form.Control type="text" onChange={updateData}/>
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="modelInput">
+                <Form.Label>Model:</Form.Label>
+                <Form.Control type="text" onChange={updateData}/>
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="serialNumberInput">
+                <Form.Label>Serial Number:</Form.Label>
+                <Form.Control type="text" onChange={updateData}/>
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="assetNumberInput">
+                <Form.Label>Asset Number:</Form.Label>
+                <Form.Control type="text" onChange={updateData}/>
+            </Form.Group>
+            <Button variant="primary" type="submit">
+                Submit
+            </Button>
+        </Form>
     </>) ;
 } 
 
