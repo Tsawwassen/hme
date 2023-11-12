@@ -108,12 +108,18 @@ class InventoryLabel extends Component {
         };
 
         this.setLabels = this.setLabels.bind(this);
+        this.clearClick = this.clearClick.bind(this);
     }
     
     setLabels(inputLabels){
         this.setState({labels: inputLabels});
     }
-  
+
+    clearClick(e){
+        e.preventDefault();
+        this.setState({labels: []});
+    }
+    
     render() {
         //TODO : Make a clear button that clears state.labels variable
         return (<>
