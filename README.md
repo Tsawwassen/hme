@@ -115,7 +115,10 @@ Improve the process for checking stale orders
 - TODO : Label layout needs work
 - TODO : Make a clear button
 - TODO : batch upload
-- TODO : Check that the one label per page is working
+- TODO : Check that the one label per page when printing is working
+## 11/12/2023
+-Do TODOs from yesterday
+-Mark single label form have bootstrap styles
 
 
 # Long Term goals
