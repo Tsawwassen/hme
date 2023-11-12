@@ -177,7 +177,7 @@ class InventoryLabel extends Component {
         //TODO : Make a clear button that clears state.labels variable
         return (<>
             { (this.props.batch === "false") && this.state.labels.length === 0 && <LabelForm setter={this.setLabels} />}
-            { (this.props.batch === "true") && this.state.labels.length === 0 && <LabelBatch />}
+            { (this.props.batch === "true") && this.state.labels.length === 0 && <LabelBatch setter={this.setLabels}/>}
             { (this.state.labels.length > 0) && <Label data={this.state.labels} onClick={this.clearClick} /> }
             
            
