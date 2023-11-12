@@ -97,7 +97,7 @@ class InventoryLabel extends Component {
     constructor(props){
         super(props);
         this.state = {
-         
+         labels: []
         };
 
         //this.labelOnChange = this.labelOnChange.bind(this);
