@@ -109,8 +109,6 @@ class InventoryLabel extends Component {
     }
   
     render() {
-        //<Label make="Make Props" model="Model Props" serialNumber="Serial Number Props" assetNumber="123-Props" />
-
         //TODO : Make a clear button that clears state.labels variable
         return (<>
             { (this.props.batch === "false") && this.state.labels.length === 0 && <LabelForm setter={this.setLabels} />}
