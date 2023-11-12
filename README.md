@@ -113,12 +113,15 @@ Improve the process for checking stale orders
 - - Create batch labels with input from CSV
 - Single label function is done
 - TODO : Label layout needs work
-- TODO : Make a clear button
-- TODO : batch upload
-- TODO : Check that the one label per page when printing is working
+- TODO : Make a clear button - DONE
+- TODO : batch upload - DONE
+- TODO : Check that the one label per page when printing is working - DONE
 ## 11/12/2023
--Do TODOs from yesterday
--Mark single label form have bootstrap styles
+- Do TODOs from yesterday
+- Make single label form have bootstrap styles
+- Batch upload is working
+- One label prints per page
+- Cleaned up the single label input form
 
 
 # Long Term goals
