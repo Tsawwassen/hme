@@ -92,15 +92,13 @@ function LabelBatch(){
 }
 
 class InventoryLabel extends Component {
-  
-    // Store two file paths and two file data as JSON array
+
     constructor(props){
         super(props);
         this.state = {
          labels: []
         };
 
-        //this.labelOnChange = this.labelOnChange.bind(this);
         this.setLabels = this.setLabels.bind(this);
     }
     
