@@ -72,7 +72,6 @@ function LabelForm(props)
 
         // For the rest of the app to work, the setter input needs to be an array. 
         // Just making it an array here since the batch version will return an array by default
-        console.log(data);
         props.setter([data]);
     }
     //Clear form
