@@ -46,10 +46,46 @@ function Label(props){
     </>)
 }
 
-function LabelForm()
+function LabelForm(props)
 {
-    return <h1>Label Form (single)</h1>;
-}
+    function handleSubmit(e) {
+        // Prevent the browser from reloading the page
+        e.preventDefault();
+        
+        // Read the form data - KEEP STEP BY STEP FOR REFERENCE. Flattened down the code to one line
+        //const form = e.target;
+        //const formData = new FormData(e.target);
+        //const formJson = Object.fromEntries((new FormData(e.target)).entries());
+        //console.log(formJson);
+        //let returnArray = [Object.fromEntries((new FormData(e.target)).entries())];
+
+        props.setter([Object.fromEntries((new FormData(e.target)).entries())]);
+        // For the rest of the app to work, the setter input needs to be an array. 
+        // Just making it an array here since the batch version will return an array by default
+    }
+    
+    return(<>
+        <form onSubmit={handleSubmit}>
+            <label>
+                Make: <input name="makeInput" />
+            </label>
+            <hr />
+            <label>
+                Model: <input name="modelInput" />
+            </label>
+            <hr />
+            <label>
+                Serial Number: <input name="serialNumberInput" />
+            </label>
+            <hr />
+            <label>
+                Asset Number: <input name="assetNumberInput" />
+            </label>
+            <hr />
+            <button type="submit">Submit form</button>
+        </form>
+    </>) ;
+} 
 
 function LabelBatch(){
     return <h1>Label Batch</h1>;
