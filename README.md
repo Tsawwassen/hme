@@ -111,6 +111,12 @@ Improve the process for checking stale orders
 - - Use the @media / @print CSS for print render (ie: page break after, forcing margin)
 - - Create single label with input from form
 - - Create batch labels with input from CSV
+- Single label function is done
+- TODO : Label layout needs work
+- TODO : Make a clear button
+- TODO : batch upload
+- TODO : Check that the one label per page is working
+
 
 # Long Term goals
 - Update for the inventory data is formatted to be something like [... {part_number: , count:{ expected: , actual: , difference: }}...]
