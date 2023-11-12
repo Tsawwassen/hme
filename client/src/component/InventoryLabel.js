@@ -51,17 +51,10 @@ function LabelForm(props)
     function handleSubmit(e) {
         // Prevent the browser from reloading the page
         e.preventDefault();
-        
-        // Read the form data - KEEP STEP BY STEP FOR REFERENCE. Flattened down the code to one line
-        //const form = e.target;
-        //const formData = new FormData(e.target);
-        //const formJson = Object.fromEntries((new FormData(e.target)).entries());
-        //console.log(formJson);
-        //let returnArray = [Object.fromEntries((new FormData(e.target)).entries())];
 
-        props.setter([Object.fromEntries((new FormData(e.target)).entries())]);
         // For the rest of the app to work, the setter input needs to be an array. 
         // Just making it an array here since the batch version will return an array by default
+        props.setter([data]);
     }
     
     return(<>
