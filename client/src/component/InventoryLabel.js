@@ -101,9 +101,12 @@ class InventoryLabel extends Component {
         };
 
         //this.labelOnChange = this.labelOnChange.bind(this);
+        this.setLabels = this.setLabels.bind(this);
     }
     
-  
+    setLabels(inputLabels){
+        this.setState({labels: inputLabels});
+    }
   
     render() {
         
