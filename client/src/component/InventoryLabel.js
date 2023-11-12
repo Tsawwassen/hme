@@ -26,18 +26,24 @@ function Label(props){
         marginRight: 0
     };
 
-    return <div className='label' > 
-            <table>
-            <tbody>
-                <tr>
-                    <td className="Make">{props.make}</td>
-                    <td className="Model">{props.model}</td>
-                </tr>
-                <tr ><td className="serialNumber" colSpan="2">{props.serialNumber}</td></tr>
-                <tr><td className="assetNumber" colSpan="2"><Barcode value={props.assetNumber} {...barcodeOptions} /></td></tr>
-            </tbody>
-            </table>
-    </div>
+    return(<>
+        {props.data.map(function(label, index){
+            return (
+                <div className='label' key={index}> 
+                    <table>
+                    <tbody>
+                        <tr>
+                            <td className="Make">{label.makeInput}</td>
+                            <td className="Model">{label.modelInput}</td>
+                        </tr>
+                        <tr ><td className="serialNumber" colSpan="2">{label.serialNumberInput}</td></tr>
+                        <tr><td className="assetNumber" colSpan="2"><Barcode value={label.assetNumberInput} {...barcodeOptions} /></td></tr>
+                    </tbody>
+                    </table>
+                </div>
+            )
+        })}
+    </>)
 }
 
 function LabelForm()
