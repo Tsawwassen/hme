@@ -1,6 +1,6 @@
 $enable-rfs: true;
 
-.label {
+.inventory-label {
     height:2in;
     width:3in;
     border-style: solid;
@@ -27,7 +27,7 @@ table{
     .navbar, .navbar-brand, #label-select, h2, button{
         display: none!important;
     }
-    .label{
+    .inventory-label{
         page-break-after: always;
     }
     @page{
