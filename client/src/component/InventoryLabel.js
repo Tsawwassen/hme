@@ -96,6 +96,7 @@ function LabelForm(props)
             <Button variant="primary" type="submit">
                 Submit
             </Button>
+            <Button variant="primary" onClick={clearForm}>Clear</Button>
         </Form>
     </>) ;
 } 
