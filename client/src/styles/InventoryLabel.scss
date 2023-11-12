@@ -24,7 +24,7 @@ table{
 
 
 @media print {
-    .navbar, .navbar-brand, #label-select, h2{
+    .navbar, .navbar-brand, #label-select, h2, button{
         display: none!important;
     }
     .label{
