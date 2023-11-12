@@ -46,6 +46,7 @@ function Label(props){
                 </div>
             )
         })}
+        <Button variant="primary" type="button" onClick={props.onClick}>Clear</Button>
     </>)
 }
 
