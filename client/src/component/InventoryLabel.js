@@ -33,8 +33,8 @@ function Label(props){
 
     return(<>
         {props.data.map(function(label, index){
-            return (
-                <div className='label' key={index}> 
+            return (<div key={index}>
+                <div className='inventory-label' > 
                     <table>
                     <tbody>
                         <tr>
@@ -45,8 +45,9 @@ function Label(props){
                         <tr><td className="assetNumber" colSpan="2"><Barcode value={label.assetNumberInput} {...barcodeOptions} /></td></tr>
                     </tbody>
                     </table>
-                </div>
-            )
+                </div>  
+                <br />
+            </div>)
         })}
         <Button variant="primary" type="button" onClick={props.onClick}>Clear</Button>
     </>)
