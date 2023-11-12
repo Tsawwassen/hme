@@ -76,7 +76,7 @@ function LabelForm(props)
     }
     
     return(<>
-        <Form onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit} id="inputForm">
             <Form.Group className="mb-3" controlId="makeInput">
                 <Form.Label>Make:</Form.Label>
                 <Form.Control type="text" onChange={updateData}/>
