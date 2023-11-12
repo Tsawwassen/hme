@@ -69,6 +69,11 @@ function LabelForm(props)
         // Just making it an array here since the batch version will return an array by default
         props.setter([data]);
     }
+    //Clear form
+    //Doesn't feel like a React solution, but it clears all fields
+    function clearForm(e){
+        document.getElementById("inputForm").reset();
+    }
     
     return(<>
         <Form onSubmit={handleSubmit}>
