@@ -125,10 +125,10 @@ Improve the process for checking stale orders
 
 # Journal - QoL Updates
 - Most of the app functions are done, would like to do some cleaning up
-- - Clear all NPM updates if possible
+- - DONE - Clear all NPM updates if possible
 - - * Looking into the NPM audit errors, seems like most of them can be ignored (https://overreacted.io/npm-audit-broken-by-design/)
 - - Add button to download template files for labels
-- - Remove spaces on barcode field - DONE. The barcode was not getting displayed when testing at work, but it seems to convert the spaces to a barcode here. Not sure why, but i added code to remove spaces
+- - DONE - Remove spaces on barcode field. The barcode was not getting displayed when testing at work, but it seems to convert the spaces to a barcode here. Not sure why, but i added code to remove spaces
 - - Have ReportMapperHelper use FileReaderHelper
 - - Have upload files accept excel files ?
 - - Add Jumbotron (?) to views so that they don't go to the edge of the window
