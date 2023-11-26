@@ -129,7 +129,8 @@ Improve the process for checking stale orders
 - - * Looking into the NPM audit errors, seems like most of them can be ignored (https://overreacted.io/npm-audit-broken-by-design/)
 - - Add button to download template files for labels
 - - DONE - Remove spaces on barcode field. The barcode was not getting displayed when testing at work, but it seems to convert the spaces to a barcode here. Not sure why, but i added code to remove spaces
-- - Have ReportMapperHelper use FileReaderHelper
+- - DONE - Have ReportMapperHelper use FileReaderHelper
+- - * Might need to more the FileReader code into FileReaderHelper, but the ReportMapperHelper and ShelfLabel code use the FileReader variable different.
 - - Have upload files accept excel files ?
 - - DONE - Add Jumbotron (?) to views so that they don't go to the edge of the window
 - - * Jombotron version of React-Bootstrap is a 'Container' component
