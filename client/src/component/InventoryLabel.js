@@ -43,7 +43,7 @@ function Label(props){
                             <td className="Model">{label.modelInput}</td>
                         </tr>
                         <tr ><td className="serialNumber" colSpan="2">{label.serialNumberInput}</td></tr>
-                        <tr><td className="assetNumber" colSpan="2"><Barcode value={label.assetNumberInput} {...barcodeOptions} /></td></tr>
+                        <tr><td className="assetNumber" colSpan="2"><Barcode value={label.assetNumberInput.replace(/\s+/g, '')} {...barcodeOptions} /></td></tr>
                     </tbody>
                     </table>
                 </div>  
