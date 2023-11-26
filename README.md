@@ -123,6 +123,13 @@ Improve the process for checking stale orders
 - One label prints per page
 - Cleaned up the single label input form
 
+# Journal - QoL Updates
+- Most of the app functions are done, would like to do some cleaning up
+- - Clear all NPM updates if possible
+- - Add button to download template files for labels
+- - Remove spaces on barcode field
+- - Have ReportMapperHelper use FileReaderHelper
+
 
 # Long Term goals
 - Update for the inventory data is formatted to be something like [... {part_number: , count:{ expected: , actual: , difference: }}...]
