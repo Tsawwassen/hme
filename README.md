@@ -129,6 +129,7 @@ Improve the process for checking stale orders
 - - Add button to download template files for labels
 - - Remove spaces on barcode field
 - - Have ReportMapperHelper use FileReaderHelper
+- - Have upload files accept excel files ?
 
 
 # Long Term goals
