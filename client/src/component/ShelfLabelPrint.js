@@ -40,7 +40,7 @@ function Label(props){
               <tbody>
                 <tr><td className="supplier">{props.table[index].supplier}</td></tr>
                 <tr><td className="description">{props.table[index].description}</td></tr>
-                <tr><td className="barcode"><Barcode value={props.table[index].part_number} {...barcodeOptions} /></td></tr>
+                <tr><td className="barcode"><Barcode value={props.table[index].part_number.replace(/\s+/g, '')} {...barcodeOptions} /></td></tr>
               </tbody>
             </table>
             </div>);
