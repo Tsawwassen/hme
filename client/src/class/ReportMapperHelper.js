@@ -3,44 +3,9 @@
 //TODO : All the get functions should be renamed to say what they are mapping.
 //      The format function names are clear
 
+import FileReaderHelper from '../class/FileReaderHelper';
+
 class ReportMapperHelper {
-
-    //Format CSV data to JSON object array
-    static formatCSVData(data){
-
-        // CSV files were showing '\r' and '\n' when file was parsed
-        // Remove '\r' and split rows on '\n'
-        data = data.replaceAll("\r","");
-        const csv = data.split('\n');
-
-        // First row of file should be headers
-        // Headers will be used as keys for the JSON object array
-        // Remove headers CSV array
-        const headers = csv.shift().split(',');
-        const table = [];
-
-        // Format CSV file into an array
-        csv.forEach((row) => {
-            if(row === "") return; //skip row if row is empty, will continue parsing the file
-            table.push(row.split(','));
-        });
-        
-        // Build JSON array using headers as keys
-        const tempData = []
-        table.forEach((row, i) => {
-            tempData[i] = {};
-            row.forEach((cell, j) =>{
-                tempData[i][headers[j]] =  cell;
-            });
-        });
-
-        //Convert quantity values to integer
-        tempData.forEach((row, i)=>{
-            tempData[i].quantity = parseInt(tempData[i].quantity);
-        });
-
-        return tempData;
-    };
 
     //Format an array of parts
     // If the part is listed multiple times, increase the quantity
@@ -97,8 +62,8 @@ class ReportMapperHelper {
     // Once both files are parsed, send them both to callback function
     static async getDoubleFileContent(expectedPath, actualPath, callback, expectedErrorMessage, actualErrorMessage){ 
         callback(
-            this.formatCSVData(await this.readUploadedFileAsText(expectedPath)),
-            this.formatCSVData(await this.readUploadedFileAsText(actualPath)),
+            FileReaderHelper.ParseCSV(await this.readUploadedFileAsText(expectedPath)),
+            FileReaderHelper.ParseCSV(await this.readUploadedFileAsText(actualPath))
         )
      
     }
@@ -108,7 +73,7 @@ class ReportMapperHelper {
     // Once file is parsed, format scannedParts list to be same as expectedPath data, then send them both to callback function
     static async getSingleFileContent(expectedPath, scannedParts, callback, expectedErrorMessage){
         callback(
-            this.formatCSVData(await this.readUploadedFileAsText(expectedPath)),
+            FileReaderHelper.ParseCSV(await this.readUploadedFileAsText(expectedPath)),
             this.formatScannedData(scannedParts, ["part_number","quantity"])
         )
     }
