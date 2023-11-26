@@ -130,6 +130,7 @@ Improve the process for checking stale orders
 - - Remove spaces on barcode field
 - - Have ReportMapperHelper use FileReaderHelper
 - - Have upload files accept excel files ?
+- - Add Jumbotron (?) to views so that they don't go to the edge of the window
 
 
 # Long Term goals
