@@ -144,7 +144,6 @@ Improve the process for checking stale orders
 - - Had troubles with accessing data that was outside fetch blocks, or data inside the fetch block getting used outside
 - - Did get it working with trial and error, but not totally sure how it's working
 
-remote branch test
 
 # Git Remote Branch Cheat sheet
 ## creating a new remote branch
