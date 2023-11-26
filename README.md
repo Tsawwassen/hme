@@ -131,7 +131,8 @@ Improve the process for checking stale orders
 - - DONE - Remove spaces on barcode field. The barcode was not getting displayed when testing at work, but it seems to convert the spaces to a barcode here. Not sure why, but i added code to remove spaces
 - - Have ReportMapperHelper use FileReaderHelper
 - - Have upload files accept excel files ?
-- - Add Jumbotron (?) to views so that they don't go to the edge of the window
+- - DONE - Add Jumbotron (?) to views so that they don't go to the edge of the window
+- - * Jombotron version of React-Bootstrap is a 'Container' component
 
 
 # Long Term goals
