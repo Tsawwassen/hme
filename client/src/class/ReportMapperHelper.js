@@ -41,6 +41,22 @@ class ReportMapperHelper {
     }
 
     /**
+     * Check if a JSON object is empty
+     * Code generated from ChatGPT
+     * 
+     */
+    static areAllValuesEmpty(obj){
+        for (let key in obj) {
+            if (obj.hasOwnProperty(key)) {
+              if (obj[key] !== null && obj[key] !== undefined && obj[key] !== '') {
+                return false; // If any value is not empty, return false
+              }
+            }
+        }
+        return true; // All values are empty
+    }
+    
+    /**
      * Format WW export
      * - Use (Unit No) column of upload file to format data that is used on the report
      * 
@@ -52,14 +68,26 @@ class ReportMapperHelper {
     static formatWWData(data, k){
         let temp = {};
 
+
+        /**
+         * TODO
+         * 1. DONE - Ignore blank line(s)
+         * 2. Don't break if a cell has double quotes
+         * 3. Expected records should be 269
+         */
         data.forEach(part =>{
-            if(temp.hasOwnProperty(part['(Unit No)'])){
-                temp[part['(Unit No)']] = temp[part['(Unit No)']] + 1; 
+            if(!this.areAllValuesEmpty(part)){
+                if(temp.hasOwnProperty(part['(Unit No)'])){
+                    temp[part['(Unit No)']] = temp[part['(Unit No)']] + 1; 
+                }
+                else{
+                    temp[part['(Unit No)']] = 1;
+                }
             }
-            else{
-                temp[part['(Unit No)']] = 1;
-            }
+           
         });
+
+        
     
         //Parse JSON Object to create return array that will be used in the report component.
         let r = [];
