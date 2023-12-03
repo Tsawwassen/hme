@@ -55,6 +55,7 @@ Improve the process for checking stale orders
 - Cleaned up the file reading functions to work asyncronously.
 - Cleaned up testing code (test buttons), old console logs, and old function calls (ie function calls that were copied into v3 from v2, but never used in v3)
 
+
 # Journal - Stale Order Helper
 ## 10/7/2023 to 10/21/2023
 - Didnt notice that journal notes have not been updated since the stale order function was implemented (hence the long date above).
@@ -122,6 +123,13 @@ Improve the process for checking stale orders
 - Batch upload is working
 - One label prints per page
 - Cleaned up the single label input form
+
+# Journal - Inventory Helper
+## 12/02/2023
+- Going back to inventory helper
+- Receive an export from WW. Doesn't really do what i want it to do, but going to work on getting it to work with the current functions
+- - ie, take the WW model, and map it to the model that i need to work with for showing inventory report
+- - DONE Note - WW export is not what needs to be used for inventory
 
 # Journal - QoL Updates
 - Most of the app functions are done, would like to do some cleaning up
