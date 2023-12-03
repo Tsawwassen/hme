@@ -106,8 +106,10 @@ class ReportMapperHelper {
     // TODO : now that the code is running asyncronously, need to show and catch better error messages. Keeping error message variables for future use.
     // Once file is parsed, format scannedParts list to be same as expectedPath data, then send them both to callback function
     static async getSingleFileContent(expectedPath, scannedParts, callback, expectedErrorMessage){
+        //Switch the first and second argument for test upload file and WW upload file
         callback(
-            FileReaderHelper.ParseCSV(await this.readUploadedFileAsText(expectedPath)),
+            //FileReaderHelper.ParseCSV(await this.readUploadedFileAsText(expectedPath)),
+            this.formatWWData(FileReaderHelper.ParseCSV(await this.readUploadedFileAsText(expectedPath)), ["part_number","quantity"]),
             this.formatScannedData(scannedParts, ["part_number","quantity"])
         )
     }
