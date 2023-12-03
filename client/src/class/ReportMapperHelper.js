@@ -39,7 +39,7 @@ class ReportMapperHelper {
         
         return r;
     }
-    
+
     /**
      * Format WW export
      * - Use (Unit No) column of upload file to format data that is used on the report
