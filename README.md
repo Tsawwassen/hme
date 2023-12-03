@@ -106,17 +106,17 @@ Improve the process for checking stale orders
 - Cleaned up the Shelf Label component by moving the file parsing code into a FileReader helper function
 - Updated label options to specify batch or single
 - Start inventory label
-- - 3'x2' label
+- - 3"x2" label
 - - Include Serial number, Asset number (demo/rental), Make, Model
 - - Asset number will be a barcode
 - - Use the @media / @print CSS for print render (ie: page break after, forcing margin)
 - - Create single label with input from form
 - - Create batch labels with input from CSV
 - Single label function is done
-- TODO : Label layout needs work
-- TODO : Make a clear button - DONE
-- TODO : batch upload - DONE
-- TODO : Check that the one label per page when printing is working - DONE
+- MOVED : Label layout needs work
+- DONE : Make a clear button - DONE
+- DONE : batch upload - DONE
+- DONE : Check that the one label per page when printing is working - DONE
 ## 11/12/2023
 - Do TODOs from yesterday
 - Make single label form have bootstrap styles
@@ -126,22 +126,32 @@ Improve the process for checking stale orders
 
 # Journal - Inventory Helper
 ## 12/02/2023
-- Going back to inventory helper
-- Receive an export from WW. Doesn't really do what i want it to do, but going to work on getting it to work with the current functions
+- NOTE Going back to inventory helper
+- DONE Receive an export from WW. Doesn't really do what i want it to do, but going to work on getting it to work with the current functions
 - - ie, take the WW model, and map it to the model that i need to work with for showing inventory report
 - - DONE Note - WW export is not what needs to be used for inventory
+- DONE Changed file parsing to use PapaParser package
+- - Makes handling files with commas, quotes, and empty lines much easier.
+- - Tested label functions, since they use the same file parsing code, and they work as expected
 
 # Journal - QoL Updates
-- Most of the app functions are done, would like to do some cleaning up
+- MOVED - Most of the app functions are done, would like to do some cleaning up
 - - DONE - Clear all NPM updates if possible
 - - * Looking into the NPM audit errors, seems like most of them can be ignored (https://overreacted.io/npm-audit-broken-by-design/)
-- - Add button to download template files for labels
+- - MOVED Add button to download template files for labels
 - - DONE - Remove spaces on barcode field. The barcode was not getting displayed when testing at work, but it seems to convert the spaces to a barcode here. Not sure why, but i added code to remove spaces
 - - DONE - Have ReportMapperHelper use FileReaderHelper
 - - * Might need to more the FileReader code into FileReaderHelper, but the ReportMapperHelper and ShelfLabel code use the FileReader variable different.
-- - Have upload files accept excel files ?
+- - MOVED Have upload files accept excel files ?
 - - DONE - Add Jumbotron (?) to views so that they don't go to the edge of the window
 - - * Jombotron version of React-Bootstrap is a 'Container' component
+## 12/03/2023
+- Updating QoL list of items that still need to be done
+- - Have upload files accept excel files
+- - Have button to download template files
+- - Error handeling
+- - Inventory Label (get input from others, see what data can be exported from WW and uploaded directly into the app)
+- - Clean up code (comments, spacing, console logs(?))
 
 
 # Long Term goals
