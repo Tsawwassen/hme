@@ -40,6 +40,40 @@ class ReportMapperHelper {
         return r;
     }
     
+    /**
+     * Format WW export
+     * - Use (Unit No) column of upload file to format data that is used on the report
+     * 
+     * *** Dev Note ***
+     * - This is not an idea use case scenario. Some items on the WW export don't have a unit number
+     * - Need to be consistant for scanned inventory and WW export to show an acurate report
+     * 
+     */
+    static formatWWData(data, k){
+        let temp = {};
+
+        data.forEach(part =>{
+            if(temp.hasOwnProperty(part['(Unit No)'])){
+                temp[part['(Unit No)']] = temp[part['(Unit No)']] + 1; 
+            }
+            else{
+                temp[part['(Unit No)']] = 1;
+            }
+        });
+    
+        //Parse JSON Object to create return array that will be used in the report component.
+        let r = [];
+        Object.keys(temp).forEach(function(part) {
+            let t = {};
+             t[this[0]] = part;
+             t[this[1]] = temp[part];
+        
+            r.push(t)
+        }, k); // DEV NOTE : Can't use an arrow function and have the 'thisValue' available inside the block. Need to use 'forEach(function(part ... {}, thisValue))
+        
+        return r;
+    }
+    
     // Read file asyncronously
     //return promise
     static readUploadedFileAsText(inputFile) {
