@@ -68,27 +68,25 @@ class ReportMapperHelper {
     static formatWWData(data, k){
         let temp = {};
 
-
         /**
          * TODO
          * 1. DONE - Ignore blank line(s)
-         * 2. Don't break if a cell has double quotes
-         * 3. Expected records should be 269
+         * 2. DONE - Don't break if a cell has double quotes
+         * 3. DONE - Input data can't have comma (,) in cell values
+         * 4. TEST CASE WORKING - Expected records should be 270
+         * DEV NOTE - A lot of these TODOs were solved by PapaParser
          */
         data.forEach(part =>{
-            if(!this.areAllValuesEmpty(part)){
-                if(temp.hasOwnProperty(part['(Unit No)'])){
-                    temp[part['(Unit No)']] = temp[part['(Unit No)']] + 1; 
-                }
-                else{
-                    temp[part['(Unit No)']] = 1;
-                }
+            if(temp.hasOwnProperty(part['(Unit No)'])){
+                temp[part['(Unit No)']] = temp[part['(Unit No)']] + 1; 
+            }
+            else{
+                temp[part['(Unit No)']] = 1;
             }
            
         });
 
         
-    
         //Parse JSON Object to create return array that will be used in the report component.
         let r = [];
         Object.keys(temp).forEach(function(part) {
