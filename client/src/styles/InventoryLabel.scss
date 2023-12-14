@@ -24,7 +24,7 @@ table{
 
 
 @media print {
-    .navbar, .navbar-brand, #label-select, h2, button{
+    .navbar, .navbar-brand, #label-select, h2, .clearButton{
         display: none!important;
     }
     .inventory-label{
