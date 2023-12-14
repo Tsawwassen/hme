@@ -158,6 +158,18 @@ Improve the process for checking stale orders
 - First prints looked fine, but need to work on filling the label
 - When printing, the app will print one extra label at the end (for single and batch label)
 - - Need to figure out why its doing that
+- Labels are printing fine
+- - Needed to adjust the CSS height and add some margin to get the label set correctly
+- - Needed minor printer config changes. See 'Label Printer Preferences' to know what settings were needed. NOTE : need to test if the settings are true at work.
+- Next step: Get input on what information we want on the label
+
+
+## Printer Preferences
+- Stock : 3x2
+- Orientation - 0 (Portrait)
+- Exposed Linear Width
+- - Left : 1.0
+- - Right : 1.0
 
 
 # Long Term goals
