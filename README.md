@@ -153,6 +153,12 @@ Improve the process for checking stale orders
 - - Inventory Label (get input from others, see what data can be exported from WW and uploaded directly into the app)
 - - Clean up code (comments, spacing, console logs(?))
 
+## Label Printer - 12/14/2023
+- Got the label printer.
+- First prints looked fine, but need to work on filling the label
+- When printing, the app will print one extra label at the end (for single and batch label)
+- - Need to figure out why its doing that
+
 
 # Long Term goals
 - Update for the inventory data is formatted to be something like [... {part_number: , count:{ expected: , actual: , difference: }}...]
