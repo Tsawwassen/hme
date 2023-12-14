@@ -47,7 +47,6 @@ function Label(props){
                     </tbody>
                     </table>
                 </div>  
-                <br />
             </div>)
         })}
         <Button variant="primary" type="button" onClick={props.onClick}>Clear</Button>
