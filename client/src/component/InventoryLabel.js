@@ -31,7 +31,7 @@ function Label(props){
         marginLeft: 0,
         marginRight: 0
     };
-
+    
     return(<>
         {props.data.map(function(label, index){
             return (<div key={index}>
@@ -49,7 +49,7 @@ function Label(props){
                 </div>  
             </div>)
         })}
-        <Button variant="primary" type="button" onClick={props.onClick}>Clear</Button>
+        <Button variant="primary" type="button" className="clearButton" onClick={props.onClick}>Clear</Button>
     </>)
 }
 
@@ -174,7 +174,7 @@ class InventoryLabel extends Component {
     }
     
     render() {
-        //TODO : Make a clear button that clears state.labels variable
+    
         return (<>
             { (this.props.batch === "false") && this.state.labels.length === 0 && <LabelForm setter={this.setLabels} />}
             { (this.props.batch === "true") && this.state.labels.length === 0 && <LabelBatch setter={this.setLabels}/>}
