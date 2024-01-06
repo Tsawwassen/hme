@@ -163,6 +163,16 @@ Improve the process for checking stale orders
 - - Needed minor printer config changes. See 'Label Printer Preferences' to know what settings were needed. NOTE : need to test if the settings are true at work.
 - Next step: Get input on what information we want on the label
 
+## Azure Deployment - 01/06/2024
+- Plan is to try using Azure to reploy the app
+- Needed to use 'Static Web App' when creating a resource
+- Linked my Git repo to the Azure resource
+- Needed to tell it to use the 'client' folder since the repo has client and server
+- The Azure app would update when i pushed to my git repo
+- Was able to get the app working, but it did not like the React Router (ie if i went to the '/labels' url, it would receive error 404)
+- Needed to add a staticwebapp.config.json file inside the public folder, and it worked as expected. Source below
+- - https://medium.com/@elnoor/react-client-side-routing-in-azure-static-web-app-299c8ba96fb8
+
 
 ## Printer Preferences
 - Stock : 3x2
