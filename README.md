@@ -146,6 +146,7 @@ Improve the process for checking stale orders
 - - DONE - Add Jumbotron (?) to views so that they don't go to the edge of the window
 - - * Jombotron version of React-Bootstrap is a 'Container' component
 ## 12/03/2023
+- Below QoL changes were moved to 01/13/2023
 - Updating QoL list of items that still need to be done
 - - Have upload files accept excel files
 - - Have button to download template files
@@ -172,6 +173,23 @@ Improve the process for checking stale orders
 - Was able to get the app working, but it did not like the React Router (ie if i went to the '/labels' url, it would receive error 404)
 - Needed to add a staticwebapp.config.json file inside the public folder, and it worked as expected. Source below
 - - https://medium.com/@elnoor/react-client-side-routing-in-azure-static-web-app-299c8ba96fb8
+
+## Weekend Plan - 01/13/2023 
+- Updating QoL list of items that still need to be done
+- - Have upload files accept excel (low)
+- - Have button to download template files(high)
+- - Error handeling (high)
+- - Inventory Label Information
+- - - Tentatively done. info is getting displayed
+- - - Need final desicion
+- - - Should also get the tool working with a WW export
+- - Clean up code (comments, spacing, console logs(?))
+- Now that I have a good WW export, get the inventory tool working with the export
+- - When i tried my test file, the results were getting undefined
+- - Need to get that working again
+- - Remove 'Not Yet Implemented' tools
+- - - Stale Order
+- - - V3 of inventory helper (i will keep v1 cause it's just two upload files)
 
 
 ## Printer Preferences
