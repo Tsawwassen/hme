@@ -190,6 +190,8 @@ Improve the process for checking stale orders
 - - Remove 'Not Yet Implemented' tools
 - - - Stale Order
 - - - V3 of inventory helper (i will keep v1 cause it's just two upload files)
+- Make a production branch and have azure watch that branch for updates
+- - Figure I should split my working branch and what is getting hosted/used
 
 
 ## Printer Preferences
