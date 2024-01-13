@@ -188,10 +188,12 @@ Improve the process for checking stale orders
 - - When i tried my test file, the results were getting undefined
 - - Need to get that working again
 - - Remove 'Not Yet Implemented' tools
-- - - Stale Order - DONE
-- - - V3 of inventory helper (i will keep v1 cause it's just two upload files) - DONE
-- Make a production branch and have azure watch that branch for updates
-- - Figure I should split my working branch and what is getting hosted/used
+- - - DONE - Stale Order
+- - - DONE - V3 of inventory helper (i will keep v1 cause it's just two upload files)
+- DONE - Make a production branch and have azure watch that branch for updates
+- - Figure I should split my working branch and what is getting hosted/used 
+- - DONE Note - Used a branch called 'development' so that I don't need to change the Azure configuration. 
+- - Once the app is ready to push to production, merge to main (using steps below) and push. Keep development branch active as a working branch
 
 
 ## Printer Preferences
