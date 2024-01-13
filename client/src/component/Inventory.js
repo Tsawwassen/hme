@@ -5,7 +5,7 @@ import {  Tab, Tabs } from 'react-bootstrap';
 // Upload component
 import Upload from './Upload';
 import UploadV2 from './UploadV2';
-import UploadV3 from './UploadV3';
+//import UploadV3 from './UploadV3';
 import Report from './Report';
 
 // Variables to change loaded component
@@ -96,10 +96,11 @@ class Inventory extends Component {
           {this.state.view === UPLOAD && <UploadV2 setters={this.setData} />}
           {this.state.view === REPORT && <Report data={[this.state.expectedData, this.state.actualData]}/>}
         </Tab>
-        <Tab eventKey="v3" title="V3">
+        {// Hiding V3 of inventory helper as it is not needed at this time
+        /** <Tab eventKey="v3" title="V3">
           {this.state.view === UPLOAD && <UploadV3 setters={this.setData} />}
           {this.state.view === REPORT && <Report data={[this.state.expectedData, this.state.actualData]}/>}
-        </Tab>
+      </Tab> **/}
         </Tabs>
         </>);
     }
