@@ -13,21 +13,29 @@ function ReportTable(props) {
           <Table striped bordered hover>
             <thead>
             <tr>
-                <th>Part Number</th>
-                <th>Expected</th>
-                <th>Actual</th>
-                <th>Difference</th>
+              <th>Inventory Description</th>
+              <th>Make</th>
+              <th>Model</th>
+              <th>Serial Number</th>
+              <th>Unit Number</th>
+              <th>Expected</th>
+              <th>Actual</th>
+              <th>Difference</th>
             </tr>
             </thead>
             <tbody>
             {keys.map((part, i) => {
-                
-                return <tr key={i}>
-                            <td>{part}</td>
-                            <td>{props.values[keys[i]].expected_qty}</td>
-                            <td>{props.values[keys[i]].actual_qty}</td>
-                            <td>{props.values[keys[i]].difference}</td>
-                        </tr>
+              return <tr key={i}>
+                <td>PH- INVENTORY DESCRIPTION</td>
+                <td>PH- MAKE</td>
+                <td>PH- MODEL</td>
+                <td>PH- SERIAL NUMBER</td>
+                <td>{part}</td>
+                <td>{props.values[keys[i]].expected_qty}</td>
+                <td>{props.values[keys[i]].actual_qty}</td>
+                <td>{props.values[keys[i]].difference}</td>
+
+              </tr>
             })}
             </tbody>
           </Table>
