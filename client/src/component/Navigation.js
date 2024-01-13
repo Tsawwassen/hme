@@ -22,7 +22,9 @@ function Navigation() {
                     <Nav className="me-auto">
                         <Nav.Link href="/home">Home</Nav.Link>
                         <Nav.Link href="/inventory">Inventory</Nav.Link>
-                        <Nav.Link href="/staleOrder">Stale Order</Nav.Link>
+                        { // Hiding stale order function as it is not needed at this time
+                        /**<Nav.Link href="/staleOrder">Stale Order</Nav.Link>**/
+                        }
                         <Nav.Link href="/labels">Labels</Nav.Link>
                         {/** <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                             <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
