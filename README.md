@@ -186,10 +186,11 @@ Improve the process for checking stale orders
 - - Clean up code (comments, spacing, console logs(?))
 - Now that I have a good WW export, get the inventory tool working with the export
 - - When i tried my test file, the results were getting undefined
+- - - Just tested with the WW export, and the file parsed as expected? need to try on production
 - - Need to get that working again
-- - Remove 'Not Yet Implemented' tools
-- - - DONE - Stale Order
-- - - DONE - V3 of inventory helper (i will keep v1 cause it's just two upload files)
+- Remove 'Not Yet Implemented' tools
+- - DONE - Stale Order
+- - DONE - V3 of inventory helper (i will keep v1 cause it's just two upload files)
 - DONE - Make a production branch and have azure watch that branch for updates
 - - Figure I should split my working branch and what is getting hosted/used 
 - - DONE Note - Used a branch called 'development' so that I don't need to change the Azure configuration. 
