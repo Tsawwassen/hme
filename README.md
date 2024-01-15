@@ -174,20 +174,20 @@ Improve the process for checking stale orders
 - Needed to add a staticwebapp.config.json file inside the public folder, and it worked as expected. Source below
 - - https://medium.com/@elnoor/react-client-side-routing-in-azure-static-web-app-299c8ba96fb8
 
-## Weekend Plan - 01/13/2023 
+## Weekend Plan - 01/13/2024
 - Updating QoL list of items that still need to be done
-- - Have upload files accept excel (low)
-- - Have button to download template files(high)
-- - Error handeling (high)
-- - Inventory Label Information
-- - - Tentatively done. info is getting displayed
-- - - Need final desicion
-- - - Should also get the tool working with a WW export
-- - Clean up code (comments, spacing, console logs(?))
+- - MOVED - Have upload files accept excel (low)
+- - MOVED -Have button to download template files(high)
+- - MOVED -Error handeling (high)
+- - MOVED -Clean up code (comments, spacing, console logs(?))
+- Inventory Label Information
+- - Tentatively done. info is getting displayed
+- - Need final desicion
+- - Should also get the tool working with a WW export
 - Now that I have a good WW export, get the inventory tool working with the export
-- - When i tried my test file, the results were getting undefined
+- - DONE - When i tried my test file, the results were getting undefined
 - - - Just tested with the WW export, and the file parsed as expected? need to try on production
-- - Need to get that working again
+- - DONE - Need to fix the export file since the report table is updated
 - Remove 'Not Yet Implemented' tools
 - - DONE - Stale Order
 - - DONE - V3 of inventory helper (i will keep v1 cause it's just two upload files)
@@ -195,6 +195,21 @@ Improve the process for checking stale orders
 - - Figure I should split my working branch and what is getting hosted/used 
 - - DONE Note - Used a branch called 'development' so that I don't need to change the Azure configuration. 
 - - Once the app is ready to push to production, merge to main (using steps below) and push. Keep development branch active as a working branch
+
+## Port weekend notes - 01/14/2024
+- App is working with WW export
+- Export of report is working
+- - The report mapper does not work correctly if a cell has double quotes
+- - ToDo notes at the function.
+- Going to merge with main and push to Azure. Notes to follow after committing gits
+
+
+## QoL ToDos
+- Have upload files accept excel (low)
+- Have button to download template files(high)
+- Error handeling (high)
+- Clean up code (comments, spacing, console logs(?))
+- Fix the inventory report export to handle double quotes
 
 
 ## Printer Preferences
