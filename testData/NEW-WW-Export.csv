@@ -1,12 +1,12 @@
 Year,Make,Model,Serial #,(Unit No),Inventory Desc,Department
-,,,,,,
 2021,,Reho Soft RTS,D-03573,D-03573,HME Demo - Bathroom Equipment,Surrey
-2021,Personal Aide,"Woode Bath Board 30""Wx4""H",D-03574,D-03574,HME Demo - Bathroom Equipment,Surrey
-2021,Blake,"Blake Toilet Seat 18""",D-03575,D-03575,HME Demo - Bathroom Equipment,Surrey
+2021,,Reho Soft RTS,D-03573,D-03573,HME Demo - Bathroom Equipment,Surrey
+2021,Personal Aide,Woode Bath Board 30Wx4H,D-03574,D-03574,HME Demo - Bathroom Equipment,Surrey
+2021,Blake,Blake Toilet Seat 18,D-03575,D-03575,HME Demo - Bathroom Equipment,Surrey
 2021,Eagle Health,Eagle Health Tub Mounted Transfer Bench,D-03577,D-03577,HME Demo - Bathroom Equipment,Surrey
-2023,Dynamic,"Raz-AT 18""W Base and Seat Frame - Commode Chair",RAT-122546,D-03897,HME Demo - Bathroom Equipment,Surrey
+2023,Dynamic,Raz-AT 18W Base and Seat Frame - Commode Chair,RAT-122546,D-03897,HME Demo - Bathroom Equipment,Surrey
 2021,Performance Health,Bed Cradle,D-03579,D-03579,HME Demo - Bedroom Equipment,Surrey
-2021,Action Products,"Action Gel Bed Pad 35""x80""",D-03572,D-03572,HME Demo - Bedroom Equipment,Surrey
+2021,Action Products,Action Gel Bed Pad 35x80,D-03572,D-03572,HME Demo - Bedroom Equipment,Surrey
 2021,Matrx,PS,D-02138,D-02138,HME Demo - Cushions,Surrey
 2021,Matrx,PS,D-02144,D-02144,HME Demo - Cushions,Surrey
 2021,Matrx,PS,D-02146,D-02146,HME Demo - Cushions,Surrey
@@ -26,7 +26,7 @@ Year,Make,Model,Serial #,(Unit No),Inventory Desc,Department
 2021,Blake Medical,"Zentury cushion,20x18",D-03046,D-03046,HME Demo - Cushions,Surrey
 2021,Matrix,sample cushion 20x18,0M0338603,D-02220,HME Demo - Cushions,Surrey
 2021,Future Mobility,Prism II Supreme plus 18x18,D-02228,D-02228,HME Demo - Cushions,Surrey
-2021,Blake,GHD 20x18,010247,D-02240,HME Demo - Cushions,Surrey
+2021,Blake,GHD 20x18,10247,D-02240,HME Demo - Cushions,Surrey
 2021,Permobil,Roho Contour Select 15 x17,A4300220,D-02274,HME Demo - Cushions,Surrey
 2021,Permobil,Roho Enhancer 17x17,A4322313,D-02258,HME Demo - Cushions,Surrey
 2021,Permobil,Roho Enhancer 19x19,A4322314,D-02259,HME Demo - Cushions,Surrey
@@ -39,7 +39,7 @@ Year,Make,Model,Serial #,(Unit No),Inventory Desc,Department
 1900,,,D-02222,,HME Demo - Cushions,Surrey
 1900,,,D-02219,,HME Demo - Cushions,Surrey
 2021,Future Mobility,"Prism Supreme ll plus, cushion,22x18",D-03390,D-03390,HME Demo - Cushions,Surrey
-2021,Permobil,"Roho Contour Select 19"" X 17""",A4299512,D-02273,HME Demo - Cushions,Surrey
+2021,Permobil,Roho Contour Select 19 X 17,A4299512,D-02273,HME Demo - Cushions,Surrey
 2022,Permobil,Roho Hybrid Select 16x16,A4332291,D-02277,HME Demo - Cushions,Surrey
 2022,Permobil,Roho Hybrid Select 18x16,A4305210,D-02279,HME Demo - Cushions,Surrey
 2022,Permobil,Roho Hybrid Select 20x18,A4347863,D-02281,HME Demo - Cushions,Surrey
@@ -48,8 +48,8 @@ Year,Make,Model,Serial #,(Unit No),Inventory Desc,Department
 2022,Permobil,Roho hybrid Elite 18x17,A4309565,D-02284,HME Demo - Cushions,Surrey
 2022,Permobil, 20x17,A4324379,D-02285,HME Demo - Cushions,Surrey
 2022,SPEX,SPEX Standard Contour Cushion 16 x 18,D-03429,D-03429,HME Demo - Cushions,Surrey
-2021,Motion Concepts,"Matrx Libra 16""x18"" Cushion",D-03455,D-03455,HME Demo - Cushions,Surrey
-2021,BFF,"BFF 20""x20"" Cushion",D-03456,D-03456,HME Demo - Cushions,Surrey
+2021,Motion Concepts,Matrx Libra 16x18 Cushion,D-03455,D-03455,HME Demo - Cushions,Surrey
+2021,BFF,BFF 20x20 Cushion,D-03456,D-03456,HME Demo - Cushions,Surrey
 2021,Sunrise,Jay Union 15x20 Cushion,D-03458,D-03458,HME Demo - Cushions,Surrey
 2021,Motion Concepts,Matrx Vi 16x18,D-03462,D-03462,HME Demo - Cushions,Surrey
 2021,Blake Medical,Blake Gold 16x16,D-03464,D-03464,HME Demo - Cushions,Surrey
@@ -106,7 +106,7 @@ Year,Make,Model,Serial #,(Unit No),Inventory Desc,Department
 2022,Prius,Low Air Loss Mattress,C890010922,D-03590,HME Demo - Low Air Loss Mattresses,Surrey
 2021,Ki Mobility,Tsunami 16x18,TS-001973,D-03443,HME Demo - Manual Wheelchairs,Surrey
 2021,Broda,"Broda Tilt wheelchair,16x18",68950,D-03448,HME Demo - Manual Wheelchairs,Surrey
-2021,Sunrise,"Quickie 2 16""x18"" Manual Wheelchair - White",D-03453,D-03453,HME Demo - Manual Wheelchairs,Surrey
+2021,Sunrise,Quickie 2 16x18 Manual Wheelchair - White,D-03453,D-03453,HME Demo - Manual Wheelchairs,Surrey
 2022,Motion Composites,Move 18 x 18 manual Wheelchair - Sunkissed Orange,142884,?,HME Demo - Manual Wheelchairs,Surrey
 2023,Motion Composites,HELIO C2 17x17 Sunkissed Orange,154508,D-03904,HME Demo - Manual Wheelchairs,Surrey
 2023,Motion Composites,Apex Carbon Sunkissed Orange - 17x17,155547,D-03908,HME Demo - Manual Wheelchairs,Surrey
@@ -161,7 +161,7 @@ Year,Make,Model,Serial #,(Unit No),Inventory Desc,Department
 2022,Permobil,R851 Medium Activity Chair,R85020220310AA,D-03616,HME Demo - Pediatric Equipment,Surrey
 2021,Rifton,Activity Chair 840,R84020200903AE,D-00261,HME Demo - Pediatric Equipment,Surrey
 1900,Trivel,T250 Tricycle,TRI202103031,D-02198,HME Demo - Pediatric Equipment,Surrey
-2021,Ki Mobility,Special Tomato E10,00896688001138,D-02135,HME Demo - Pediatric Equipment,Surrey
+2021,Ki Mobility,Special Tomato E10,896688001138,D-02135,HME Demo - Pediatric Equipment,Surrey
 2021,Ki Mobility,Clik,CLK006879,HME-02159,HME Demo - Pediatric Equipment,Surrey
 2021,Ki Mobility,Flip,FLP006537,HME-02160,HME Demo - Pediatric Equipment,Surrey
 2021,Convaid,EZ Rider 18,EZ18T-02217,d-04008,HME Demo - Pediatric Equipment,Surrey
@@ -243,7 +243,7 @@ Year,Make,Model,Serial #,(Unit No),Inventory Desc,Department
 2023,Motion Concepts,ROVI A3 Power Chair,1WN30D41A0093,D-04052,HME Demo - Pediatric Equipment,Surrey
 2023,Invacare,PS-MINI1414 - Matrx PS Cushion,D-04053,D-04053,HME Demo - Pediatric Equipment,Surrey
 2023,Invacare,MINI1410 - Matrx Mini Backrest,D-04054,D-04054,HME Demo - Pediatric Equipment,Surrey
-2023,Invacare,"HME DEMO - eFix E35 24"" , 6AH",E35225077,D-04059,HME Demo - Pediatric Equipment,Surrey
+2023,Invacare,"HME DEMO - eFix E35 24 , 6AH",E35225077,D-04059,HME Demo - Pediatric Equipment,Surrey
 2023,Drive,TZ-A4960S - Padded Reducer Ring - Small,D-44061,D-44061,HME Demo - Pediatric Equipment,Surrey
 2023,Motion Concepts,TDX-SP2 Base Power Chair,23HE000495,D-04062,HME Demo - Pediatric Equipment,Surrey
 1900,Quantum,Q4,MEC2002454,D-00003,HME Demo - Power Wheelchairs,Surrey
