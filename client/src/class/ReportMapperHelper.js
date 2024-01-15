@@ -55,7 +55,7 @@ class ReportMapperHelper {
         }
         return true; // All values are empty
     }
-    
+
     /**
      * Helper function to see if a given array has a key value pair.
      * If it does, return the index
