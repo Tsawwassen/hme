@@ -202,6 +202,7 @@ Improve the process for checking stale orders
 - - The report mapper does not work correctly if a cell has double quotes
 - - ToDo notes at the function.
 - Going to merge with main and push to Azure. Notes to follow after committing gits
+- - Merge worked perfectly!!
 
 
 ## QoL ToDos
