@@ -57,6 +57,22 @@ class ReportMapperHelper {
     }
     
     /**
+     * Helper function to see if a given array has a key value pair.
+     * If it does, return the index
+     * 
+     */
+    static getIndexForKeyValuePair(array, key, value){
+        
+        for (let i = 0; i < array.length; i++) {
+            if (array[i][key] === value) {
+              return i; // Return the index if found
+            }
+          }
+          return -1; // Return -1 if not found
+        
+    }
+    
+    /**
      * Format WW export
      * - Use (Unit No) column of upload file to format data that is used on the report
      * 
