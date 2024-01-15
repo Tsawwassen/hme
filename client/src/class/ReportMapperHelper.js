@@ -82,7 +82,8 @@ class ReportMapperHelper {
      * 
      */
     static formatWWData(data, k){
-        let temp = {};
+        let temp = [];
+        let index;
 
         /**
          * TODO
