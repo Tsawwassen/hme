@@ -114,7 +114,7 @@ class Report extends Component {
             }
             r.push(temp);
         })
-        
+
         return r;
     }
 
