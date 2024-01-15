@@ -27,16 +27,38 @@ class Report extends Component {
     }
 
     // Function to map JSON Object report to a 2D array for exporting
+    /**
+     * The current export map does not like fields with double quotes
+     * When uploading the WW export, you need to remove double quotes to make the export report work
+     * TODO : find a way for the export to work with double quotes, or remove the quotes when making the file
+     */
     exportMap(){
-        // Create new 2D array so that if the export button is clicked twice, it does not add report variables mutliple times
-        let tempCSV = [
-            ["Part Number", "Expected", "Actual", "Difference"],
-          ]; // Shouldn't this code use keys from the array and not hard coded??!
-          
+        let tempCSV = [];
+        let headers = Object.keys(this.state.report[0]);
 
-        Object.keys(this.state.report).forEach(part =>{
-            tempCSV.push([part, this.state.report[part].expected_qty, this.state.report[part].actual_qty, this.state.report[part].difference ]);
+        tempCSV.push(headers);
+
+        this.state.report.forEach(part => {
+            /**
+             * Dev Note : Object.values is a good function, but because some fields are blank, it wont add an empty string to that column
+             */
+            //tempCSV.push(Object.values(part));
+
+            let row = []
+
+            headers.forEach( h => {
+                row.push(part[h]);
+            });
+            
+            row.push(row[7] - row[8]);
+
+            tempCSV.push(row);
+
         })
+        //Add the difference header after the array has been looped so that i can push the calculated value at the end of the row in the loop
+        // Since I'm getting the value from part from the header (which is the keys) it wouldn't find a value for difference
+        // I can add the calculated value in the forEach loop, then add the difference header at the end
+        tempCSV[0].push("difference");
 
         this.setState({csvData: tempCSV});
     }
