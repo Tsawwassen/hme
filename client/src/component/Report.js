@@ -66,33 +66,53 @@ class Report extends Component {
 
     // Combine the two file data into one JSON object
     // Function does handle if given variables have different part numbers
-    generateReport(expected, actual){
-        let r = {};
-        
-        // Loop expected array
-        expected.forEach(part => {
-            // Add part_number, expected quantity from expected array, and set actual quantity to 0
-            r[part.part_number] = {expected_qty: part.quantity,
-                                    actual_qty: 0};
-        });
+    generateReport(expected, actual){ 
+        let r = [];
+        let index = 0;
 
-        // Loop actual array
-        actual.forEach(part => {
-            // Check if part_number is in r object
-            if(r.hasOwnProperty(part.part_number)){
-                // Update actual quantity from actual array
-                r[part.part_number].actual_qty = part.quantity;
-            } else { // part number is not in array
-                // Add part_number, set expected quantity to 0, set actual quantity from actual array
-                r[part.part_number] = {expected_qty: 0,
-                    actual_qty: part.quantity};
+        //Loop expected array of parts
+        expected.forEach(part => {
+            // Add actual value to part
+            part.actual = 0;
+            
+            index = actual.indexOf(part['(Unit No)'])
+
+            // if it is, add 1 to actual value. Remove that record from the actual array (pop?)
+            if(index >= 0){
+                part.actual += 1;
+                actual.splice(index, 1);
             }
-        });
+
+            // Add add part to r array
+            r.push(part);
+        })
         
-        // DEV NOTE : might need to do 'actual_qty - expected_qty' and not 'expected_qty - actual_qty'
-        //              -Check with end user
-        Object.keys(r).forEach(part =>{
-            r[part].difference = r[part].expected_qty - r[part].actual_qty;
+        // Count the number of occurances of parts in the actual array
+        let valueCounts  = {};
+        actual.forEach(value =>{
+            if (valueCounts[value] === undefined) {
+                valueCounts[value] = 1; // Initialize count if the value is encountered for the first time
+              } else {
+                valueCounts[value]++; // Increment count if the value has been encountered before
+              }
+        })
+
+        // Once expected array has been looped, add the remaining values of actual array to r (remember to have the data model correct for the report rendering. Add something to the values to show that it didn't have a record)
+        // Use the partNumber keys of the valueCounts array to get the a list of counted parts that were not in the expected file
+        // Use the part for unit no field, and use the part as the key in the valueCounts object to get the actual count
+        Object.keys(valueCounts).forEach(part => {
+            let temp = {
+                "Year": "",
+                "Make": "",
+                "Model": "",
+                "Serial #": "",
+                "(Unit No)": part,
+                "Inventory Desc": "",
+                "Department": "",            
+                "actual": valueCounts[part],
+                "expected": 0
+            }
+            r.push(temp);
         })
         
         return r;
