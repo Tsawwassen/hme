@@ -93,14 +93,16 @@ class ReportMapperHelper {
          * 4. TEST CASE WORKING - Expected records should be 270
          * DEV NOTE - A lot of these TODOs were solved by PapaParser
          */
+        
         data.forEach(part =>{
-            if(temp.hasOwnProperty(part['(Unit No)'])){
-                temp[part['(Unit No)']] = temp[part['(Unit No)']] + 1; 
+            index = this.getIndexForKeyValuePair(temp, '(Unit No)', part['(Unit No)']);
+
+            if(index === -1){;
+               part['expected'] = 1;
+               temp.push(part); 
+            } else {
+                temp[index]['expected'] += 1;
             }
-            else{
-                temp[part['(Unit No)']] = 1;
-            }
-           
         });
 
         
