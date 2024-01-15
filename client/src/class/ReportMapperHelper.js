@@ -105,18 +105,7 @@ class ReportMapperHelper {
             }
         });
 
-        
-        //Parse JSON Object to create return array that will be used in the report component.
-        let r = [];
-        Object.keys(temp).forEach(function(part) {
-            let t = {};
-             t[this[0]] = part;
-             t[this[1]] = temp[part];
-        
-            r.push(t)
-        }, k); // DEV NOTE : Can't use an arrow function and have the 'thisValue' available inside the block. Need to use 'forEach(function(part ... {}, thisValue))
-        
-        return r;
+        return temp;
     }
     
     // Read file asyncronously
