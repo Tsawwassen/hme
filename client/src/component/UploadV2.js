@@ -43,7 +43,6 @@ class UploadV2 extends Component {
         ReportMapperHelper.getSingleFileContent(this.state.expectedFilePath,
                                         this.state.actualPartList, 
                                         this.props.setters, 
-                                        "Please select an expected inventory file",
                                         );
       
        
