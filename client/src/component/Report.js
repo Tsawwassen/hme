@@ -123,7 +123,7 @@ class Report extends Component {
     render() {
         return (<>
             <h2>Report</h2>
-            <ReportTable values={this.state.report} />
+            {this.state.report.length > 0 && <ReportTable values={this.state.report} />}
             < br /><CSVLink data={this.state.csvData} filename={"report.csv"} className="btn btn-primary" onClick={this.exportMap} >Export</CSVLink>
         </>);
       };
