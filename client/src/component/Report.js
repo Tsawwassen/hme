@@ -109,9 +109,9 @@ class Report extends Component {
                 "Serial #": "",
                 "(Unit No)": part,
                 "Inventory Desc": "",
-                "Department": "",            
-                "actual": valueCounts[part],
-                "expected": 0
+                "Department": "",
+                "expected": 0,
+                "actual": valueCounts[part]
             }
             r.push(temp);
         })
