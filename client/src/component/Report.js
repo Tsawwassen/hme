@@ -103,7 +103,7 @@ class Report extends Component {
         // Use the part for unit no field, and use the part as the key in the valueCounts object to get the actual count
         Object.keys(valueCounts).forEach(part => {
             let temp = {
-                "Year": "",
+                "Inventory Part": "",
                 "Make": "",
                 "Model": "",
                 "Serial #": "",
