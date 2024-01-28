@@ -96,6 +96,7 @@ class Report extends Component {
                 valueCounts[value]++; // Increment count if the value has been encountered before
               }
         })
+        // valueCounts JSON object looks like { ..., partNumber:quantity, ... }
 
         // Once expected array has been looped, add the remaining values of actual array to r (remember to have the data model correct for the report rendering. Add something to the values to show that it didn't have a record)
         // Use the partNumber keys of the valueCounts array to get the a list of counted parts that were not in the expected file
