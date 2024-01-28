@@ -205,9 +205,9 @@ Improve the process for checking stale orders
 - - Merge worked perfectly!!
 
 ## 01/28/202
-- Have an updated WW export, need to get inventory function working with it
-- Need to clean up my test data folder
-- inventory export report function isn't working for cells with special characters. Need to use Papa.unparse (I think)
+- DONE - Have an updated WW export, need to get inventory function working with it
+- DONE - Need to clean up my test data folder
+- DONE - inventory export report function isn't working for cells with special characters. Need to use Papa.unparse (I think)
 - Create a download template function for shelf labels
 - - Need to check if the upload function uses Papa.parse so that it handles special characters
 
