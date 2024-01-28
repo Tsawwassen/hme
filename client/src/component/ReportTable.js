@@ -21,8 +21,8 @@ function ReportTable(props) {
               <th>Inventory Desc</th>
               <th>Serial Number</th>
               <th>Unit Number</th>
-              <th>Expected</th>
-              <th>Actual</th>
+              <th>WW Quantity</th>{/** Formerly Expected quantity */}
+              <th>Scanned Quantity</th>{/** Formerly Actual quantity */}
               <th>Difference</th>
             </tr>
             </thead>
