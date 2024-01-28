@@ -73,10 +73,13 @@ class Report extends Component {
         //Loop expected array of parts
         expected.forEach(part => {
             // Add actual value to part
-            part.actual = 0;
-
+            if(part.actual === undefined){
+                part.actual = 0;
+            }
+            
             //If find index of expected unit number in actual array
             index = actual.indexOf(part['(Unit No)'])
+
             // if it is, add 1 to actual value. Remove that record from the actual array
             if(index >= 0){
                 part.actual += 1;
