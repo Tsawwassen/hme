@@ -27,41 +27,22 @@ class Report extends Component {
         this.setState({report: this.generateReport(this.props.data[0], this.props.data[1])});
     }
 
-    // Function to map JSON Object report to a 2D array for exporting
     /**
-     * The current export map does not like fields with double quotes
-     * When uploading the WW export, you need to remove double quotes to make the export report work
-     * TODO : find a way for the export to work with double quotes, or remove the quotes when making the file
+     * Export Report Table to CSV file
+     * Handles cells with quotes, double quotes, and commas
+     * 
      */
     exportMap(){
-        let tempCSV = [];
-        let headers = Object.keys(this.state.report[0]);
-
-        tempCSV.push(headers);
-
-        this.state.report.forEach(part => {
-            /**
-             * Dev Note : Object.values is a good function, but because some fields are blank, it wont add an empty string to that column
-             */
-            //tempCSV.push(Object.values(part));
-
-            let row = []
-
-            headers.forEach( h => {
-                row.push(part[h]);
-            });
-            
-            row.push(row[7] - row[8]);
-
-            tempCSV.push(row);
-
-        })
-        //Add the difference header after the array has been looped so that i can push the calculated value at the end of the row in the loop
-        // Since I'm getting the value from part from the header (which is the keys) it wouldn't find a value for difference
-        // I can add the calculated value in the forEach loop, then add the difference header at the end
-        tempCSV[0].push("difference");
-
-        this.setState({csvData: tempCSV});
+        const csvBlob = new Blob([Papa.unparse(this.state.report, {
+            quotes: true,      // Enable quoting of all values
+            quoteChar: '"',    // Use double quotes as the quote character
+            delimiter: ','     // Use a comma as the delimiter
+          })], { type: 'text/csv;charset=utf-8' });
+          
+          const downloadLink = document.createElement('a');
+          downloadLink.href = URL.createObjectURL(csvBlob);
+          downloadLink.download = 'Inventory-Report.csv';
+          downloadLink.click();
     }
 
 
