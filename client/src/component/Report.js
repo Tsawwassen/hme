@@ -54,7 +54,7 @@ class Report extends Component {
         
         //Loop expected array of parts
         expected.forEach(part => {
-            // Add actual value to part
+            // Add actual value to part object
             if(part.actual === undefined){
                 part.actual = 0;
             }
