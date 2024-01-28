@@ -38,7 +38,7 @@ function ReportTable(props) {
                 <td>{part['(Unit No)']}</td>
                 <td>{part['expected']}</td>
                 <td>{part['actual']}</td>
-                <td>{part['expected'] - part['actual']}</td>
+                <td>{part['difference']}</td>
               </tr>
             })}
             </tbody>
