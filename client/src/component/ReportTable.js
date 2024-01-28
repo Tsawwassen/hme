@@ -14,13 +14,13 @@ function ReportTable(props) {
           <Table striped bordered hover>
             <thead>
             <tr>
-              <th>Year</th>
+              <th>Department</th>
+              <th>Inventory Part</th>
               <th>Make</th>
               <th>Model</th>
+              <th>Inventory Desc</th>
               <th>Serial Number</th>
               <th>Unit Number</th>
-              <th>Inventory Desc</th>
-              <th>Department</th>
               <th>Expected</th>
               <th>Actual</th>
               <th>Difference</th>
@@ -29,13 +29,13 @@ function ReportTable(props) {
             <tbody>
             {props.values.map((part, i) => {
               return <tr key={i}>
-                <td>{part['Year']}</td>
+                <td>{part['Department']}</td>
+                <td>{part['Inventory Part']}</td>
                 <td>{part['Make']}</td>
                 <td>{part['Model']}</td>
+                <td>{part['Inventory Desc']}</td>
                 <td>{part['Serial #']}</td>
                 <td>{part['(Unit No)']}</td>
-                <td>{part['Inventory Desc']}</td>
-                <td>{part['Department']}</td>
                 <td>{part['expected']}</td>
                 <td>{part['actual']}</td>
                 <td>{part['expected'] - part['actual']}</td>
