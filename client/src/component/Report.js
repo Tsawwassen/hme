@@ -69,15 +69,15 @@ class Report extends Component {
     generateReport(expected, actual){ 
         let r = [];
         let index = 0;
-
+        
         //Loop expected array of parts
         expected.forEach(part => {
             // Add actual value to part
             part.actual = 0;
-            
-            index = actual.indexOf(part['(Unit No)'])
 
-            // if it is, add 1 to actual value. Remove that record from the actual array (pop?)
+            //If find index of expected unit number in actual array
+            index = actual.indexOf(part['(Unit No)'])
+            // if it is, add 1 to actual value. Remove that record from the actual array
             if(index >= 0){
                 part.actual += 1;
                 actual.splice(index, 1);
