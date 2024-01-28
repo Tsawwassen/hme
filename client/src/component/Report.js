@@ -116,6 +116,12 @@ class Report extends Component {
             r.push(temp);
         })
 
+        //Calculate difference here
+        r.forEach(part => {
+            part["difference"] = part["expected"] - part["actual"];
+        })
+      
+
         return r;
     }
 
