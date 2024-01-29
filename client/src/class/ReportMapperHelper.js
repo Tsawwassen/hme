@@ -95,6 +95,11 @@ class ReportMapperHelper {
          */
         
         data.forEach(part =>{
+
+            if(part['(Unit No)'] === ""){
+                part['(Unit No)'] = part['Serial #'];
+            }
+
             index = this.getIndexForKeyValuePair(temp, '(Unit No)', part['(Unit No)']);
 
             if(index === -1){;
