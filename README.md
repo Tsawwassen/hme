@@ -208,8 +208,17 @@ Improve the process for checking stale orders
 - DONE - Have an updated WW export, need to get inventory function working with it
 - DONE - Need to clean up my test data folder
 - DONE - inventory export report function isn't working for cells with special characters. Need to use Papa.unparse (I think)
+- DONE - Need to handle rows that have a serial number but don't have a unit number.
+- - WORKED - Plan is to loop the array and if the row does not have a unit number but does have a serial number, then copy the serial number to the unit number column
+- - Doing a quick look of the expected array, checking if unit number is empty, and if it is move the serial number over worked perfectly
+- - Only issue is the WW data (note below)
 - Create a download template function for shelf labels
 - - Need to check if the upload function uses Papa.parse so that it handles special characters
+- WW Export Issues
+- - The 'OddExportResults' file contains all the 'odd' report results. 
+- - There is some line items where it has a demo number in the SN field, but nothing in the UnitNo field, so when I do the empty Unit check it moves it over and then groups it with the other record (ie make the expected qty > 1)
+- - There is a '.R-SEA-MISC' record. Not sure what that one is
+- - The K2 items have the same Unit Number, but unique serial numbers. The app is grouping them together on the UnitNomber since they are the same, so the duplicate serial numbers get lost
 
 
 ## QoL ToDos
