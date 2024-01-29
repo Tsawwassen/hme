@@ -1,0 +1,24 @@
+Inventory Part,Make,Model,Serial #,(Unit No),Inventory Desc,Department,expected,actual,difference
+D-PED,Zippie,12x12,RZ008495,D-02015,HME Demo - Pediatric Equipment,Surrey,2,0,2
+D-PED,Rifton,Activity Chair Smal,R82020201103AB,D-02041,HME Demo - Pediatric Equipment,Surrey,2,0,2
+D-PED,Rifton,Wave Small,Z21020200416AB,D-02077,HME Demo - Pediatric Equipment,Surrey,2,0,2
+R-BTH-PEDC,Rifton,HTS,Z120  20150828AF,HME-03009,Pediatric Commode,Surrey,2,0,2
+R-WC-PED-T,Zippie,IRIS,ZRS-004091,BC8873,Pediatric Tilt Wheelchair (Month...,Surrey,2,0,2
+D-SEA-CUSH,Blake,Commode pad 18x18,D-02252,D-02252,HME Demo - Cushions,Surrey,2,0,2
+D-SEA-CUSH,Blake,Hiybrid 18x18,10497,D-02257,HME Demo - Cushions,Surrey,2,0,2
+R-PED-MISC,Rifton,Wave Large,Z23020210615AM,D-02195,Pediatric Miscelleous Equipment ...,Surrey,2,0,2
+D-SEA-CUSH,Matrix,sample cushion,0M0338602,D-02219,HME Demo - Cushions,Surrey,2,0,2
+D-SEA-CUSH,Matrix,PS heavy duty 24x20,0M0338540,D-02222,HME Demo - Cushions,Surrey,2,0,2
+D-SEA-CUSH,Blake,GH 20x18,10260,D-02236,HME Demo - Cushions,Surrey,2,0,2
+D-SEA-CUSH,Blake,GHD 20x18,10247,D-02240,HME Demo - Cushions,Surrey,2,0,2
+D-SEA-CUSH,Blake,GP 20x18,10121,D-02247,HME Demo - Cushions,Surrey,2,0,2
+D-PED,Firefly,Scoot 4-in-1,LEC/304827,D-02254,HME Demo - Pediatric Equipment,Surrey,2,0,2
+D-PED,Permobil,Rifton Shower Stand,Z21820211103AH,D-02263,HME Demo - Pediatric Equipment,Surrey,2,0,2
+D-PED,Permobil,Rifton Shower Stand,Z21820211103AI,D-02265,HME Demo - Pediatric Equipment,Surrey,2,0,2
+.R-SEA-MISC,,,.R-SEA-MISC,.R-SEA-MISC,Misc Cushion (Monthly Rental) - ...,Surrey,2,0,2
+FSG440,,,FSG440,FSG440,Highstar Freestanding Gantry Lif...,Surrey,2,0,2
+200-12874,,,200-12874,200-12874,"KWIKTRAK 140MM, 3M",Surrey,2,0,2
+K2outdoor,Savaria,Outdoor RH Stairlift,K2C04001472000007,C6290127-R-Z,K2 Savaria Straight Outdoor Stai...,Surrey,3,0,3
+K2outdoor,Savaria,Outdoor LH Stairlift,K2C03001472000010,C6290127-L-Z,K2 Savaria Straight Outdoor Stai...,Surrey,5,0,5
+K2,Savaria,K2 Savaria,K2C01001102100534,C6290127-L,K2 Savaria stairlift with 15 foo...,Surrey,2,0,2
+K2,Savaria,K2 Savaria,K2C02001492000214,C6290127-R,K2 Savaria stairlift with 15 foo...,Surrey,2,0,2
