@@ -37,17 +37,18 @@ class UploadV2 extends Component {
     }
 
     // Submit input files paths to be parsed
-      //TODO : Check file paths here, and show error if needed before going into ReportMapperHelper
     submit(){  
-        //This helper function needs to be updated for V2   
-        //TODO :
-        // - don't go into ReportMapperHelper if this.actualPartList is empty
-        ReportMapperHelper.getSingleFileContent(this.state.expectedFilePath,
-                                        this.state.actualPartList, 
-                                        this.props.setters, 
-                                        );
-      
-       
+        let validFile =FileReaderHelper.validFileCheck(this.state.expectedFilePath) 
+        
+        if(validFile.status){
+            ReportMapperHelper.getSingleFileContent(this.state.expectedFilePath,
+                                                    this.state.actualPartList, 
+                                                    this.props.setters, 
+                                                );
+       } else {
+        //show error message
+        this.setState({errorMessage: validFile.message});
+       }
     }
 
     // OnChange functions
