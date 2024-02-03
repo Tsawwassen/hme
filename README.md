@@ -204,7 +204,7 @@ Improve the process for checking stale orders
 - Going to merge with main and push to Azure. Notes to follow after committing gits
 - - Merge worked perfectly!!
 
-## 01/28/202
+## 01/28/2024
 - DONE - Have an updated WW export, need to get inventory function working with it
 - DONE - Need to clean up my test data folder
 - DONE - inventory export report function isn't working for cells with special characters. Need to use Papa.unparse (I think)
@@ -220,13 +220,18 @@ Improve the process for checking stale orders
 - - There is a '.R-SEA-MISC' record. Not sure what that one is
 - - The K2 items have the same Unit Number, but unique serial numbers. The app is grouping them together on the UnitNomber since they are the same, so the duplicate serial numbers get lost
 
+## 02/03/2024
+- Upload file Error Handeling (inventory, shelf labels, inventory labels) (Former QoL Todo)
+- - Show message when upload file is not selected
+- - Show message when upload file is not a CSV 
+- Template File (Former QoL Todo)
+- - Shelf Labels
+- - Inventory Labels
+
 
 ## QoL ToDos
 - Have upload files accept excel (low)
-- Have button to download template files(high)
-- Error handeling (high)
 - Clean up code (comments, spacing, console logs(?))
-- Fix the inventory report export to handle double quotes
 
 
 ## Printer Preferences
