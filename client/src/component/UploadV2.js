@@ -16,7 +16,8 @@ class UploadV2 extends Component {
         this.state = {
             expectedFilePath: {},
             activePartNumber: "",
-            actualPartList: []
+            actualPartList: [],
+            errorMessage: ""
         };
 
         // OnChange functions
