@@ -91,6 +91,18 @@ class UploadV2 extends Component {
     // Render one file input, text field to add part numbers, and table for added part numbers and submit button.
     render() {
         return (<>
+            {(this.state.errorMessage !== "") && <Alert variant="danger">
+                                <Alert.Heading>Error</Alert.Heading>
+                                <p>
+                                    {this.state.errorMessage}
+                                </p>
+                                <hr />
+                                <div className="d-flex justify-content-end">
+                                    <Button onClick={() =>  this.setState({errorMessage: ""})} >
+                                        Close me
+                                    </Button>
+                                </div>
+                            </Alert>}
             <h2>Upload V2 COMPONENT</h2>
             <Row>
                 <Col>
