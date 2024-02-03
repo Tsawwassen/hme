@@ -4,6 +4,7 @@ import { Col, Row, Form, Button, ListGroup, Alert  } from 'react-bootstrap';
 
 // Helper Class
 import ReportMapperHelper from '../class/ReportMapperHelper';
+import FileReaderHelper from '../class/FileReaderHelper';
 
 // UploadV2 component
 // Render one file input and text field for multiple parts, and submit button
