@@ -93,6 +93,17 @@ class FileReaderHelper {
 
         return tempData;
     }
+
+    static validFileCheck(filePath){
+       
+        if(Object.keys(filePath).length === 0 && filePath.constructor === Object){  //Check if a file has been selected to uplaod
+            return { status: false, message:"Please select a file to upload" };
+        }else if (!(filePath.type === "text/csv")){                                 //Check if the selected file is a CSV file
+            return { status: false, message:"Upload file must be a CSV file" };
+        }else{                                                                      //Select file is valid
+            return {status: true, message:""};
+        }
+    }
 }
 
 export default FileReaderHelper;
