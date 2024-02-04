@@ -38,7 +38,7 @@ class UploadV2 extends Component {
 
     // Submit input files paths to be parsed
     submit(){  
-        let validFile =FileReaderHelper.validFileCheck(this.state.expectedFilePath) 
+        let validFile = FileReaderHelper.validFileCheck(this.state.expectedFilePath);
         
         if(validFile.status){
             ReportMapperHelper.getSingleFileContent(this.state.expectedFilePath,
@@ -53,7 +53,7 @@ class UploadV2 extends Component {
 
     // OnChange functions
     expectedFileOnChange(e){
-        this.setState({expectedFilePath: e.target.files[0]});
+        this.setState({expectedFilePath: e.target.files[0], errorMessage:""});
     }
     activePartNumberOnChange(e){
         this.setState({activePartNumber: e.target.value});
