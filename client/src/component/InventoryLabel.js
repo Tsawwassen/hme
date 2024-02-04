@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { useState } from 'react'
-import Button from 'react-bootstrap/Button';
+import {Button, Alert} from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
 import FileReaderHelper from '../class/FileReaderHelper';
+import ReportMapperHelper from '../class/ReportMapperHelper.js';
 
 import '../styles/InventoryLabel.scss';
 
