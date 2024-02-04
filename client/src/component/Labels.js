@@ -25,6 +25,9 @@ class Labels extends Component {
         
     }
   
+    //ToDo : Create url so that you can auto load a label type
+    //      able to use localhost:3000/labels?type="1" and still load the page
+    //      maybe use 'componentDidMount' and check the url to set the state.selectedLabelType
     render() {
         return (<>
             <div id="label-select">
