@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
-import { Col, Container, Row, Form, Button } from 'react-bootstrap';
+import { Col, Container, Row, Form, Button, Alert } from 'react-bootstrap';
 
 import ShelfLabelPrint from './ShelfLabelPrint.js';
 
 import FileReaderHelper from '../class/FileReaderHelper';
-
-
-let fileReader = new FileReader();
+import ReportMapperHelper from '../class/ReportMapperHelper.js';
 
 class ShelfLabel extends Component {
   
@@ -14,43 +12,48 @@ class ShelfLabel extends Component {
     super(props);
     this.state = {
       filePath: {},
-      fileData: []
+      fileData: [],
+      errorMessage: ""
     };
 
     this.fileOnChange = this.fileOnChange.bind(this);
     this.buttonClicked = this.buttonClicked.bind(this);
-    this.handleFileRead = this.handleFileRead.bind(this);
+ 
   }
 
   //Handle file selected on change
   fileOnChange(event){
     //console.log(`file changed ${event.target.files[0].name}`);
-    this.setState({filePath: event.target.files[0]});
+    this.setState({filePath: event.target.files[0], errorMessage:""});
   }
 
-  //Read file of given file path
-  handleFileRead(e)  {
-    /**
-     * --==DEV NOTE==-- 
-     * fileReader.result returns content of file
-     * Keeping the middle variable here for future reference, but sending it dirently to parse CSV helper function
-     * 
-    */
-    //const content = fileReader.result;
-    this.setState({fileData: FileReaderHelper.ParseCSV(fileReader.result)});
-  };
 
   // Parse file when button is clicked
-  buttonClicked(){ 
-    fileReader.onloadend = this.handleFileRead;
-  
-   try{
-     fileReader.readAsText(this.state.filePath);
-    } catch(error){ }; //Would be nice to have something better then this try catch
+  async buttonClicked(){
+    let validFile = FileReaderHelper.validFileCheck(this.state.filePath);
+
+    if(validFile.status){
+      this.setState({fileData: FileReaderHelper.ParseCSV( await ReportMapperHelper.readUploadedFileAsText(this.state.filePath))});
+    } else {
+      //show error message
+      this.setState({errorMessage: validFile.message});
+     }
   }
 
   render() {
     return (<>
+    {(this.state.errorMessage !== "") && <Alert variant="danger">
+                                <Alert.Heading>Error</Alert.Heading>
+                                <p>
+                                    {this.state.errorMessage}
+                                </p>
+                                <hr />
+                                <div className="d-flex justify-content-end">
+                                    <Button onClick={() =>  this.setState({errorMessage: ""})} >
+                                        Close me
+                                    </Button>
+                                </div>
+                            </Alert>}
         {this.state.fileData.length === 0 && <Container>
             <Row>
                 <Col>
