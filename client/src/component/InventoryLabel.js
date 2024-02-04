@@ -9,8 +9,6 @@ import '../styles/InventoryLabel.scss';
 
 const Barcode = require('react-barcode');
 
-let fileReader = new FileReader();
-
 //Include Serial number, Asset number (demo/rental), Make, Model
 function Label(props){
     const barcodeOptions = {
