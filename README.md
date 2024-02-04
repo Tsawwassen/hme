@@ -221,17 +221,26 @@ Improve the process for checking stale orders
 - - The K2 items have the same Unit Number, but unique serial numbers. The app is grouping them together on the UnitNomber since they are the same, so the duplicate serial numbers get lost
 
 ## 02/03/2024
-- Upload file Error Handeling (inventory, shelf labels, inventory labels) (Former QoL Todo)
+- DONE - Upload file Error Handeling (inventory, shelf labels, inventory labels) (Former QoL Todo)
 - - Show message when upload file is not selected
 - - Show message when upload file is not a CSV 
 - Template File (Former QoL Todo)
 - - Shelf Labels
 - - Inventory Labels
+### Post Notes
+- Should move the error component to a helper component class
+- - Code is mostly the same when used, but bulky and not nice to look at
+- - Also, would like the alery to appear at the top of the screen above all components. Currently it apears in line and pushes other components down
+- TODO Tomorrow - Template files
 
 
 ## QoL ToDos
 - Have upload files accept excel (low)
 - Clean up code (comments, spacing, console logs(?))
+- Create url so that you can auto load a label type
+- - able to use localhost:3000/labels?type="1" and still load the page
+- - maybe use 'componentDidMount' and check the url to set the state.selectedLabelType\
+- - Update would be made in the Labels.js component
 
 
 ## Printer Preferences
