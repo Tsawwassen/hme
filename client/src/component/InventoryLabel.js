@@ -4,6 +4,7 @@ import {Button, Alert} from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
 import FileReaderHelper from '../class/FileReaderHelper';
 import ReportMapperHelper from '../class/ReportMapperHelper.js';
+import Papa from 'papaparse';
 
 import '../styles/InventoryLabel.scss';
 
@@ -115,6 +116,20 @@ function LabelBatch(props){
         setErrorMessage("");
     }
 
+    const getTemplateFile = e => {
+        const csvBlob = new Blob([Papa.unparse([{makeInput:"",	modelInput:"",	serialNumberInput:"",	assetNumberInput:"" }], {
+          quotes: true,      // Enable quoting of all values
+          quoteChar: '"',    // Use double quotes as the quote character
+          delimiter: ','     // Use a comma as the delimiter
+        })], { type: 'text/csv;charset=utf-8' });
+       
+        const downloadLink = document.createElement('a');
+        downloadLink.href = URL.createObjectURL(csvBlob);
+        downloadLink.download = 'InventoryLabelTemplate.csv';
+        downloadLink.click();
+       
+     }
+
     async function handleSubmit(e) {
 
         let validFile = FileReaderHelper.validFileCheck(path);
@@ -128,6 +143,7 @@ function LabelBatch(props){
     }
 
     return (<>
+    <Button onClick={getTemplateFile}>Download Template</Button>
         {(errorMessage !== "") && <Alert variant="danger">
                                 <Alert.Heading>Error</Alert.Heading>
                                 <p>
