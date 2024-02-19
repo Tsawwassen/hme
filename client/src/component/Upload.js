@@ -1,9 +1,10 @@
 // React imports
 import React, { Component } from 'react';
-import { Col, Row, Form, Button } from 'react-bootstrap';
+import { Col, Row, Form, Button, Alert  } from 'react-bootstrap';
 
 // Helper Class
 import ReportMapperHelper from '../class/ReportMapperHelper';
+import FileReaderHelper from '../class/FileReaderHelper';
 
 // Upload component
 // Render two file inputs, and submit button
@@ -15,6 +16,8 @@ class Upload extends Component {
         this.state = {
             expectedFilePath: {},
             actualFilePath: {},
+            errorMessage: ""
+            
         };
 
         // OnChange functions
@@ -27,14 +30,23 @@ class Upload extends Component {
 
     // Submit input files paths to be parsed
     //TODO : Check file paths here, and show error if needed before going into ReportMapperHelper
-    submit(){       
-        ReportMapperHelper.getDoubleFileContent(this.state.expectedFilePath, 
-                                        this.state.actualFilePath,
-                                        this.props.setters, 
-                                        "Please select an expected inventory file",
-                                        "Please select an actual inventory file"
-                                        );
-      
+    submit(){  
+        let validExpFile = FileReaderHelper.validFileCheck(this.state.expectedFilePath);   
+        let validActFile = FileReaderHelper.validFileCheck(this.state.actualFilePath);  
+
+        if(validExpFile.status && validActFile.status){                            
+            ReportMapperHelper.getDoubleFileContent(this.state.expectedFilePath, 
+                this.state.actualFilePath,
+                this.props.setters, 
+                );
+        } else {
+            //show error message
+            // Not the cleanest error message handeling, but needed to consider that one file is valid and the other is not
+            let msg = "";
+            if(!validExpFile.status) msg = validExpFile.message;
+            else msg = validActFile.message;
+            this.setState({errorMessage: msg});
+        }      
        
     }
 
@@ -49,14 +61,26 @@ class Upload extends Component {
     // Render two file inputs and submit button.
     render() {
         return (<>
+        {(this.state.errorMessage !== "") && <Alert variant="danger">
+                                <Alert.Heading>Error</Alert.Heading>
+                                <p>
+                                    {this.state.errorMessage}
+                                </p>
+                                <hr />
+                                <div className="d-flex justify-content-end">
+                                    <Button onClick={() =>  this.setState({errorMessage: ""})} >
+                                        Close me
+                                    </Button>
+                                </div>
+                            </Alert>}
             <h2>Upload V1 COMPONENT</h2>
             <Row>
                 <Col>
                 <Form>
                     <Form.Group controlId="formFile" className="mb-3">
-                        <Form.Label>Expected Inventory file</Form.Label>
+                        <Form.Label>WW Export File</Form.Label>
                         <Form.Control type="file" onChange={this.expectedFileOnChange}  />
-                        <Form.Label>Actual Inventory file</Form.Label>
+                        <Form.Label>Scanned Inventory File</Form.Label>
                         <Form.Control type="file" onChange={this.actualFileOnChange} />
                     </Form.Group>
                     <Button variant="primary" type="button" onClick={this.submit}>Submit</Button>
