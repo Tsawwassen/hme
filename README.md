@@ -237,9 +237,12 @@ Improve the process for checking stale orders
 - Need to get V1 of inventory helper working with current WW export and report output
 - - Decided to get this working for the event of power going out on the computer since the app won't remember what was previously scanned
 - - - Possible solution is to use cookies?
-- Test printing a label with the logo on it
+- PENDING - Test printing a label with the logo on it
 - - Created png and jpg of the same image to use for testing
 - - Just testing to see if it is possible and how it looks on the label
+- - Created testLabel flag when mounting the InventoryLabel component that will return a basic label area for testing
+- - Created two labels. one with PNG and the other with JPG to see if one or the other works better on the label
+- - Pushed to azure, will test at work to see what file works best. Go with smaller file size if image quality is the same. Also might want to scale the picture vs scaling during render
 
 
 ## QoL ToDos
