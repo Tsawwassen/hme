@@ -228,10 +228,18 @@ Improve the process for checking stale orders
 - - Shelf Labels
 - - Inventory Labels
 ### Post Notes
-- Should move the error component to a helper component class
+- MOVED TO QoL - Should move the error component to a helper component class
 - - Code is mostly the same when used, but bulky and not nice to look at
 - - Also, would like the alery to appear at the top of the screen above all components. Currently it apears in line and pushes other components down
-- TODO Tomorrow - Template files
+- MOVED TO QoL - Template files
+
+## 02/19/2024
+- Need to get V1 of inventory helper working with current WW export and report output
+- - Decided to get this working for the event of power going out on the computer since the app won't remember what was previously scanned
+- - - Possible solution is to use cookies?
+- Test printing a label with the logo on it
+- - Created png and jpg of the same image to use for testing
+- - Just testing to see if it is possible and how it looks on the label
 
 
 ## QoL ToDos
@@ -241,6 +249,12 @@ Improve the process for checking stale orders
 - - able to use localhost:3000/labels?type="1" and still load the page
 - - maybe use 'componentDidMount' and check the url to set the state.selectedLabelType\
 - - Update would be made in the Labels.js component
+- Template files
+- Should move the error component to a helper component class
+- - Code is mostly the same when used, but bulky and not nice to look at
+- - Also, would like the alery to appear at the top of the screen above all components. Currently it apears in line and pushes other components down
+- You can pass boolean values to component props by putting them in {}
+- - ex : <Inventory batch:{true} /> and then use it as a boolean value in the parent component
 
 
 ## Printer Preferences
