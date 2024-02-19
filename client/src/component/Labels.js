@@ -40,6 +40,7 @@ class Labels extends Component {
                         <option value="1" >Shelf Label Batch</option>
                         <option value="2">Inventory Label Single</option>
                         <option value="3">Inventory Label Batch</option>
+                        <option value="4">--TEST - Picture --</option> {/** Use this option for testing new labels */}
                     </Form.Select>
                 </Form.Group>
                 </Form>
@@ -48,6 +49,7 @@ class Labels extends Component {
             {this.state.selectedLabelType === "1" && <ShelfLabel />}
             {this.state.selectedLabelType === "2" && <InventoryLabel batch="false" />}
             {this.state.selectedLabelType === "3" && <InventoryLabel batch="true" />}
+            {this.state.selectedLabelType === "4" && <InventoryLabel batch="false" imageTest="true" />}{/** Use this option for testing new labels */}
         
         </>);
       };
