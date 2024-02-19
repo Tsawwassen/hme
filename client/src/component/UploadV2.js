@@ -108,7 +108,7 @@ class UploadV2 extends Component {
                 <Col>
                 <Form>
                     <Form.Group controlId="formFile" className="mb-3">
-                        <Form.Label>Expected Inventory file</Form.Label>
+                        <Form.Label>WW Export File</Form.Label>
                         <Form.Control type="file" onChange={this.expectedFileOnChange}  />
                         <Form.Label>Scanned Part Number</Form.Label>
                         <Form.Control autoFocus type="text" placeholder="Part Number" onChange={this.activePartNumberOnChange} onBlur={this.partNumberOnExit} onKeyDown={this.handleKeyDown}/>
