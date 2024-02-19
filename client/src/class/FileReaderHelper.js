@@ -1,6 +1,20 @@
 import Papa from 'papaparse';
 
 class FileReaderHelper {
+    static ParseCSVNoHeader(content) {
+
+        let csv =  Papa.parse(content, {
+            header: false,
+            skipEmptyLines: 'greedy',
+            complete: function(results) {
+              return results.data;
+            }
+          });
+          
+          //The Papa.parse function would return an object. Needed to use a temp variable.data to return the actual file data to be used with the rest of the app
+
+          return csv.data.map(row => row[0]);;
+    }
     static ParseCSV(content) {
 
         let csv =  Papa.parse(content, {
