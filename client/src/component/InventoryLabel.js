@@ -172,6 +172,19 @@ class InventoryLabel extends Component {
     }
     
     render() {
+        
+        if(this.props.imageTest === "true"){ // Use this prop to test labels. the class inventory-label is the label printing area class. Change the SCSS to show the box
+            return (<>
+                <div className='inventory-label' > 
+                    <p>PNG</p>
+                    <img src="/InventoryLabel/HME-Home-Health-Logo-2.png" width="200" alt="P N G" />
+                </div>
+                <div className='inventory-label' > 
+                    <p>JPG</p>
+                    <img src="/InventoryLabel/HME-Home-Health-Logo-2.jpg" width="200" alt="J P G"  />
+                </div>
+            </>)
+        }
     
         return (<>
             { (this.props.batch === "false") && this.state.labels.length === 0 && <LabelForm setter={this.setLabels} />}
