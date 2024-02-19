@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Col, Container, Row, Form, Button, Alert } from 'react-bootstrap';
+import Papa from 'papaparse';
 
 import ShelfLabelPrint from './ShelfLabelPrint.js';
 
@@ -18,6 +19,7 @@ class ShelfLabel extends Component {
 
     this.fileOnChange = this.fileOnChange.bind(this);
     this.buttonClicked = this.buttonClicked.bind(this);
+    this.getTemplateFile = this.getTemplateFile.bind(this);
  
   }
 
@@ -25,6 +27,20 @@ class ShelfLabel extends Component {
   fileOnChange(event){
     //console.log(`file changed ${event.target.files[0].name}`);
     this.setState({filePath: event.target.files[0], errorMessage:""});
+  }
+
+  getTemplateFile(){
+     const csvBlob = new Blob([Papa.unparse([{part_number:"",	supplier:"",	description:"" }], {
+       quotes: true,      // Enable quoting of all values
+       quoteChar: '"',    // Use double quotes as the quote character
+       delimiter: ','     // Use a comma as the delimiter
+     })], { type: 'text/csv;charset=utf-8' });
+    
+     const downloadLink = document.createElement('a');
+     downloadLink.href = URL.createObjectURL(csvBlob);
+     downloadLink.download = 'ShelfLabelTemplate.csv';
+     downloadLink.click();
+    
   }
 
 
@@ -39,9 +55,10 @@ class ShelfLabel extends Component {
       this.setState({errorMessage: validFile.message});
      }
   }
-
+ 
   render() {
     return (<>
+    <Button onClick={this.getTemplateFile}>Download Template</Button>
     {(this.state.errorMessage !== "") && <Alert variant="danger">
                                 <Alert.Heading>Error</Alert.Heading>
                                 <p>
@@ -66,7 +83,9 @@ class ShelfLabel extends Component {
                 </Form>
                 </Col>
             </Row>
+            
         </Container>}
+        
         {this.state.fileData.length > 0 && <ShelfLabelPrint table={this.state.fileData}/>}
     </>);
   };
