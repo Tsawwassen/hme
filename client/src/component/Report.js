@@ -105,7 +105,6 @@ class Report extends Component {
         r.forEach(part => {
             part["difference"] = part["expected"] - part["actual"];
         })
-      
 
         return r;
     }
