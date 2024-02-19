@@ -234,7 +234,7 @@ Improve the process for checking stale orders
 - MOVED TO QoL - Template files
 
 ## 02/19/2024
-- Need to get V1 of inventory helper working with current WW export and report output
+- DONE - Need to get V1 of inventory helper working with current WW export and report output
 - - Decided to get this working for the event of power going out on the computer since the app won't remember what was previously scanned
 - - - Possible solution is to use cookies?
 - PENDING - Test printing a label with the logo on it
