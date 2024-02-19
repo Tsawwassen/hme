@@ -243,6 +243,7 @@ Improve the process for checking stale orders
 - - Created testLabel flag when mounting the InventoryLabel component that will return a basic label area for testing
 - - Created two labels. one with PNG and the other with JPG to see if one or the other works better on the label
 - - Pushed to azure, will test at work to see what file works best. Go with smaller file size if image quality is the same. Also might want to scale the picture vs scaling during render
+- DONE - Template files
 
 
 ## QoL ToDos
@@ -252,7 +253,6 @@ Improve the process for checking stale orders
 - - able to use localhost:3000/labels?type="1" and still load the page
 - - maybe use 'componentDidMount' and check the url to set the state.selectedLabelType\
 - - Update would be made in the Labels.js component
-- Template files
 - Should move the error component to a helper component class
 - - Code is mostly the same when used, but bulky and not nice to look at
 - - Also, would like the alery to appear at the top of the screen above all components. Currently it apears in line and pushes other components down
