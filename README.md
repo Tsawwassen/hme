@@ -249,9 +249,10 @@ Improve the process for checking stale orders
 - DONE - Labels CAN be printed with picture
 - - Keeping the layout of current label as is. 
 - - Going to get a final decision with other stake holders at a future date.
-- Shelf picutre layout needs to have a button hidden
-- - Also check if forcing the layout to be landscare and margins can be set in CSS code
-- Update NPM to stop the azure errors?
+- DONE - Shelf picutre layout needs to have a button hidden
+- - Also check if forcing the layout to be landscape and margins can be set in CSS code
+- - - Adding the 'size: landscape;' tag does force the page to be landscape, but the content of the page get centered and do not fill the page. Not sure why, need to look into it more
+- DONE - Update NPM to stop the azure errors?
 - - Updated NPM (10.4 to 10.5)
 - - If I want to upgrade node, it seems like i need to uninstall the old version, then install a 3rd party (trusted) app to upgrade it.
 - Learn about test scripts?
@@ -270,6 +271,8 @@ Improve the process for checking stale orders
 - - Also, would like the alery to appear at the top of the screen above all components. Currently it apears in line and pushes other components down
 - You can pass boolean values to component props by putting them in {}
 - - ex : <Inventory batch:{true} /> and then use it as a boolean value in the parent component
+- Force the print page to be landscape for shelf labels
+- - You can use the 'size: landscape;' inside @page, but it changes the layout of the table. Not sure what is causing it
 
 
 ## Printer Preferences

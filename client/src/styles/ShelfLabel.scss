@@ -48,8 +48,13 @@ table{
     }
     .label_page{
         page-break-after: always;
+        
+    }
+    .container{
+        padding:0
     }
     @page{
-        margin: 0
+        margin: 0;
+        //size: landscape;
     }
 }
