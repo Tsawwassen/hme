@@ -43,7 +43,7 @@ table{
 
 
 @media print {
-    .navbar, .navbar-brand, #label-select{
+    .navbar, .navbar-brand, #label-select, .btn{
         display: none!important;
     }
     .label_page{
