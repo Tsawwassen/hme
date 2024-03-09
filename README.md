@@ -245,6 +245,16 @@ Improve the process for checking stale orders
 - - Pushed to azure, will test at work to see what file works best. Go with smaller file size if image quality is the same. Also might want to scale the picture vs scaling during render
 - DONE - Template files
 
+## 03/09/2024
+- DONE - Labels CAN be printed with picture
+- - Keeping the layout of current label as is. 
+- - Going to get a final decision with other stake holders at a future date.
+- Shelf picutre layout needs to have a button hidden
+- - Also check if forcing the layout to be landscare and margins can be set in CSS code
+- Update NPM to stop the azure errors?
+- Learn about test scripts?
+- - Need to learn something new, and I think the automatic testing would be a good spot to start.
+
 
 ## QoL ToDos
 - Have upload files accept excel (low)
