@@ -253,6 +253,7 @@ Improve the process for checking stale orders
 - - Also check if forcing the layout to be landscare and margins can be set in CSS code
 - Update NPM to stop the azure errors?
 - - Updated NPM (10.4 to 10.5)
+- - If I want to upgrade node, it seems like i need to uninstall the old version, then install a 3rd party (trusted) app to upgrade it.
 - Learn about test scripts?
 - - Need to learn something new, and I think the automatic testing would be a good spot to start.
 
