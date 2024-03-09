@@ -252,6 +252,7 @@ Improve the process for checking stale orders
 - Shelf picutre layout needs to have a button hidden
 - - Also check if forcing the layout to be landscare and margins can be set in CSS code
 - Update NPM to stop the azure errors?
+- - Updated NPM (10.4 to 10.5)
 - Learn about test scripts?
 - - Need to learn something new, and I think the automatic testing would be a good spot to start.
 
