@@ -258,6 +258,15 @@ Improve the process for checking stale orders
 - Learn about test scripts?
 - - Need to learn something new, and I think the automatic testing would be a good spot to start.
 
+## 03/17/2024
+- Received a new WW export file
+- - Some of the columns have changed. The parsing function was already keeping all columns it finds, so I just needed to change the ReportTable component to display those new columns
+- - I just commented out what is not exports anymore and added the new column to be rendered
+- - Only issue i can see down the road is the scanned file parsing function only has the old columns. Don't think it could be an issue for the current app, but it might be an issue down the road.
+- Also received a Parts Count WW export that has serialized and non-serialized, but it doesn't show the serial numbers of the serialized items.
+- - Looking at the two files, I think I can combine the two so make a data model that has an array of inventory items, and a flag if it is serialized or not, and save the serial number if it is serialized.
+- - Wrote a note in the testData folder for a future version (1.5? 3?) that would use this logic
+
 
 ## QoL ToDos
 - Have upload files accept excel (low)
