@@ -276,6 +276,8 @@ Improve the process for checking stale orders
 - - I will need to add the category number to the report.
 - POST COMMENT
 - - Was able to merge the two files and render that data sorted by category
+- - Realized this morning that I need to sort by category THEN inventory Part. 
+- - Got that working...
 
 
 ## QoL ToDos
