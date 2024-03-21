@@ -267,6 +267,16 @@ Improve the process for checking stale orders
 - - Looking at the two files, I think I can combine the two so make a data model that has an array of inventory items, and a flag if it is serialized or not, and save the serial number if it is serialized.
 - - Wrote a note in the testData folder for a future version (1.5? 3?) that would use this logic
 
+## 03/17/2024 - EMERGENCY WEEKEND CODEING
+- The files I was given for the serialized items did not have acurate data
+- Financing also wanted the category on the export file for their task
+- I was trying to solve the problem by adding the Unit file data (serialized) to the PC file (only has quantities of serialized and non-serialized. but has the category)
+- I realize now that I need to add the PC data to the Unit data to get the category, and then add whats left from PC
+- The rest of the process I think will just flow as expected.
+- - I will need to add the category number to the report.
+- POST COMMENT
+- - Was able to merge the two files and render that data sorted by category
+
 
 ## QoL ToDos
 - Have upload files accept excel (low)
