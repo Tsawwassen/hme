@@ -102,6 +102,10 @@ class Inventory extends Component {
           {this.state.view === UPLOAD && <UploadV3 setters={this.setData} />}
           {this.state.view === REPORT && <Report data={[this.state.expectedData, this.state.actualData]}/>}
       </Tab> **/}
+        <Tab eventKey="v4" title="V4">
+          {this.state.view === UPLOAD && <UploadV4 setters={this.setData} />}
+          {this.state.view === REPORT && <Report data={[this.state.expectedData, this.state.actualData]}/>}
+        </Tab>
         </Tabs>
         </>);
     }
