@@ -21,12 +21,12 @@ function ReportTable(props) {
           <Table striped bordered hover>
             <thead>
             <tr>
-              {/** <th>Department</th>  */}
+              <th>Category</th>
               <th>Inventory Part</th>
-              {/** <th>Make</th>  */}
-              {/** <th>Model</th>  */}
+               <th>Make</th>
+              <th>Model</th>
               {/** <th>Inventory Desc</th>  */}
-              <th>Unit Description</th>
+             {/** <th>Unit Description</th>  */}
               <th>Serial Number</th>
               <th>Unit Number</th>
               <th>WW Quantity</th>{/** Formerly Expected quantity */}
@@ -37,12 +37,12 @@ function ReportTable(props) {
             <tbody>
             {props.values.map((part, i) => {
               return <tr key={i}>
-                {/** <td>{part['Department']}</td> */}
+                <td>{part['Category']}</td>
                 <td>{part['Inventory Part']}</td>
-                {/** <td>{part['Make']}</td> */}
-                {/** <td>{part['Model']}</td> */}
+                <td>{part['Make']}</td>
+                <td>{part['Model']}</td>
                 {/** <td>{part['Inventory Desc']}</td> */}
-                <td>{part['Unit Description']}</td>
+                {/** <td>{part['Unit Description']}</td>*/}
                 <td>{part['Serial #']}</td>
                 <td>{part['(Unit No)']}</td>
                 <td>{part['expected']}</td>
