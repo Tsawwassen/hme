@@ -163,6 +163,59 @@ class ReportMapperHelper {
         )
     }
 
+    static async getTripleFileContent(pcPath, unitPath, scannedPart, callback){
+        
+
+        let pcData =  FileReaderHelper.ParseCSV(await this.readUploadedFileAsText(pcPath));
+        let unitData =  this.formatWWData(FileReaderHelper.ParseCSV(await this.readUploadedFileAsText(unitPath)));
+        let scannedData =  FileReaderHelper.ParseCSVNoHeader(await this.readUploadedFileAsText(scannedPart));
+        
+        /**
+         * OUTDATED: Keeping this here to document my old logic for this problem
+         * - Add boolean flag to pcData if the part number is serialized
+         * - Add serial numbers from unitData to pcData lines that are serialized
+         * - Add actual count to pcData (use quantity for expected)
+         * - use scannedData to update actual count
+         * - Need to handle items that are left in unitData and scannedData 
+         * - 
+         */
+
+        /**
+         * 1. Loop unitData
+         * 1.2. Search unit[Inventory Part] in pcData[Part Number]. If found add pc[Category] to unit.
+         * 2. Loop pcData
+         * 2.1. Search pc[Part Number] in unit[Inventory Part]. If NOT found add pc to unitData (Match the info the best I can). pc[Quantity] will be the expected
+         * 3. Send formatted unitData and scannedData to the callback?
+         */
+        let index = 0
+        unitData.forEach( unit =>{
+            index = this.getIndexForKeyValuePair(pcData, ' Part Number', unit['Inventory Part']);
+            if(index > 0){
+                unit["Category"] = pcData[index][" Category "];
+            }
+        });
+
+        pcData.forEach( part => {
+            index = this.getIndexForKeyValuePair(unitData, "Category", part[" Category "]);
+            if(index === -1){
+                unitData.push({
+                    "Inventory Part": part[" Part Number"],
+                    "Make":  part[" Supplier"],
+                    "Model":  part[" Description"],
+                    "expected": part[" Quantity"],
+                    "Category": part[" Category "] 
+                })
+            }
+        });
+        
+        callback(
+            unitData,
+            scannedData
+        )
+
+        
+    }
+
     //Async function to get data from server.
     // return format is [... {part_number: STRING, quantity: INT}...]
     // DEV NOTE : Assume that the server does not have duplicate part_numbers
