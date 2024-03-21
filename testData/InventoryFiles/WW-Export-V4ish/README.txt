@@ -1,0 +1,20 @@
+-The 'Unit-03-12-24.csv' file is the cuurent export from WW that i received. Need to fix the columns on the app
+-'PC-03-12-24.xls' is a report that can be pulled from WW that has non-serialized items and serialized.
+- - Issue is that the serialized items don't show the serial/unit numbers
+- - Also I'm not sure why the file has 'Quantity' and 'Counts' columns. That have different numbers.
+- - - Available vs stock?
+- - - The count coulmn might be a way to tell if it is serialized or not. The WW export has a blue square in the cell, but that won't be useful when the file is changed to CSV
+- - I think it could be possible to use both files to scan the whole warehouse with the app.
+- - - Logic idea below - - -
+- Parse PC file to make PC List
+- - { Catefory: string, Part Number: string, , Description: string, , Location: string, , Quantity: int (or count), serialized: boolean, serialNumbers: array}
+- Parse Unit file to make Unit List
+- - {Inventory Part: string, , Serial #: string, , (Unit No): string, , Unit Description: }
+-Loop the Unit list 
+- - If the UnitList.Inventory Part is in PCList.Part Number
+- - - Add the UnitList.Serial# / (Unit No) to PCList.serialNumbers[]
+- - - Remove item from UnitList
+- Add the remaining items to PC List ?
+- - Might be redundant since the UnitList looks like a sub table of PC List
+
+- At this point the WW files can be used with the scanned file. Need to track the expected and scanned quantites in the PC list array.
