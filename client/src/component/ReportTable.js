@@ -13,8 +13,6 @@ function ReportTable(props) {
 
       return aCat - bCat;
     });
-
-    debugger
     
     return (
       <>
