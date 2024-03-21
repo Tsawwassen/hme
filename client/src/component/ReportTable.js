@@ -11,7 +11,20 @@ function ReportTable(props) {
       let aCat = a.Category || Infinity;
       let bCat = b.Category || Infinity;
 
-      return aCat - bCat;
+      let aPartNumber = a["Inventory Part"]|| Infinity;
+      let bPartNumber = b["Inventory Part"]|| Infinity;
+
+      if (aCat !== undefined && bCat !== undefined) {
+        if( aCat !== bCat){
+          return aCat - bCat;
+        }
+      } else if (aCat !== undefined) {
+        return -1; 
+      } else if (bCat !== undefined) {
+        return 1; 
+      }
+
+      return aPartNumber < bPartNumber ? -1 : aPartNumber > bPartNumber ? 1 : 0;
     });
     
     return (
