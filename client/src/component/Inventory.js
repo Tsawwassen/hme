@@ -6,6 +6,7 @@ import {  Tab, Tabs } from 'react-bootstrap';
 import Upload from './Upload';
 import UploadV2 from './UploadV2';
 //import UploadV3 from './UploadV3';
+import UploadV4 from './UploadV4';
 import Report from './Report';
 
 // Variables to change loaded component
