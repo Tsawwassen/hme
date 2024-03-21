@@ -4,11 +4,17 @@
 import Table from 'react-bootstrap/Table';
 
 function ReportTable(props) {
-
     
-    //Need to initialize keys variable to be used in the tbody render
-    //Might be a better way of doing this, but not sure how to reference the keys array inside the map function
-  
+    // Sort table data by category
+    props.values.sort((a, b) => {
+      
+      let aCat = a.Category || Infinity;
+      let bCat = b.Category || Infinity;
+
+      return aCat - bCat;
+    });
+
+    debugger
     
     return (
       <>
