@@ -14,6 +14,9 @@ function ReportTable(props) {
       let aPartNumber = a["Inventory Part"]|| Infinity;
       let bPartNumber = b["Inventory Part"]|| Infinity;
 
+      let aSerialNumber = a["Serial #"]|| Infinity;
+      let bSerialNumber = b["Serial #"]|| Infinity;
+
       if (aCat !== undefined && bCat !== undefined) {
         if( aCat !== bCat){
           return aCat - bCat;
@@ -22,9 +25,13 @@ function ReportTable(props) {
         return -1; 
       } else if (bCat !== undefined) {
         return 1; 
+      } else if (aPartNumber < bPartNumber){
+        return -1;
+      } else if (aPartNumber > bPartNumber){
+        return 1;
       }
 
-      return aPartNumber < bPartNumber ? -1 : aPartNumber > bPartNumber ? 1 : 0;
+      return aSerialNumber < bSerialNumber ? -1 : aSerialNumber > bSerialNumber ? 1 : 0;
     });
     
     return (
