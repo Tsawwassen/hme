@@ -36,7 +36,17 @@ class Report extends Component {
         const csvBlob = new Blob([Papa.unparse(this.state.report, {
             quotes: true,      // Enable quoting of all values
             quoteChar: '"',    // Use double quotes as the quote character
-            delimiter: ','     // Use a comma as the delimiter
+            delimiter: ',',     // Use a comma as the delimiter
+            columns: ["Category",	
+                        "Inventory Part",	
+                        "Make",	
+                        "Model",	
+                        "Inventory Desc",	
+                        "Serial #",	
+                        "(Unit No)",	
+                        "expected",	
+                        "actual",	
+                        "difference"]
           })], { type: 'text/csv;charset=utf-8' });
           
           const downloadLink = document.createElement('a');
