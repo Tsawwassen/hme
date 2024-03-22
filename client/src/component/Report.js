@@ -41,7 +41,6 @@ class Report extends Component {
                         "Inventory Part",	
                         "Make",	
                         "Model",	
-                        "Inventory Desc",	
                         "Serial #",	
                         "(Unit No)",	
                         "expected",	
