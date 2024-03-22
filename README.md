@@ -278,6 +278,8 @@ Improve the process for checking stale orders
 - - Was able to merge the two files and render that data sorted by category
 - - Realized this morning that I need to sort by category THEN inventory Part AND THEN Serial Number. 
 - - Got that working...
+- - The export didn't have the columns in the correct order.
+- - - Used the columns option with Papa.uparse to allow the file to have the columns in the expected order.
 
 
 ## QoL ToDos
