@@ -80,7 +80,6 @@ class Report extends Component {
                 part.actual += 1;
                 actual.splice(index, 1);
             }
-
             // Add add part to r array
             r.push(part);
         })
@@ -94,6 +93,7 @@ class Report extends Component {
                 valueCounts[value]++; // Increment count if the value has been encountered before
               }
         })
+
         // valueCounts JSON object looks like { ..., partNumber:quantity, ... }
 
         // Once expected array has been looped, add the remaining values of actual array to r (remember to have the data model correct for the report rendering. Add something to the values to show that it didn't have a record)
