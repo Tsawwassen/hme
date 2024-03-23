@@ -68,8 +68,12 @@ class Report extends Component {
                 part.actual = 0;
             }
             
-            //If find index of expected unit number in actual array
-            index = actual.indexOf(part['(Unit No)'])
+             //If find index of expected unit number in actual array
+             if(part.hasOwnProperty("(Unit No)")){
+                index = actual.indexOf(part['(Unit No)'])
+            } else {
+                index = actual.indexOf(part['Inventory Part'])
+            }
 
             // if it is, add 1 to actual value. Remove that record from the actual array
             if(index >= 0){
