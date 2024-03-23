@@ -196,7 +196,7 @@ class ReportMapperHelper {
         });
 
         pcData.forEach( part => {
-            index = this.getIndexForKeyValuePair(unitData, "Category", part[" Category "]);
+            index = this.getIndexForKeyValuePair(unitData, "Inventory Part", part[" Part Number"]);
             if(index === -1){
                 unitData.push({
                     "Inventory Part": part[" Part Number"],
