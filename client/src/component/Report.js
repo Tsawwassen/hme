@@ -127,8 +127,9 @@ class Report extends Component {
     render() {
         return (<>
             <h2>Report</h2>
+            <Button onClick={this.exportMap} >Export</Button><br />
             {this.state.report.length > 0 && <ReportTable values={this.state.report} />}
-            <br /><Button onClick={this.exportMap} >Export</Button>
+           
         </>);
       };
     }
