@@ -267,7 +267,7 @@ Improve the process for checking stale orders
 - - Looking at the two files, I think I can combine the two so make a data model that has an array of inventory items, and a flag if it is serialized or not, and save the serial number if it is serialized.
 - - Wrote a note in the testData folder for a future version (1.5? 3?) that would use this logic
 
-## 03/17/2024 - EMERGENCY WEEKEND CODEING
+## 03/20/2024 - EMERGENCY CODEING
 - The files I was given for the serialized items did not have acurate data
 - Financing also wanted the category on the export file for their task
 - I was trying to solve the problem by adding the Unit file data (serialized) to the PC file (only has quantities of serialized and non-serialized. but has the category)
@@ -280,6 +280,15 @@ Improve the process for checking stale orders
 - - Got that working...
 - - The export didn't have the columns in the correct order.
 - - - Used the columns option with Papa.uparse to allow the file to have the columns in the expected order.
+
+## 03/22/2024 - EMERGENCY CODEING
+- The app doesnt parse the scanned file with unit file correctly.
+- - Think I have a solution
+- - My test data was too big and didn't notice. Really need to use automated testing...
+- Created a 'small' test file that should cover the basics of what the file needs to handle
+- Received upload files for count day. 
+- - I have also created a test scanned file. The file should scan everything once. 
+- - - The 'difference' column should always be expected - 1 
 
 
 ## QoL ToDos
