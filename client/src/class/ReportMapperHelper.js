@@ -190,7 +190,7 @@ class ReportMapperHelper {
         let index = 0
         unitData.forEach( unit =>{
             index = this.getIndexForKeyValuePair(pcData, ' Part Number', unit['Inventory Part']);
-            if(index > 0){
+            if(index >= 0){
                 unit["Category"] = pcData[index][" Category "];
             }
         });
