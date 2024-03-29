@@ -295,6 +295,13 @@ Improve the process for checking stale orders
 - - My theory is that in the loop comparing the scanned actual values is skipping list items because the logic is removing the current item
 - - - ie. the scanned loop is at index i. if scanned[i] is in the actual array, it updates the quantity of actual and then removed scanned[i] from scanned, but the loop index is still at i so on the next iteration i will increase, and skip the new value at scanned[i]
 - Need to check that the physical and unit file have the correct quantity to confirm my logic of 'linking' the two files are correct
+- - Expected quantity is 3583 (i think)
+- - After checking the physical and unit file for a couple hours, I think the app is parsing and combining the two files as expected
+- - - Issue is the data i'm working with
+- - - There is some serialized items in the unit file that are not in the phyiscal file (causing numbers to be off)
+- - - There is some items that were serialized at one point, but are not serialized anymore in the physical file
+- - - The app is parsing the file as expected (ie the app will display the corect number of lines or quantities), but when combining they get a little off.
+- - - Maybe only use items that I know are serialized? or just get an acurate unit file so I'm working with acurate data.
 - Need to trim values in the scanFile before comparing the two arrays (i think)
 - Once the above updates have happend, compare the count from the app with the count in the variance report to see how acurate it is
 
