@@ -187,6 +187,7 @@ class ReportMapperHelper {
          * 2.1. Search pc[Part Number] in unit[Inventory Part]. If NOT found add pc to unitData (Match the info the best I can). pc[Quantity] will be the expected
          * 3. Send formatted unitData and scannedData to the callback?
          */
+        
         let index = 0
         unitData.forEach( unit =>{
             index = this.getIndexForKeyValuePair(pcData, ' Part Number', unit['Inventory Part']);
