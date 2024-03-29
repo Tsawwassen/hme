@@ -290,6 +290,13 @@ Improve the process for checking stale orders
 - - I have also created a test scanned file. The file should scan everything once. 
 - - - The 'difference' column should always be expected - 1 
 
+## 03/29/2024 - Post Count Updates
+- The app isn't counting the scanned items corectly (I think)
+- - My theory is that in the loop comparing the scanned actual values is skipping list items because the logic is removing the current item
+- - - ie. the scanned loop is at index i. if scanned[i] is in the actual array, it updates the quantity of actual and then removed scanned[i] from scanned, but the loop index is still at i so on the next iteration i will increase, and skip the new value at scanned[i]
+- Need to check that the physical and unit file have the correct quantity to confirm my logic of 'linking' the two files are correct
+- Need to trim values in the scanFile before comparing the two arrays (i think)
+- Once the above updates have happend, compare the count from the app with the count in the variance report to see how acurate it is
 
 ## QoL ToDos
 - Have upload files accept excel (low)
