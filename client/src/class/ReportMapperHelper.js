@@ -209,9 +209,11 @@ class ReportMapperHelper {
             }
         });
         
+        let cleanScannedData = scannedData.map(element => element.trim());
+        
         callback(
             unitData,
-            scannedData
+            cleanScannedData
         )
 
         
