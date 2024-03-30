@@ -6,6 +6,8 @@ import {  Button } from 'react-bootstrap';
 import Papa from 'papaparse';
 
 
+
+
 // Report component
 class Report extends Component {
     constructor(props){
@@ -24,7 +26,8 @@ class Report extends Component {
 
     // Format file data props to be used by report component when mounted
     componentDidMount(){
-        this.setState({report: this.generateReport(this.props.data[0], this.props.data[1])});
+        let r = this.generateReport(this.props.data[0], this.props.data[1])
+        this.setState({report: r});
     }
 
     /**
@@ -55,68 +58,60 @@ class Report extends Component {
     }
 
 
-    // Combine the two file data into one JSON object
-    // Function does handle if given variables have different part numbers
+    // Combine the two file data into one JSON object.
     generateReport(expected, actual){ 
-        let r = [];
-        let index = 0;
-        
-        //Loop expected array of parts
-        expected.forEach(part => {
-            // Add actual value to part object
-            if(part.actual === undefined){
-                part.actual = 0;
-            }
-            
-             //If find index of expected unit number in actual array
-             if(part.hasOwnProperty("(Unit No)")){
-                index = actual.indexOf(part['(Unit No)'])
+
+        //Get the counts of each item in the actual file, then build it into a JSON object array [..., {part:"", quantity: n },...]
+        let scanCounts = actual.reduce((acc, part) => {
+            acc[part] = (acc[part] || 0) + 1;
+            return acc;
+        }, {});
+        let scanCountsArray = Object.entries(scanCounts).map(([part, quantity]) => ({
+            part,
+            quantity
+        }));
+
+        //Loop the expected array.
+        let r = expected.map((part) => {
+            //set index to -1 so handle if the first item searched is not in the list.
+            let index = -1;
+
+            //check if the current part has the unit no key.
+            // if it does, use that key:value to find the index in the scannedCountsArray.
+            // Else use the inventory part key:value.
+            if(part.hasOwnProperty("(Unit No)")){
+                index = scanCountsArray.findIndex( obj => obj['part'] === part['(Unit No)']);
             } else {
-                index = actual.indexOf(part['Inventory Part'])
+                index = scanCountsArray.findIndex( obj => obj['part'] === part['Inventory Part']);
             }
+          
+            // if the part is not found in the scannedCountsArray, set the actual to 0, and calculate difference.
+            // Else, use the index to find the quantity in the scannedCountsArray, set actual, calculate the difference, and remove the part from the scanCountsArray.
+            if(index === -1){
+                return {...part, actual: 0, difference: part["expected"] - 0 };
+            } else {
+                let foundPart = scanCountsArray.splice(index, 1);
+                return {...part, actual: foundPart[0].quantity, difference: part["expected"] - foundPart[0].quantity};
 
-            // if it is, add 1 to actual value. Remove that record from the actual array
-            if(index >= 0){
-                part.actual += 1;
-                actual.splice(index, 1);
             }
-            // Add add part to r array
-            r.push(part);
-        })
-        
-        // Count the number of occurances of parts in the actual array
-        let valueCounts  = {};
-        actual.forEach(value =>{
-            if (valueCounts[value] === undefined) {
-                valueCounts[value] = 1; // Initialize count if the value is encountered for the first time
-              } else {
-                valueCounts[value]++; // Increment count if the value has been encountered before
-              }
-        })
+        });
 
-        // valueCounts JSON object looks like { ..., partNumber:quantity, ... }
-
-        // Once expected array has been looped, add the remaining values of actual array to r (remember to have the data model correct for the report rendering. Add something to the values to show that it didn't have a record)
-        // Use the partNumber keys of the valueCounts array to get the a list of counted parts that were not in the expected file
-        // Use the part for unit no field, and use the part as the key in the valueCounts object to get the actual count
-        Object.keys(valueCounts).forEach(part => {
+        //Add remaining scanCountsArray items to return array since they were not expected but were scanned.
+        scanCountsArray.forEach((scan) => {
             let temp = {
-                "Inventory Part": "",
-                "Make": "",
-                "Model": "",
-                "Serial #": "",
-                "(Unit No)": part,
-                "Inventory Desc": "",
-                "Department": "",
-                "expected": 0,
-                "actual": valueCounts[part]
-            }
+                         "Inventory Part": "",
+                         "Make": "",
+                         "Model": "",
+                         "Serial #": "",
+                         "(Unit No)": scan.part,
+                         "Inventory Desc": "",
+                         "Department": "",
+                         "expected": 0,
+                         "actual": scan.quantity,
+                         "difference": 0 - scan.quantity
+                     }
             r.push(temp);
-        })
 
-        //Calculate difference here
-        r.forEach(part => {
-            part["difference"] = part["expected"] - part["actual"];
         })
 
         return r;
