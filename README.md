@@ -305,6 +305,16 @@ Improve the process for checking stale orders
 - Need to trim values in the scanFile before comparing the two arrays (i think)
 - Once the above updates have happend, compare the count from the app with the count in the variance report to see how acurate it is
 
+## 03/30/2024 - Post Count Updates Post coding (post post?)
+- The app was reading all files corectly
+- Part of the problem was how the expected and actual files were getting compared
+- - My theory of the forEach loop skipping items beacue the array was getting split was correct, but I think since that function was getting called in the setState function, it was gettin ran more then once.
+- - This was causing the loop to skip items, but enter the loop more then once and count and skip values again
+- - SOLUTION
+- - - Moved the function coparing expected and actual out of the setState function call, and pre-count actual before comparing with expected
+- - - The code also looks cleaner :D
+
+
 ## QoL ToDos
 - Have upload files accept excel (low)
 - Clean up code (comments, spacing, console logs(?))
