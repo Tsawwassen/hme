@@ -36,7 +36,29 @@ class Report extends Component {
      * 
      */
     exportMap(){
-        const csvBlob = new Blob([Papa.unparse(this.state.report, {
+        /** Resolve issue with excel changing cells with only numbers to exponential function */
+        /** Probably a better way to check serial number and unit no, but doing a double if ensures they are both checked */
+        //loop report array
+        var report = this.state.report.map((line) => {
+            // Check if line has SN and Unit key
+            if(line.hasOwnProperty("Serial #")){
+                //Check if SN and Unit have value with only numbers
+                if(/^\d+$/.test(line["Serial #"])){
+                    //add ` to the start of the number
+                    line["Serial #"] = "`" + line["Serial #"];
+                }
+            }
+            if(line.hasOwnProperty("(Unit No)")){
+                //Check if SN and Unit have value with only numbers
+                if(/^\d+$/.test(line["(Unit No)"])){
+                    //add ` to the start of the number
+                    line["(Unit No)"] = "`" + line["(Unit No)"];
+                }
+            }
+            return line;
+        })
+
+        const csvBlob = new Blob([Papa.unparse(report, {
             quotes: true,      // Enable quoting of all values
             quoteChar: '"',    // Use double quotes as the quote character
             delimiter: ',',     // Use a comma as the delimiter
