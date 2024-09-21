@@ -45,14 +45,14 @@ class Report extends Component {
                 //Check if SN and Unit have value with only numbers
                 if(/^\d+$/.test(line["Serial #"])){
                     //add ` to the start of the number
-                    line["Serial #"] = "`" + line["Serial #"];
+                    line["Serial #"] = line["Serial #"] + "`";
                 }
             }
             if(line.hasOwnProperty("(Unit No)")){
                 //Check if SN and Unit have value with only numbers
                 if(/^\d+$/.test(line["(Unit No)"])){
                     //add ` to the start of the number
-                    line["(Unit No)"] = "`" + line["(Unit No)"];
+                    line["(Unit No)"] = line["(Unit No)"]  + "`";
                 }
             }
             return line;
