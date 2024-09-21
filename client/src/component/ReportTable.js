@@ -1,6 +1,4 @@
-//TODO : Work on the CSS for the table. 
-//      - Use react-bootstrap tables?
-//import '../styles/ReportTable.css';
+//import '../styles/ReportTable.scss';
 import Table from 'react-bootstrap/Table';
 
 function ReportTable(props) {
