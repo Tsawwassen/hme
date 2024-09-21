@@ -1,0 +1,24 @@
+table, th, td {
+    border: 1px solid black; /* Adds a 1px solid black border */
+  }
+  table {
+    width:100%;
+  }
+
+@media print {
+    .navbar, .navbar-brand, #label-select, .btn, h1, ul{
+        display: none!important;
+    }
+    .container{
+        padding:0;
+        margin:0;
+        width:100%;
+        font-size:11px;
+    }
+
+   
+    @page{
+        margin: 0;
+        //size: landscape;
+    }
+}
