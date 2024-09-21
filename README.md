@@ -314,6 +314,21 @@ Improve the process for checking stale orders
 - - - Moved the function coparing expected and actual out of the setState function call, and pre-count actual before comparing with expected
 - - - The code also looks cleaner :D
 
+## 09/21/2024 - Post September Count + feedback
+- September count went ok
+- - Unit file had more data then expected. I think i know what needs to be removed. Going to do weekly unit checks with Brian to make sure I have that issue sorted
+- - Once I have confirmed what rows need to be removed (ie unit is on a rental, sold) this can be automated.
+- Serial numbers get converted to Exponential function
+- - Plan is to add '`' to the start of serial numbers that are only numbers before exporting to excel
+- Exported report
+- - Some part numbers change order when put into the pivot table
+- - Brian doesn't need the export to be in excel
+- - Solution: play with the pivot table options to make it work (custom sort) OR scrap the excel idea
+- - - Benefit of the excel version is you can easily see what items need to be counted a second time / looked for
+- - - Would need to look for some form of PDF table 'printer friendly' package. The code sorts the part numbers as Brian wants it, but when I print the table its not paper friendly and SN leak into other columns 
+- Need to ask
+- - Currently I manually remove lines that don't have a category (ie not counted on this count) Should I remove those lines? would still need to keep the extra items that get scanned for reviewing 'extra items' tha are scanned
+
 
 ## QoL ToDos
 - Have upload files accept excel (low)
