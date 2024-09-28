@@ -180,6 +180,19 @@ class ReportMapperHelper {
          * - 
          */
 
+        // Sort the physical count by category
+        //// Seems to be keeping the p# in the correct order while still sorting by category.
+        pcData.sort((a,b) => {
+            return a[" Category "] < b[" Category "] ? -1 : a[" Category "] > b[" Category "]  ? 1 : 0;
+        })
+
+        // Add line number to keep the same order as the physical count sheet
+        for(let i = 0 ; i < pcData.length ; i++){
+            pcData[i]["Line Number"] = i + 1;
+        }
+
+
+
         /**
          * 1. Loop unitData
          * 1.2. Search unit[Inventory Part] in pcData[Part Number]. If found add pc[Category] to unit.
@@ -193,6 +206,7 @@ class ReportMapperHelper {
             index = this.getIndexForKeyValuePair(pcData, ' Part Number', unit['Inventory Part']);
             if(index >= 0){
                 unit["Category"] = pcData[index][" Category "];
+                unit["Line"] = pcData[index]["Line Number"];
             }
         });
 
@@ -204,7 +218,8 @@ class ReportMapperHelper {
                     "Make":  part[" Supplier"],
                     "Model":  part[" Description"],
                     "expected": part[" Quantity"],
-                    "Category": part[" Category "] 
+                    "Category": part[" Category "],
+                    "Line": part["Line Number"]
                 })
             }
         });
