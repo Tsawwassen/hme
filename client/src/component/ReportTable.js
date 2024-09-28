@@ -50,6 +50,7 @@ function ReportTable(props) {
           <Table striped bordered hover>
             <thead>
             <tr>
+              {/** <th>Line</th> */}
               <th>Category</th>
               <th>Inventory Part</th>
                <th>Make</th>
@@ -66,6 +67,7 @@ function ReportTable(props) {
             <tbody>
             {props.values.map((part, i) => {
               return <tr key={i}>
+                {/** <td>{part['Line']}</td> */}
                 <td>{part['Category']}</td>
                 <td>{part['Inventory Part']}</td>
                 <td>{part['Make']}</td>
