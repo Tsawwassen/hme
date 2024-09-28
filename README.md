@@ -331,6 +331,10 @@ Improve the process for checking stale orders
 - Need to ask
 - - Currently I manually remove lines that don't have a category (ie not counted on this count) Should I remove those lines? would still need to keep the extra items that get scanned for reviewing 'extra items' tha are scanned
 
+## 09/28/2024 - Get Order working
+- Goal today is to get the report order to be the same as the input file
+- - Plan is to add an 'order number' when the physical count sheet is parsed, and then sort by that number, then the serial numbers
+
 
 ## QoL ToDos
 - Have upload files accept excel (low)
