@@ -6,8 +6,13 @@ function ReportTable(props) {
     // Sort table data by category
     props.values.sort((a, b) => {
       
-      let aCat = a.Category || Infinity;
-      let bCat = b.Category || Infinity;
+      /**DEV NOTE -  
+       * The below old way or soring worked, but WWs export doesn't sort seem to sort Cat -> PN -> SN 
+       * Updated code sorts by line (created when the physical count file is parsed) and then SN
+       * 
+       * */
+      // let aCat = a.Category || Infinity;
+      // let bCat = b.Category || Infinity;
 
       let aPartNumber = a["Inventory Part"]|| Infinity;
       let bPartNumber = b["Inventory Part"]|| Infinity;
