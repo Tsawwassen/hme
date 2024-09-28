@@ -332,8 +332,23 @@ Improve the process for checking stale orders
 - - Currently I manually remove lines that don't have a category (ie not counted on this count) Should I remove those lines? would still need to keep the extra items that get scanned for reviewing 'extra items' tha are scanned
 
 ## 09/28/2024 - Get Order working
-- Goal today is to get the report order to be the same as the input file
+- Get the report order to be the same as the input file
 - - Plan is to add an 'order number' when the physical count sheet is parsed, and then sort by that number, then the serial numbers
+- - - Parse the physical count file
+- - - Sort by category
+- - - Add line #
+- - - Before showing and exporting the report, sory by Line # -> SN (need to test)
+- - Got the report to show in the correct order. 
+- - - Need to check with Brian why the excel file was in decending category order and the pdf was in ascending order.
+- Check that my logic for removing lines from the unit file is correct
+- - Things to remove are : 
+- - - Remove lines that are on rental (Rental Stage)
+- - - - Only keep lines with "Available" and "Non-Rental Part"
+- - - Remove sold items (Stock Status)
+- - - - Only keep lines with "In Stock" and "Special Orders Reveived"
+- - - Remove lines where the "Serial Number" and "Invetory Part" are the same
+- - - - FSG440 is a non-serialized part, but was serialized at one point. looks like legacy data
+- - - - This logic also removed the ".R-SEA-MISC"
 
 
 ## QoL ToDos
