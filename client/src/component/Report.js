@@ -57,12 +57,13 @@ class Report extends Component {
             }
             return line;
         })
-
+        
         const csvBlob = new Blob([Papa.unparse(report, {
             quotes: true,      // Enable quoting of all values
             quoteChar: '"',    // Use double quotes as the quote character
             delimiter: ',',     // Use a comma as the delimiter
-            columns: ["Category",	
+            columns: [  "Line",
+                        "Category",	
                         "Inventory Part",	
                         "Make",	
                         "Model",	
