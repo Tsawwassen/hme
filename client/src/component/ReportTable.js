@@ -14,27 +14,35 @@ function ReportTable(props) {
       // let aCat = a.Category || Infinity;
       // let bCat = b.Category || Infinity;
 
-      let aPartNumber = a["Inventory Part"]|| Infinity;
-      let bPartNumber = b["Inventory Part"]|| Infinity;
+      // let aSerialNumber = a["Serial #"]|| Infinity;
+      // let bSerialNumber = b["Serial #"]|| Infinity;
+
+      // if (aCat !== undefined && bCat !== undefined) {
+      //   if( aCat !== bCat){
+      //     return aCat - bCat;
+      //   }
+      // } else if (aCat !== undefined) {
+      //   return -1; 
+      // } else if (bCat !== undefined) {
+      //   return 1; 
+      // } 
+      // return aSerialNumber < bSerialNumber ? -1 : aSerialNumber > bSerialNumber ? 1 : 0;
+      /** END OLD CODE */
+
+      /** NEW CODE */
+      /** Sorts by line then SN. '|| Infinity' handles a or b has an undefined 'line' or 'serial #'  */
+      let aLine = a["Line"] || Infinity;
+      let bLine = b["Line"] || Infinity;
 
       let aSerialNumber = a["Serial #"]|| Infinity;
       let bSerialNumber = b["Serial #"]|| Infinity;
 
-      if (aCat !== undefined && bCat !== undefined) {
-        if( aCat !== bCat){
-          return aCat - bCat;
+        // First compare by line_number
+        if (aLine !== bLine) {
+          return aLine - bLine;  // Ascending order by line_number
         }
-      } else if (aCat !== undefined) {
-        return -1; 
-      } else if (bCat !== undefined) {
-        return 1; 
-      } else if (aPartNumber < bPartNumber){
-        return -1;
-      } else if (aPartNumber > bPartNumber){
-        return 1;
-      }
-
-      return aSerialNumber < bSerialNumber ? -1 : aSerialNumber > bSerialNumber ? 1 : 0;
+        // If line_number is the same, compare by serial_number
+        return aSerialNumber < bSerialNumber ? -1 : aSerialNumber > bSerialNumber ? 1 : 0;
     });
     
     return (
