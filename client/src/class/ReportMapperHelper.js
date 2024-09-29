@@ -205,6 +205,7 @@ class ReportMapperHelper {
          */
 
         let filteredUnitData = [];
+        
          unitData.forEach( unit => {
              if(unit["Serial #"] === unit["Inventory Part"]) {
                  return;
@@ -227,13 +228,24 @@ class ReportMapperHelper {
          */
         
         let index = 0
+        
+        //Units get category in this loop.
+        //Not sure if I can delete the line in the loop, or i need to filter it out later
         filteredUnitData.forEach( unit =>{
             index = this.getIndexForKeyValuePair(pcData, ' Part Number', unit['Inventory Part']);
+
             if(index >= 0){
                 unit["Category"] = pcData[index][" Category "];
                 unit["Line"] = pcData[index]["Line Number"];
             }
         });
+
+        // Remove units that don't have a category
+        //      -There is a chance that an item is in the unit table, but it is not on the current physical count file
+        //      -DEV NOTE - Not recomended to remove the item in the above for each loop because when the loop starts, it saves the length of the array and does not adjust the length during the loop. 
+        //                  - It would probably skip items
+        //      - Could probably change the forEach loop to a proper for loop. not sure what is good practise. But this way makes the code loop the array twice.
+        filteredUnitData = filteredUnitData.filter(unit => unit.hasOwnProperty('Category'));
 
         pcData.forEach( part => {
             index = this.getIndexForKeyValuePair(filteredUnitData, "Inventory Part", part[" Part Number"]);
@@ -248,15 +260,13 @@ class ReportMapperHelper {
                 })
             }
         });
-        
+        //DEV NOTE - idk why i did a map here over a forEach loop....
         let cleanScannedData = scannedData.map(element => element.trim());
         
         callback(
             filteredUnitData,
             cleanScannedData
         )
-
-        
     }
 
     //Async function to get data from server.
