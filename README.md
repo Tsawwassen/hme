@@ -359,11 +359,12 @@ Improve the process for checking stale orders
 - - - D-02195. duplicate. only one on count sheet, but two in unit file (different p#, SN/UN issue). I think adding a '.' at the end of the SN of the sold one will fix this issue.
 - - - D-02016. duplicate. only one on count sheet, but two in unit file (different p#, SN/UN issue). I think adding a '.' at the end of the SN of the sold one will fix this issue.
 - - - D-02046. duplicate. only one on count sheet, but two in unit file (different p#, SN/UN issue). I think adding a '.' at the end of the SN of the sold one will fix this issue.
+- - - Might be more. those ones stood out when i manuall checked.
 - - Part Number issues
 - - - Part numbers like "200.12800" get changed to "200.128". Can either update it in WW, or see when the trailing '00' get dropped and handle in the app
 - - - - Looks like the upload file does have the trailing '00'. Papaparse removing it?
 - - - 'R-WC-PED-T' has a blank record. Shows up on the count sheet also.
-- Last thing to do is to remove any 'complete' lines that do not have a category number (still needs to keep the "extra scan" data).
+- DONE - Last thing to do is to remove any 'complete' lines that do not have a category number (still needs to keep the "extra scan" data).
 
 
 
