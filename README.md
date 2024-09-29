@@ -332,7 +332,7 @@ Improve the process for checking stale orders
 - - Currently I manually remove lines that don't have a category (ie not counted on this count) Should I remove those lines? would still need to keep the extra items that get scanned for reviewing 'extra items' tha are scanned
 
 ## 09/28/2024 - Get Order working
-- Get the report order to be the same as the input file
+- DONE - Get the report order to be the same as the input file
 - - Plan is to add an 'order number' when the physical count sheet is parsed, and then sort by that number, then the serial numbers
 - - - Parse the physical count file
 - - - Sort by category
@@ -340,7 +340,7 @@ Improve the process for checking stale orders
 - - - Before showing and exporting the report, sory by Line # -> SN (need to test)
 - - Got the report to show in the correct order. 
 - - - Need to check with Brian why the excel file was in decending category order and the pdf was in ascending order.
-- Check that my logic for removing lines from the unit file is correct
+- DONE - Check that my logic for removing lines from the unit file is correct
 - - Things to remove are : 
 - - - Remove lines that are on rental (Rental Stage)
 - - - - Only keep lines with "Available" and "Non-Rental Part"
@@ -349,6 +349,22 @@ Improve the process for checking stale orders
 - - - Remove lines where the "Serial Number" and "Invetory Part" are the same
 - - - - FSG440 is a non-serialized part, but was serialized at one point. looks like legacy data
 - - - - This logic also removed the ".R-SEA-MISC"
+
+## 09/29/2024
+- Manually checked the report export and the actual count sheet. Order is good. noticed a couple units and parts that need to be updated.
+- - Unit Issues
+- - - D-00017. duplicate. both on count sheet. different part numbers. WW needs to be fixed
+- - - D-02240. duplicate. only one on count sheet, but two in unit file (same p#, SN/UN issue). I think adding a '.' at the end of the unit number of the line that was sold will fix this issue.
+- - - HME-03009. duplicate. only one on count sheet, but two in unit file (different p#, SN/UN issue). I think adding a '.' at the end of the SN of the sold one will fix this issue.
+- - - D-02195. duplicate. only one on count sheet, but two in unit file (different p#, SN/UN issue). I think adding a '.' at the end of the SN of the sold one will fix this issue.
+- - - D-02016. duplicate. only one on count sheet, but two in unit file (different p#, SN/UN issue). I think adding a '.' at the end of the SN of the sold one will fix this issue.
+- - - D-02046. duplicate. only one on count sheet, but two in unit file (different p#, SN/UN issue). I think adding a '.' at the end of the SN of the sold one will fix this issue.
+- - Part Number issues
+- - - Part numbers like "200.12800" get changed to "200.128". Can either update it in WW, or see when the trailing '00' get dropped and handle in the app
+- - - - Looks like the upload file does have the trailing '00'. Papaparse removing it?
+- - - 'R-WC-PED-T' has a blank record. Shows up on the count sheet also.
+- Last thing to do is to remove any 'complete' lines that do not have a category number (still needs to keep the "extra scan" data).
+
 
 
 ## QoL ToDos
