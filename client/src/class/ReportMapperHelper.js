@@ -97,7 +97,8 @@ class ReportMapperHelper {
         data.forEach(part =>{
 
             if(part['(Unit No)'] === ""){
-                part['(Unit No)'] = part['Serial #'];
+                if(part['Serial #'] === "") return;
+                else part['(Unit No)'] = part['Serial #'];
             }
 
             index = this.getIndexForKeyValuePair(temp, '(Unit No)', part['(Unit No)']);
@@ -191,7 +192,31 @@ class ReportMapperHelper {
             pcData[i]["Line Number"] = i + 1;
         }
 
+        
+        /**
+         * Things to remove are : 
+         *  - - - Remove lines that are on rental (Rental Stage)
+         *  - - - - Only keep lines with "Available" and "Non-Rental Part"
+         *  - - - Remove sold items (Stock Status)
+         *  - - - - Only keep lines with "In Stock" and "Special Orders Reveived"
+         *  - - - Remove lines where the "Serial Number" and "Invetory Part" are the same
+         *  - - - - FSG440 is a non-serialized part, but was serialized at one point. looks like legacy data
+         *  - - - - This logic also removed the ".R-SEA-MISC"
+         */
 
+        let filteredUnitData = [];
+         unitData.forEach( unit => {
+             if(unit["Serial #"] === unit["Inventory Part"]) {
+                 return;
+             }
+
+             if((unit["Rental Stage"] === "Available") || (unit["Rental Stage"] === "Non-Rental Part")) {
+                 if((unit["Stock Status"] === "In Stock") || (unit["Stock Status"] === "Special Order Received")) {
+                     filteredUnitData.push(unit);
+                    return;
+                }
+            }
+         })
 
         /**
          * 1. Loop unitData
@@ -202,7 +227,7 @@ class ReportMapperHelper {
          */
         
         let index = 0
-        unitData.forEach( unit =>{
+        filteredUnitData.forEach( unit =>{
             index = this.getIndexForKeyValuePair(pcData, ' Part Number', unit['Inventory Part']);
             if(index >= 0){
                 unit["Category"] = pcData[index][" Category "];
@@ -211,9 +236,9 @@ class ReportMapperHelper {
         });
 
         pcData.forEach( part => {
-            index = this.getIndexForKeyValuePair(unitData, "Inventory Part", part[" Part Number"]);
+            index = this.getIndexForKeyValuePair(filteredUnitData, "Inventory Part", part[" Part Number"]);
             if(index === -1){
-                unitData.push({
+                filteredUnitData.push({
                     "Inventory Part": part[" Part Number"],
                     "Make":  part[" Supplier"],
                     "Model":  part[" Description"],
@@ -227,7 +252,7 @@ class ReportMapperHelper {
         let cleanScannedData = scannedData.map(element => element.trim());
         
         callback(
-            unitData,
+            filteredUnitData,
             cleanScannedData
         )
 
