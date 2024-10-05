@@ -6,7 +6,7 @@
   "scripts": {
     "start-client": "cd client && npm start",
     "start-server": "cd server && npm start",
-    "pushToMain": "git checkout main && git merge development && git commit -m \"Merging main with dev branch\" && git push && git checkout development"
+    "git-merge-push": "git checkout main && git merge development && git add . && git commit -m 'Merging main with dev branch' && git push && git checkout development",
   },
   "author": "Mitchell Smith",
   "license": "ISC"
