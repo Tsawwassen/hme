@@ -366,6 +366,19 @@ Improve the process for checking stale orders
 - - - 'R-WC-PED-T' has a blank record. Shows up on the count sheet also.
 - DONE - Last thing to do is to remove any 'complete' lines that do not have a category number (still needs to keep the "extra scan" data).
 
+## 10/05/2024
+- Fixed all the issues with duplicates by either adding a '.' in WW, or asking purchasing to remove items.
+- Added the same number logic to check the part number for only number values (fixing the 200.12800 issue)
+- - This also made all part numbers show up as text in excelt (making them all left align)
+- High Priority ToDos
+- - Create a single shelf label option
+- - Change to headers of the 'Inventory Batch' template
+- - - Might need to change the 'Inventory Single' to map correctly with the label component
+- - Remove the V1 and V2 inventory tool
+- - - Only show V4
+- - Make the V4 inventory export directly (ie don't show the parsed table component)
+- - Create a 4x1 label that shows just a barcode
+- - - This label will be tested in North Van to see if those labels work better.
 
 
 ## QoL ToDos
@@ -382,6 +395,7 @@ Improve the process for checking stale orders
 - - ex : <Inventory batch:{true} /> and then use it as a boolean value in the parent component
 - Force the print page to be landscape for shelf labels
 - - You can use the 'size: landscape;' inside @page, but it changes the layout of the table. Not sure what is causing it
+- Figure out how to use automated testing...
 
 
 ## Printer Preferences
