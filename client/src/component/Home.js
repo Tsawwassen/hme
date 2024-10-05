@@ -1,7 +1,7 @@
 function Home() {
     console.log("inside home");
     return (
-      <h1>Home</h1>
+      <h1>Home - Push Test</h1>
     );
   }
   
