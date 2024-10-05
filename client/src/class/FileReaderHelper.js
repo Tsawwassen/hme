@@ -86,8 +86,7 @@ class FileReaderHelper {
          * TODO : this code can probably be cleaned up A LOT, but it is working
          *    The first CSV forEach loop can probably be added into the other forEach loops
          */
-        console.log("ParseWWCSV");
-        debugger
+   
         const table = [];
         csv.forEach((row) => {
             if(row === "") return; //skip row if row is empty, will continue parsing the file
