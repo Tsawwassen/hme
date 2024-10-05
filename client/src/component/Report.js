@@ -75,7 +75,8 @@ class Report extends Component {
                         "(Unit No)",	
                         "expected",	
                         "actual",	
-                        "difference"]
+                        "difference",
+                        "Note"]
           })], { type: 'text/csv;charset=utf-8' });
           
           const downloadLink = document.createElement('a');
