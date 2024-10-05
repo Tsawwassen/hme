@@ -371,14 +371,14 @@ Improve the process for checking stale orders
 - Added the same number logic to check the part number for only number values (fixing the 200.12800 issue)
 - - This also made all part numbers show up as text in excelt (making them all left align)
 - High Priority ToDos
+- - DONE - Remove the V1 and V2 inventory tool
+- - - Only show V4
+- - DONE - Make the V4 inventory export directly (ie don't show the parsed table component)
+- - Create a 4x1 label that shows just a barcode
+- - - This label will be tested in North Van to see if those labels work better.
 - - Create a single shelf label option
 - - Change to headers of the 'Inventory Batch' template
 - - - Might need to change the 'Inventory Single' to map correctly with the label component
-- - Remove the V1 and V2 inventory tool
-- - - Only show V4
-- - Make the V4 inventory export directly (ie don't show the parsed table component)
-- - Create a 4x1 label that shows just a barcode
-- - - This label will be tested in North Van to see if those labels work better.
 
 
 ## QoL ToDos
