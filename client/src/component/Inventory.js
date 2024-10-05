@@ -1,10 +1,10 @@
 // React imports
 import React, { Component } from 'react';
-import {  Tab, Tabs } from 'react-bootstrap';
+//import {  Tab, Tabs } from 'react-bootstrap';
 
-// Upload component
-import Upload from './Upload';
-import UploadV2 from './UploadV2';
+// Upload component - Only using V4. Commented out other versions.
+//import Upload from './Upload';
+//import UploadV2 from './UploadV2';
 //import UploadV3 from './UploadV3';
 import UploadV4 from './UploadV4';
 import Report from './Report';
@@ -83,6 +83,7 @@ class Inventory extends Component {
     render() {
       return (<>
         <h1>Inventory Screen</h1>
+        {/* -DEV NOTE: Only using V4. Commented out the other versions to make things easier for user.
         <Tabs
           defaultActiveKey="v1"
           id="uncontrolled-tab-example"
@@ -101,13 +102,16 @@ class Inventory extends Component {
         /** <Tab eventKey="v3" title="V3">
           {this.state.view === UPLOAD && <UploadV3 setters={this.setData} />}
           {this.state.view === REPORT && <Report data={[this.state.expectedData, this.state.actualData]}/>}
-      </Tab> **/}
+      </Tab> }
         <Tab eventKey="v4" title="V4">
           {this.state.view === UPLOAD && <UploadV4 setters={this.setData} />}
           {this.state.view === REPORT && <Report data={[this.state.expectedData, this.state.actualData]}/>}
         </Tab>
-        </Tabs>
+        </Tabs> */}
+        {this.state.view === UPLOAD && <UploadV4 setters={this.setData} />}
+        {this.state.view === REPORT && <Report data={[this.state.expectedData, this.state.actualData]}/>}
         </>);
+        
     }
   }
   
