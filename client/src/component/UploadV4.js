@@ -31,6 +31,7 @@ class UploadV4 extends Component {
 
         //Submit function
         this.submit = this.submit.bind(this);
+        this.process = this.process.bind(this);
 
         
     }
@@ -48,6 +49,26 @@ class UploadV4 extends Component {
                                                     this.state.ScannedFilePath, 
                                                     this.props.setters, 
                                                 );
+       } else {
+        //show error message
+        this.setState({errorMessage: validPCFile.message + '\n' + validUnitFile.message  + '\n' +  validScannedFile.message });
+       }
+    }
+    process(){
+        let validPCFile = FileReaderHelper.validFileCheck(this.state.PCFilePath);
+        let validUnitFile = FileReaderHelper.validFileCheck(this.state.UnitFilePath);
+        let validScannedFile = FileReaderHelper.validFileCheck(this.state.ScannedFilePath);
+        
+        if(validPCFile.status && validUnitFile.status && validScannedFile.status  ){
+            
+            // ReportMapperHelper.getTripleFileContent(this.state.PCFilePath,
+            //                                         this.state.UnitFilePath, 
+            //                                         this.state.ScannedFilePath, 
+            //                                         this.props.setters, 
+            //                                     );
+            ReportMapperHelper.getTripleFileContentForExport(this.state.PCFilePath,
+                                                             this.state.UnitFilePath, 
+                                                             this.state.ScannedFilePath)
        } else {
         //show error message
         this.setState({errorMessage: validPCFile.message + '\n' + validUnitFile.message  + '\n' +  validScannedFile.message });
@@ -82,7 +103,6 @@ class UploadV4 extends Component {
                                     </Button>
                                 </div>
                             </Alert>}
-            <h2>Upload V4 COMPONENT</h2>
             <Row>
                 <Col>
                 <Form>
@@ -94,7 +114,8 @@ class UploadV4 extends Component {
                         <Form.Label>Scanned Count File</Form.Label>
                         <Form.Control type="file" onChange={this.ScannedFileOnChange}  />
                     </Form.Group>
-                    <Button variant="primary" type="button" onClick={this.submit}>Submit</Button>
+                    {/**<Button variant="primary" type="button" onClick={this.submit}>Submit</Button> */}
+                    <Button variant="primary" type="button" onClick={this.process}>Process</Button>
                 </Form>
                 </Col>
             </Row>
