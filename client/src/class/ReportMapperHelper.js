@@ -4,6 +4,7 @@
 //      The format function names are clear
 
 import FileReaderHelper from '../class/FileReaderHelper';
+import Papa from 'papaparse';
 
 class ReportMapperHelper {
 
@@ -164,9 +165,246 @@ class ReportMapperHelper {
         )
     }
 
-    static async getTripleFileContent(pcPath, unitPath, scannedPart, callback){
-        
+    /** DEV NOTE
+     * Decided to make the inventory app just export the processed file rather then render a table then click export
+     * Because the data was getting passed from one component to another, I copy pasted the code here and changed the variable names
+     * It's 300 lines of code(with comments)... Not ideal. Should move things into functions... but it works :)
+     * 
+     * 
+     */
+    static async getTripleFileContentForExport(pcPath, unitPath, scannedPart){
+        let pcData =  FileReaderHelper.ParseCSV(await this.readUploadedFileAsText(pcPath));
+        let unitData =  this.formatWWData(FileReaderHelper.ParseCSV(await this.readUploadedFileAsText(unitPath)));
+        let scannedData =  FileReaderHelper.ParseCSVNoHeader(await this.readUploadedFileAsText(scannedPart));
 
+        // Sort the physical count by category
+        //// Seems to be keeping the p# in the correct order while still sorting by category.
+        pcData.sort((a,b) => {
+            return a[" Category "] < b[" Category "] ? -1 : a[" Category "] > b[" Category "]  ? 1 : 0;
+        })
+
+        // Add line number to keep the same order as the physical count sheet
+        for(let i = 0 ; i < pcData.length ; i++){
+            pcData[i]["Line Number"] = i + 1;
+        }
+
+        
+        /**
+         * Things to remove are : 
+         *  - - - Remove lines that are on rental (Rental Stage)
+         *  - - - - Only keep lines with "Available" and "Non-Rental Part"
+         *  - - - Remove sold items (Stock Status)
+         *  - - - - Only keep lines with "In Stock" and "Special Orders Reveived"
+         *  - - - Remove lines where the "Serial Number" and "Invetory Part" are the same
+         *  - - - - FSG440 is a non-serialized part, but was serialized at one point. looks like legacy data
+         *  - - - - This logic also removed the ".R-SEA-MISC"
+         */
+
+        let filteredUnitData = [];
+        
+         unitData.forEach( unit => {
+             if(unit["Serial #"] === unit["Inventory Part"]) {
+                 return;
+             }
+
+             if((unit["Rental Stage"] === "Available") || (unit["Rental Stage"] === "Non-Rental Part")) {
+                 if((unit["Stock Status"] === "In Stock") || (unit["Stock Status"] === "Special Order Received")) {
+                     filteredUnitData.push(unit);
+                    return;
+                }
+            }
+         })
+
+        /**
+         * 1. Loop unitData
+         * 1.2. Search unit[Inventory Part] in pcData[Part Number]. If found add pc[Category] to unit.
+         * 2. Loop pcData
+         * 2.1. Search pc[Part Number] in unit[Inventory Part]. If NOT found add pc to unitData (Match the info the best I can). pc[Quantity] will be the expected
+         * 3. Send formatted unitData and scannedData to the callback?
+         */
+        
+        let index = 0
+        
+        //Units get category in this loop.
+        //Not sure if I can delete the line in the loop, or i need to filter it out later
+        filteredUnitData.forEach( unit =>{
+            index = this.getIndexForKeyValuePair(pcData, ' Part Number', unit['Inventory Part']);
+
+            if(index >= 0){
+                unit["Category"] = pcData[index][" Category "];
+                unit["Line"] = pcData[index]["Line Number"];
+            }
+        });
+
+        // Remove units that don't have a category
+        //      -There is a chance that an item is in the unit table, but it is not on the current physical count file
+        //      -DEV NOTE - Not recomended to remove the item in the above for each loop because when the loop starts, it saves the length of the array and does not adjust the length during the loop. 
+        //                  - It would probably skip items
+        //      - Could probably change the forEach loop to a proper for loop. not sure what is good practise. But this way makes the code loop the array twice.
+        filteredUnitData = filteredUnitData.filter(unit => unit.hasOwnProperty('Category'));
+
+        pcData.forEach( part => {
+            index = this.getIndexForKeyValuePair(filteredUnitData, "Inventory Part", part[" Part Number"]);
+            if(index === -1){
+                filteredUnitData.push({
+                    "Inventory Part": part[" Part Number"],
+                    "Make":  part[" Supplier"],
+                    "Model":  part[" Description"],
+                    "expected": part[" Quantity"],
+                    "Category": part[" Category "],
+                    "Line": part["Line Number"]
+                })
+            }
+        });
+        //DEV NOTE - idk why i did a map here over a forEach loop....
+        let cleanScannedData = scannedData.map(element => element.trim());
+        
+       
+        let expected = filteredUnitData;
+        let actual =  cleanScannedData;
+        
+        //Get the counts of each item in the actual file, then build it into a JSON object array [..., {part:"", quantity: n },...]
+        let scanCounts = actual.reduce((acc, part) => {
+            acc[part] = (acc[part] || 0) + 1;
+            return acc;
+        }, {});
+        let scanCountsArray = Object.entries(scanCounts).map(([part, quantity]) => ({
+            part,
+            quantity
+        }));
+
+        //Loop the expected array.
+        let r = expected.map((part) => {
+            //set index to -1 so handle if the first item searched is not in the list.
+            let index = -1;
+
+            //check if the current part has the unit no key.
+            // if it does, use that key:value to find the index in the scannedCountsArray.
+            // Else use the inventory part key:value.
+            if(part.hasOwnProperty("(Unit No)")){
+                index = scanCountsArray.findIndex( obj => obj['part'] === part['(Unit No)']);
+            } else {
+                index = scanCountsArray.findIndex( obj => obj['part'] === part['Inventory Part']);
+            }
+          
+            // if the part is not found in the scannedCountsArray, set the actual to 0, and calculate difference.
+            // Else, use the index to find the quantity in the scannedCountsArray, set actual, calculate the difference, and remove the part from the scanCountsArray.
+            if(index === -1){
+                return {...part, actual: 0, difference: part["expected"] - 0 };
+            } else {
+                let foundPart = scanCountsArray.splice(index, 1);
+                return {...part, actual: foundPart[0].quantity, difference: part["expected"] - foundPart[0].quantity};
+
+            }
+        });
+
+        //Add remaining scanCountsArray items to return array since they were not expected but were scanned.
+        scanCountsArray.forEach((scan) => {
+            let temp = {
+                         "Inventory Part": "",
+                         "Make": "",
+                         "Model": "",
+                         "Serial #": "",
+                         "(Unit No)": scan.part,
+                         "Inventory Desc": "",
+                         "Department": "",
+                         "expected": 0,
+                         "actual": scan.quantity,
+                         "difference": 0 - scan.quantity
+                     }
+            r.push(temp);
+
+        })
+
+        
+        var report = r.map((line) => {
+            // Check if line has SN and Unit key
+            if(line.hasOwnProperty("Serial #")){
+                //Check if SN and Unit have value with only numbers
+                if(/^\d+$/.test(line["Serial #"])){
+                    //add ` to the start of the number
+                    line["Serial #"] = `'` + line["Serial #"] ;
+                }
+            }
+            if(line.hasOwnProperty("(Unit No)")){
+                //Check if SN and Unit have value with only numbers
+                if(/^\d+$/.test(line["(Unit No)"])){
+                    //add ` to the start of the number
+                    line["(Unit No)"] = `'` + line["(Unit No)"];
+                }
+            }
+            if(/^\d+(\.\d+)?$/.test(line["Inventory Part"])){
+                line["Inventory Part"] = `'` + line["Inventory Part"];
+            }
+             
+            return line;
+        })
+
+        report.sort((a, b) => {
+      
+            /**DEV NOTE -  
+             * The below old way or soring worked, but WWs export doesn't sort seem to sort Cat -> PN -> SN 
+             * Updated code sorts by line (created when the physical count file is parsed) and then SN
+             * 
+             * */
+            // let aCat = a.Category || Infinity;
+            // let bCat = b.Category || Infinity;
+      
+            // let aSerialNumber = a["Serial #"]|| Infinity;
+            // let bSerialNumber = b["Serial #"]|| Infinity;
+      
+            // if (aCat !== undefined && bCat !== undefined) {
+            //   if( aCat !== bCat){
+            //     return aCat - bCat;
+            //   }
+            // } else if (aCat !== undefined) {
+            //   return -1; 
+            // } else if (bCat !== undefined) {
+            //   return 1; 
+            // } 
+            // return aSerialNumber < bSerialNumber ? -1 : aSerialNumber > bSerialNumber ? 1 : 0;
+            /** END OLD CODE */
+      
+            /** NEW CODE */
+            /** Sorts by line then SN. '|| Infinity' handles a or b has an undefined 'line' or 'serial #'  */
+            let aLine = a["Line"] || Infinity;
+            let bLine = b["Line"] || Infinity;
+      
+            let aSerialNumber = a["Serial #"]|| Infinity;
+            let bSerialNumber = b["Serial #"]|| Infinity;
+      
+              // First compare by line_number
+              if (aLine !== bLine) {
+                return aLine - bLine;  // Ascending order by line_number
+              }
+              // If line_number is the same, compare by serial_number
+              return aSerialNumber < bSerialNumber ? -1 : aSerialNumber > bSerialNumber ? 1 : 0;
+          });
+        
+        const csvBlob = new Blob([Papa.unparse(report, {
+            quotes: true,      // Enable quoting of all values
+            quoteChar: '"',    // Use double quotes as the quote character
+            delimiter: ',',     // Use a comma as the delimiter
+            columns: [  "Line",
+                        "Category",	
+                        "Inventory Part",	
+                        "Make",	
+                        "Model",	
+                        "Serial #",	
+                        "(Unit No)",	
+                        "expected",	
+                        "actual",	
+                        "difference",
+                        "Note"]
+          })], { type: 'text/csv;charset=utf-8' });
+          
+          const downloadLink = document.createElement('a');
+          downloadLink.href = URL.createObjectURL(csvBlob);
+          downloadLink.download = 'Inventory-Report.csv';
+          downloadLink.click();
+    }
+    static async getTripleFileContent(pcPath, unitPath, scannedPart, callback){
+    
         let pcData =  FileReaderHelper.ParseCSV(await this.readUploadedFileAsText(pcPath));
         let unitData =  this.formatWWData(FileReaderHelper.ParseCSV(await this.readUploadedFileAsText(unitPath)));
         let scannedData =  FileReaderHelper.ParseCSVNoHeader(await this.readUploadedFileAsText(scannedPart));
