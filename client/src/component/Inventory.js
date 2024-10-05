@@ -68,21 +68,21 @@ class Inventory extends Component {
         view: REPORT
       })
     }
-    this.changeTab = this.changeTab.bind(this);
+    //this.changeTab = this.changeTab.bind(this);
   }
 
-  changeTab(key){
-    this.setState({
-      expectedData: [],
-      actualData: [],
-      view: UPLOAD
-    })
-  }
+  // changeTab(key){
+  //   this.setState({
+  //     expectedData: [],
+  //     actualData: [],
+  //     view: UPLOAD
+  //   })
+  // }
 
     
     render() {
       return (<>
-        <h1>Inventory Screen</h1>
+        <h1>Inventory Helper</h1>
         {/* -DEV NOTE: Only using V4. Commented out the other versions to make things easier for user.
         <Tabs
           defaultActiveKey="v1"
