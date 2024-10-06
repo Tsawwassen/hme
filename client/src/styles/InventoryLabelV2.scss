@@ -1,0 +1,39 @@
+$enable-rfs: true;
+
+.inventory-label {
+    height:0.9in;
+    width:4in;
+    //border-style: solid; // DevNote - use this style for testing label printing area
+    margin-left:0.6%;
+}
+
+table{
+    width: 100%;
+    height: 100%;
+    table-layout: fixed;
+    
+}
+
+
+.barcode{
+    bottom:0;
+    height:35%;
+}
+
+
+
+
+@media print {
+    .navbar, .navbar-brand, #label-select, h2, .clearButton{
+        display: none!important;
+    }
+    .inventory-label{
+        page-break-after: always;
+    }
+    .container{
+        padding:0
+    }
+    @page{
+        margin: 0
+    }
+}
