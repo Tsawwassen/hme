@@ -39,11 +39,11 @@ function Label(props){
                     <table>
                     <tbody>
                         <tr>
-                            <td className="Make">{label.makeInput}</td>
-                            <td className="Model">{label.modelInput}</td>
+                            <td className="Make">{label.make}</td>
+                            <td className="Model">{label.model}</td>
                         </tr>
-                        <tr ><td className="serialNumber" colSpan="2"><b>SN:</b>{label.serialNumberInput}</td></tr>
-                        <tr><td className="assetNumber" colSpan="2"><Barcode value={label.assetNumberInput.replace(/\s+/g, '')} {...barcodeOptions} /></td></tr>
+                        <tr ><td className="serialNumber" colSpan="2"><b>SN:</b>{label.serialNumber}</td></tr>
+                        <tr><td className="assetNumber" colSpan="2"><Barcode value={label.assetNumber.replace(/\s+/g, '')} {...barcodeOptions} /></td></tr>
                     </tbody>
                     </table>
                 </div>  
@@ -81,19 +81,19 @@ function LabelForm(props)
     
     return(<>
         <Form onSubmit={handleSubmit} id="inputForm">
-            <Form.Group className="mb-3" controlId="makeInput">
+            <Form.Group className="mb-3" controlId="make">
                 <Form.Label>Make:</Form.Label>
                 <Form.Control type="text" onChange={updateData}/>
             </Form.Group>
-            <Form.Group className="mb-3" controlId="modelInput">
+            <Form.Group className="mb-3" controlId="model">
                 <Form.Label>Model:</Form.Label>
                 <Form.Control type="text" onChange={updateData}/>
             </Form.Group>
-            <Form.Group className="mb-3" controlId="serialNumberInput">
+            <Form.Group className="mb-3" controlId="serialNumber">
                 <Form.Label>Serial Number:</Form.Label>
                 <Form.Control type="text" onChange={updateData}/>
             </Form.Group>
-            <Form.Group className="mb-3" controlId="assetNumberInput">
+            <Form.Group className="mb-3" controlId="assetNumber">
                 <Form.Label>Asset Number:</Form.Label>
                 <Form.Control type="text" onChange={updateData}/>
             </Form.Group>
@@ -117,7 +117,7 @@ function LabelBatch(props){
     }
 
     const getTemplateFile = e => {
-        const csvBlob = new Blob([Papa.unparse([{makeInput:"",	modelInput:"",	serialNumberInput:"",	assetNumberInput:"" }], {
+        const csvBlob = new Blob([Papa.unparse([{make:"",	model:"",	serialNumber:"",	assetNumber:"" }], {
           quotes: true,      // Enable quoting of all values
           quoteChar: '"',    // Use double quotes as the quote character
           delimiter: ','     // Use a comma as the delimiter
