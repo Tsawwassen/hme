@@ -384,9 +384,17 @@ Improve the process for checking stale orders
 - Todays goal, get label things worked out.
 - - DONE - Create a 4x1 label that shows just a barcode
 - - - This label will be tested in North Van to see if those labels work better.
-- - Create a single shelf label option
-- - Change to headers of the 'Inventory Batch' template
+- - DONE - Create a single shelf label option
+- - DONE - Change to headers of the 'Inventory Batch' template
 - - - Might need to change the 'Inventory Single' to map correctly with the label component
+- Post Coding Notes
+- - changing the shelf label components to have batch and single version was fairly easy
+- - - Used the InventoryLabel component as a 'template' on how to handle between batch and single, then rendering the labels once input is received.
+- - - Shelf label was rendering a new component file for the labels, but the newer labels have a class inside one file to handle displaying the label
+- - - The logic is basically the same with the one file or two file for rendering the labels
+- - - I do like the one file method because its easier to handle the clear button. Going to leave it as is now, but could look into updating it.
+- - Changing input labels for Inventory Batch
+- - - Just needed to change the JSON object key, form control IDs, and template file headers.
 
 
 ## QoL ToDos
