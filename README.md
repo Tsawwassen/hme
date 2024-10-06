@@ -380,6 +380,14 @@ Improve the process for checking stale orders
 - - Change to headers of the 'Inventory Batch' template
 - - - Might need to change the 'Inventory Single' to map correctly with the label component
 
+## 10/06/2024
+- Todays goal, get label things worked out.
+- - DONE - Create a 4x1 label that shows just a barcode
+- - - This label will be tested in North Van to see if those labels work better.
+- - Create a single shelf label option
+- - Change to headers of the 'Inventory Batch' template
+- - - Might need to change the 'Inventory Single' to map correctly with the label component
+
 
 ## QoL ToDos
 - Have upload files accept excel (low)

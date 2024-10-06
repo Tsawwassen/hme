@@ -6,7 +6,7 @@ import FileReaderHelper from '../class/FileReaderHelper';
 import ReportMapperHelper from '../class/ReportMapperHelper.js';
 import Papa from 'papaparse';
 
-import '../styles/InventoryLabel.scss';
+import '../styles/InventoryLabelV2.scss';
 
 const Barcode = require('react-barcode');
 
@@ -14,15 +14,15 @@ const Barcode = require('react-barcode');
 function Label(props){
     const barcodeOptions = {
         width: 2,
-        height: 30,
+        height: 35,
         format: "CODE128",
         displayValue: true,
         fontOptions: "",
         font: "monospace",
         textAlign: "center",
         textPosition: "bottom",
-        textMargin: 2,
-        fontSize: 20,
+        textMargin: 0,
+        fontSize: 15,
         background: "#ffffff",
         lineColor: "#000000",
         margin: 10,
@@ -36,16 +36,9 @@ function Label(props){
         {props.data.map(function(label, index){
             return (<div key={index}>
                 <div className='inventory-label' > 
-                    <table>
-                    <tbody>
-                        <tr>
-                            <td className="Make">{label.make}</td>
-                            <td className="Model">{label.model}</td>
-                        </tr>
-                        <tr ><td className="serialNumber" colSpan="2"><b>SN:</b>{label.serialNumber}</td></tr>
-                        <tr><td className="assetNumber" colSpan="2"><Barcode value={label.assetNumber.replace(/\s+/g, '')} {...barcodeOptions} /></td></tr>
-                    </tbody>
-                    </table>
+
+                        <img src="/InventoryLabel/HME-Home-Health-Logo-2.png" width="100" alt="P N G" />
+                        <Barcode value={label.assetNumber.replace(/\s+/g, '')} {...barcodeOptions} />
                 </div>  
             </div>)
         })}
@@ -81,18 +74,18 @@ function LabelForm(props)
     
     return(<>
         <Form onSubmit={handleSubmit} id="inputForm">
-            <Form.Group className="mb-3" controlId="make">
+           {/**  <Form.Group className="mb-3" controlId="makeInput">
                 <Form.Label>Make:</Form.Label>
                 <Form.Control type="text" onChange={updateData}/>
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="model">
+            </Form.Group> 
+            <Form.Group className="mb-3" controlId="modelInput">
                 <Form.Label>Model:</Form.Label>
                 <Form.Control type="text" onChange={updateData}/>
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="serialNumber">
+            </Form.Group> */}
+            {/**  <Form.Group className="mb-3" controlId="serialNumberInput">
                 <Form.Label>Serial Number:</Form.Label>
                 <Form.Control type="text" onChange={updateData}/>
-            </Form.Group>
+            </Form.Group> */}
             <Form.Group className="mb-3" controlId="assetNumber">
                 <Form.Label>Asset Number:</Form.Label>
                 <Form.Control type="text" onChange={updateData}/>
@@ -117,7 +110,7 @@ function LabelBatch(props){
     }
 
     const getTemplateFile = e => {
-        const csvBlob = new Blob([Papa.unparse([{make:"",	model:"",	serialNumber:"",	assetNumber:"" }], {
+        const csvBlob = new Blob([Papa.unparse([{ /** makeInput:"", 	modelInput:"",*/	/** serialNumberInput:"", */	assetNumber:"" }], {
           quotes: true,      // Enable quoting of all values
           quoteChar: '"',    // Use double quotes as the quote character
           delimiter: ','     // Use a comma as the delimiter
@@ -166,7 +159,7 @@ function LabelBatch(props){
     </>)
 }
 
-class InventoryLabel extends Component {
+class InventoryLabelV2 extends Component {
 
     constructor(props){
         super(props);
@@ -209,4 +202,4 @@ class InventoryLabel extends Component {
         </>);
       };
     }
-    export default InventoryLabel;
+    export default InventoryLabelV2;
