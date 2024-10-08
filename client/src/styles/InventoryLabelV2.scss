@@ -2,7 +2,7 @@ $enable-rfs: true;
 
 .inventory-label {
     height:0.9in;
-    width:4in;
+    width:3in;
     //border-style: solid; // DevNote - use this style for testing label printing area
     margin-left:0.6%;
 }
@@ -18,6 +18,10 @@ table{
 .barcode{
     bottom:0;
     height:35%;
+}
+
+.desc{
+    font-size: small;
 }
 
 

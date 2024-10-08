@@ -13,8 +13,8 @@ const Barcode = require('react-barcode');
 //Include Serial number, Asset number (demo/rental), Make, Model
 function Label(props){
     const barcodeOptions = {
-        width: 2,
-        height: 35,
+        width: 1,
+        height: 25,
         format: "CODE128",
         displayValue: true,
         fontOptions: "",
@@ -25,7 +25,7 @@ function Label(props){
         fontSize: 15,
         background: "#ffffff",
         lineColor: "#000000",
-        margin: 10,
+        margin: 0,
         marginTop: 0,
         marginBottom: 0,
         marginLeft: 0,
@@ -37,7 +37,8 @@ function Label(props){
             return (<div key={index}>
                 <div className='inventory-label' > 
 
-                        <img src="/InventoryLabel/HME-Home-Health-Logo-2.png" width="100" alt="P N G" />
+                        {/** <img src="/InventoryLabel/HME-Home-Health-Logo-2.png" width="100" alt="P N G" /> **/}
+                        <div className='desc'>{label.description}</div>
                         <Barcode value={label.assetNumber.replace(/\s+/g, '')} {...barcodeOptions} />
                 </div>  
             </div>)
@@ -86,6 +87,10 @@ function LabelForm(props)
                 <Form.Label>Serial Number:</Form.Label>
                 <Form.Control type="text" onChange={updateData}/>
             </Form.Group> */}
+            <Form.Group className="mb-3" controlId="description">
+                <Form.Label>Description:</Form.Label>
+                <Form.Control type="text" onChange={updateData}/>
+            </Form.Group>
             <Form.Group className="mb-3" controlId="assetNumber">
                 <Form.Label>Asset Number:</Form.Label>
                 <Form.Control type="text" onChange={updateData}/>
@@ -110,7 +115,7 @@ function LabelBatch(props){
     }
 
     const getTemplateFile = e => {
-        const csvBlob = new Blob([Papa.unparse([{ /** makeInput:"", 	modelInput:"",*/	/** serialNumberInput:"", */	assetNumber:"" }], {
+        const csvBlob = new Blob([Papa.unparse([{ /** makeInput:"", 	modelInput:"",*/	/** serialNumberInput:"", */description:"",	assetNumber:"" }], {
           quotes: true,      // Enable quoting of all values
           quoteChar: '"',    // Use double quotes as the quote character
           delimiter: ','     // Use a comma as the delimiter
