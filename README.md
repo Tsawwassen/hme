@@ -396,6 +396,9 @@ Improve the process for checking stale orders
 - - Changing input labels for Inventory Batch
 - - - Just needed to change the JSON object key, form control IDs, and template file headers.
 
+## 10/07/2024
+- Need to update the NV labels
+
 
 ## QoL ToDos
 - Have upload files accept excel (low)
