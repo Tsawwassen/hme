@@ -13,7 +13,7 @@ const Barcode = require('react-barcode');
 //Include Serial number, Asset number (demo/rental), Make, Model
 function Label(props){
     const barcodeOptions = {
-        width: 1,
+        width: 1.5,
         height: 25,
         format: "CODE128",
         displayValue: true,
