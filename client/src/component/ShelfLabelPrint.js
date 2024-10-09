@@ -14,7 +14,7 @@ function Label(props){
   //I wonder if this logic works for any value for LABELS_PER_ROW and ROWS_PER_PAGE
 
   let barcodeOptions = {
-                width: 2,
+                width: 1.5,
                 height: 30,
                 format: "CODE128",
                 displayValue: true,
