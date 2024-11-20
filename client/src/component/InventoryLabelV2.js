@@ -35,7 +35,7 @@ function Label(props){
     return(<>
         {props.data.map(function(label, index){
             return (<div key={index}>
-                <div className='inventory-label' > 
+                <div className='inventory-label-v2' > 
 
                         {/** <img src="/InventoryLabel/HME-Home-Health-Logo-2.png" width="100" alt="P N G" /> **/}
                         <div className='desc'>{label.description}</div>
