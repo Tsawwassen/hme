@@ -399,6 +399,12 @@ Improve the process for checking stale orders
 ## 10/07/2024
 - Need to update the NV labels
 
+## 11/19/2024
+- found a bug with the scss file
+- - i only imported the scss files for the componenets that use them.
+- - issue was the 3x2 labels and 4x1 labels both used the same div id, which had different heights
+- - Looking online, i might be organizing my files wrong. Short term solution was to change the div id to be more specific, and it fixed the issue. 
+
 
 ## QoL ToDos
 - Have upload files accept excel (low)
