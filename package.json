@@ -11,6 +11,5 @@
   "author": "Mitchell Smith",
   "license": "ISC",
   "dependencies": {
-    "xlsx": "^0.18.5"
   }
 }
