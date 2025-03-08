@@ -4,7 +4,7 @@
 //      The format function names are clear
 
 import FileReaderHelper from '../class/FileReaderHelper';
-import Papa from 'papaparse';
+import * as XLSX from 'xlsx';
 
 class ReportMapperHelper {
 
@@ -316,31 +316,7 @@ class ReportMapperHelper {
 
         })
 
-        
-        var report = r.map((line) => {
-            // Check if line has SN and Unit key
-            if(line.hasOwnProperty("Serial #")){
-                //Check if SN and Unit have value with only numbers
-                if(/^\d+$/.test(line["Serial #"])){
-                    //add ` to the start of the number
-                    line["Serial #"] = `'` + line["Serial #"] ;
-                }
-            }
-            if(line.hasOwnProperty("(Unit No)")){
-                //Check if SN and Unit have value with only numbers
-                if(/^\d+$/.test(line["(Unit No)"])){
-                    //add ` to the start of the number
-                    line["(Unit No)"] = `'` + line["(Unit No)"];
-                }
-            }
-            if(/^\d+(\.\d+)?$/.test(line["Inventory Part"])){
-                line["Inventory Part"] = `'` + line["Inventory Part"];
-            }
-             
-            return line;
-        })
-
-        report.sort((a, b) => {
+        r.sort((a, b) => {
       
             /**DEV NOTE -  
              * The below old way or soring worked, but WWs export doesn't sort seem to sort Cat -> PN -> SN 
@@ -380,8 +356,8 @@ class ReportMapperHelper {
               // If line_number is the same, compare by serial_number
               return aSerialNumber < bSerialNumber ? -1 : aSerialNumber > bSerialNumber ? 1 : 0;
           });
-        
-        const csvBlob = new Blob([Papa.unparse(report, {
+        /** CSV Export Code */
+       /**  const csvBlob = new Blob([Papa.unparse(report, {
             quotes: true,      // Enable quoting of all values
             quoteChar: '"',    // Use double quotes as the quote character
             delimiter: ',',     // Use a comma as the delimiter
@@ -402,7 +378,57 @@ class ReportMapperHelper {
           downloadLink.href = URL.createObjectURL(csvBlob);
           downloadLink.download = 'Inventory-Report.csv';
           downloadLink.click();
+          /** End CSV Export Code */
+
+        const columns = [
+            "Line",
+            "Category",
+            "Inventory Part",
+            "Make",
+            "Model",
+            "Serial #",
+            "(Unit No)",
+            "expected",
+            "actual",
+            "difference",
+            "Note"
+        ];
+        // Map the report data to include only the specified columns
+        const filteredReport = r.map(line => {
+            let filteredLine = {};
+            columns.forEach(col => {
+                if ((col === 'expected')||(col === 'actual'))  {
+                    filteredLine[col] = line[col] !== undefined && line[col] !== null ? parseInt(line[col], 10) : 0;
+                } else {
+                    filteredLine[col] = line[col] !== undefined && line[col] !== null ? String(line[col]) : '';
+                }
+            });
+            return filteredLine;
+        });
+
+        const worksheet = XLSX.utils.json_to_sheet(filteredReport, { header: columns });
+        const workbook = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(workbook, worksheet, "Inventory Report");
+
+        // Add formula to the difference column
+        const range = XLSX.utils.decode_range(worksheet['!ref']);
+        for (let row = range.s.r + 1; row <= range.e.r; row++) {
+            const expectedCell = XLSX.utils.encode_cell({ r: row, c: columns.indexOf('expected') });
+            const actualCell = XLSX.utils.encode_cell({ r: row, c: columns.indexOf('actual') });
+            const differenceCell = XLSX.utils.encode_cell({ r: row, c: columns.indexOf('difference') });
+            worksheet[differenceCell].f = `${expectedCell}-${actualCell}`;
+        }
+        
+        const excelBuffer = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+        const excelBlob = new Blob([excelBuffer], { type: 'application/octet-stream' });
+
+        const downloadLink = document.createElement('a');
+        downloadLink.href = URL.createObjectURL(excelBlob);
+        downloadLink.download = 'Inventory-Report5.xlsx';
+        downloadLink.click();
     }
+
+
     static async getTripleFileContent(pcPath, unitPath, scannedPart, callback){
     
         let pcData =  FileReaderHelper.ParseCSV(await this.readUploadedFileAsText(pcPath));

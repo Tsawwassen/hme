@@ -9,5 +9,7 @@
     "git-merge-push": "git checkout main && git merge development && git push && git checkout development"
   },
   "author": "Mitchell Smith",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+  }
 }
