@@ -4,7 +4,6 @@
 //      The format function names are clear
 
 import FileReaderHelper from '../class/FileReaderHelper';
-import Papa from 'papaparse';
 import * as XLSX from 'xlsx';
 
 class ReportMapperHelper {
@@ -398,17 +397,14 @@ class ReportMapperHelper {
         const filteredReport = r.map(line => {
             let filteredLine = {};
             columns.forEach(col => {
-                if (col === 'expected') {
-                    // Convert expected column to integer
-                    filteredLine[col] = line[col] !== undefined && line[col] !== null ? String(parseInt(line[col], 10)) : '';
+                if ((col === 'expected')||(col === 'actual'))  {
+                    filteredLine[col] = line[col] !== undefined && line[col] !== null ? parseInt(line[col], 10) : 0;
                 } else {
                     filteredLine[col] = line[col] !== undefined && line[col] !== null ? String(line[col]) : '';
                 }
             });
             return filteredLine;
         });
-
-        debugger
 
         const worksheet = XLSX.utils.json_to_sheet(filteredReport, { header: columns });
         const workbook = XLSX.utils.book_new();
