@@ -424,7 +424,7 @@ class ReportMapperHelper {
 
         const downloadLink = document.createElement('a');
         downloadLink.href = URL.createObjectURL(excelBlob);
-        downloadLink.download = 'Inventory-Report5.xlsx';
+        downloadLink.download = 'Inventory-Report.xlsx';
         downloadLink.click();
     }
 
