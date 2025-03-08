@@ -317,31 +317,7 @@ class ReportMapperHelper {
 
         })
 
-        
-        var report = r.map((line) => {
-            // Check if line has SN and Unit key
-            if(line.hasOwnProperty("Serial #")){
-                //Check if SN and Unit have value with only numbers
-                if(/^\d+$/.test(line["Serial #"])){
-                    //add ` to the start of the number
-                    line["Serial #"] = `'` + line["Serial #"] ;
-                }
-            }
-            if(line.hasOwnProperty("(Unit No)")){
-                //Check if SN and Unit have value with only numbers
-                if(/^\d+$/.test(line["(Unit No)"])){
-                    //add ` to the start of the number
-                    line["(Unit No)"] = `'` + line["(Unit No)"];
-                }
-            }
-            if(/^\d+(\.\d+)?$/.test(line["Inventory Part"])){
-                line["Inventory Part"] = `'` + line["Inventory Part"];
-            }
-             
-            return line;
-        })
-
-        report.sort((a, b) => {
+        r.sort((a, b) => {
       
             /**DEV NOTE -  
              * The below old way or soring worked, but WWs export doesn't sort seem to sort Cat -> PN -> SN 
@@ -419,7 +395,7 @@ class ReportMapperHelper {
             "Note"
         ];
         // Map the report data to include only the specified columns
-        const filteredReport = report.map(line => {
+        const filteredReport = r.map(line => {
             let filteredLine = {};
             columns.forEach(col => {
                 if (col === 'expected') {
