@@ -413,6 +413,15 @@ class ReportMapperHelper {
         const worksheet = XLSX.utils.json_to_sheet(filteredReport, { header: columns });
         const workbook = XLSX.utils.book_new();
         XLSX.utils.book_append_sheet(workbook, worksheet, "Inventory Report");
+
+        // Add formula to the difference column
+        const range = XLSX.utils.decode_range(worksheet['!ref']);
+        for (let row = range.s.r + 1; row <= range.e.r; row++) {
+            const expectedCell = XLSX.utils.encode_cell({ r: row, c: columns.indexOf('expected') });
+            const actualCell = XLSX.utils.encode_cell({ r: row, c: columns.indexOf('actual') });
+            const differenceCell = XLSX.utils.encode_cell({ r: row, c: columns.indexOf('difference') });
+            worksheet[differenceCell].f = `${expectedCell}-${actualCell}`;
+        }
         
         const excelBuffer = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
         const excelBlob = new Blob([excelBuffer], { type: 'application/octet-stream' });
