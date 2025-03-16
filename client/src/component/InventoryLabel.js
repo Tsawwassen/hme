@@ -94,7 +94,7 @@ function LabelForm(props)
                 <Form.Control type="text" onChange={updateData}/>
             </Form.Group>
             <Form.Group className="mb-3" controlId="assetNumber">
-                <Form.Label>Asset Number:</Form.Label>
+                <Form.Label>Barcode (Asset Number/Serial Number/Unit Number:):</Form.Label>
                 <Form.Control type="text" onChange={updateData}/>
             </Form.Group>
             <Button variant="primary" type="submit">
