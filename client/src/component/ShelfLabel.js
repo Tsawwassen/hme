@@ -37,7 +37,7 @@ function LabelForm(props)
     return(<>
         <Form onSubmit={handleSubmit} id="inputForm">
             <Form.Group className="mb-3" controlId="part_number">
-                <Form.Label>Part Number:</Form.Label>
+                <Form.Label>Barcode (Part Number/Serial Number/Unit Number):</Form.Label>
                 <Form.Control type="text" onChange={updateData}/>
             </Form.Group>
             <Form.Group className="mb-3" controlId="supplier">
