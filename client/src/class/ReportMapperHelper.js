@@ -416,7 +416,7 @@ class ReportMapperHelper {
             const expectedCell = XLSX.utils.encode_cell({ r: row, c: columns.indexOf('expected') });
             const actualCell = XLSX.utils.encode_cell({ r: row, c: columns.indexOf('actual') });
             const differenceCell = XLSX.utils.encode_cell({ r: row, c: columns.indexOf('difference') });
-            worksheet[differenceCell].f = `${expectedCell}-${actualCell}`;
+            worksheet[differenceCell].f = `${actualCell}-${expectedCell}`;
         }
         
         const excelBuffer = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
