@@ -5,6 +5,7 @@ import Form from 'react-bootstrap/Form';
 import ShelfLabel from './ShelfLabel.js';
 import InventoryLabel from './InventoryLabel.js';
 import InventoryLabelV2 from './InventoryLabelV2.js';
+import ScanningBook from './ScanningBook.js';
 
 // Upload component
 // Render two file inputs, and submit button
@@ -42,8 +43,9 @@ class Labels extends Component {
                         <option value="2" >Shelf Label Batch</option>
                         <option value="3">Inventory Label Single</option>
                         <option value="4">Inventory Label Batch</option>
-                        <option value="5">North Van - Inventory Label Single</option>
-                        <option value="6">North Van - Inventory Label Batch</option>
+                        {/* <option value="5">North Van - Inventory Label Single</option> */}
+                        {/* <option value="6">North Van - Inventory Label Batch</option> */}
+                        <option value="7">Scanning Book</option>
                         {/**<option value="999">--TEST - Picture --</option>   Use this option for testing new labels */}
                     </Form.Select>
                 </Form.Group>
@@ -56,6 +58,7 @@ class Labels extends Component {
             {this.state.selectedLabelType === "4" && <InventoryLabel batch="true" />}
             {this.state.selectedLabelType === "5" && <InventoryLabelV2 batch="false" />}
             {this.state.selectedLabelType === "6" && <InventoryLabelV2 batch="true" />}
+            {this.state.selectedLabelType === "7" && <ScanningBook />}
             {/**{this.state.selectedLabelType === "999" && <InventoryLabel batch="false" imageTest="true" />} Use this option for testing new labels */}
         
         </>);

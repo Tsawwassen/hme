@@ -1,0 +1,72 @@
+$enable-rfs: true;
+
+    .label_book {
+        height:1in;
+        width:4in;
+        border-style: solid;
+        display:table-cell;
+    }
+    .label_row_book{
+        display:table-row;
+    }
+    .label_page_book{
+        display: table;
+       
+    }
+    .table_book{
+        margin-top: 5px;
+        width:4in;
+        height:100%;
+        
+    }
+
+
+    .category_book{
+        text-align:left;
+        padding-left:20px;
+        font-size: 15px;
+        height: auto; /* Let the height adjust based on content */
+        vertical-align: top; /* Align content to the top of the cell */
+    }
+    .description_book{
+        height: auto; /* Let the height adjust based on content */
+        text-align:right;
+        padding-right:20px;
+        font-size: 15px;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        vertical-align: top; /* Align content to the top of the cell */
+    }
+
+    .barcode_book{
+        height: auto; /* Let the height adjust based on content */
+        padding: 2px; /* Optional: Add padding for better spacing */
+        vertical-align: top; /* Align content to the top of the cell */
+    }
+    
+
+
+
+
+    @media print {
+        .navbar, .navbar-brand, #label-select, .btn{
+            display: none!important;
+        }
+        .label_page_book{
+            page-break-after: always;
+    
+            
+        }
+        .container{
+            padding: 0;
+            margin-left: 20px!important ; /* Center horizontally */
+            // display: flex; /* Use flexbox for centering */
+            // justify-content: center; /* Center horizontally */
+            // align-items: center; /* Center vertically if needed */
+            // width: fit-content; /* Adjust width to fit inner content */
+        }
+      
+        @page{
+            margin: 0;
+        }
+    }
