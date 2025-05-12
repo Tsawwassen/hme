@@ -405,6 +405,13 @@ Improve the process for checking stale orders
 - - issue was the 3x2 labels and 4x1 labels both used the same div id, which had different heights
 - - Looking online, i might be organizing my files wrong. Short term solution was to change the div id to be more specific, and it fixed the issue. 
 
+## 05/11/2025
+- Implemented a Scanning Book 'label' type
+- - Might have issues with the other scss files causing conflict
+- - Biggest issue was the container padding pushing the table off the page
+- - If any other label types have issues, this would be my first thing to check
+
+
 
 ## QoL ToDos
 - Have upload files accept excel (low)
