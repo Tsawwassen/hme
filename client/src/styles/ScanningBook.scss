@@ -2,7 +2,7 @@ $enable-rfs: true;
 
     .label_book {
         height:1in;
-        width:4in;
+        width:3in;
         border-style: solid;
         display:table-cell;
     }
@@ -11,6 +11,7 @@ $enable-rfs: true;
     }
     .label_page_book{
         display: table;
+        
        
     }
     .table_book{
@@ -54,6 +55,9 @@ $enable-rfs: true;
         }
         .label_page_book{
             page-break-after: always;
+            padding-top: 30px!important;
+            padding-left:15px!important;
+            padding-right:30px!important;
     
             
         }
@@ -61,7 +65,7 @@ $enable-rfs: true;
             padding: 0;
             margin-left: 20px!important ; /* Center horizontally */
             // display: flex; /* Use flexbox for centering */
-            // justify-content: center; /* Center horizontally */
+             //justify-content: center; /* Center horizontally */
             // align-items: center; /* Center vertically if needed */
             // width: fit-content; /* Adjust width to fit inner content */
         }

@@ -9,7 +9,7 @@ import Papa from 'papaparse';
 import '../styles/ScanningBook.scss';
 
 const Barcode = require('react-barcode');
-    const ROWS = 11;
+    const ROWS = 10;
     const COLS = 2;
 
 function Label(props){
