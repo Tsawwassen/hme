@@ -55,12 +55,19 @@ $enable-rfs: true;
         }
         .label_page_book{
             page-break-after: always;
-            padding-top: 30px!important;
+            padding-top: 15px!important;
             padding-left:15px!important;
-            padding-right:30px!important;
-    
-            
+            padding-right:30px!important; 
         }
+
+        .category_header{
+            padding-top: 15px!important;
+        }
+
+        .category_page_book{
+            page-break-after: always;
+        }
+        
         .container{
             padding: 0;
             margin-left: 20px!important ; /* Center horizontally */

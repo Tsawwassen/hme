@@ -9,10 +9,12 @@ import Papa from 'papaparse';
 import '../styles/ScanningBook.scss';
 
 const Barcode = require('react-barcode');
-    const ROWS = 10;
-    const COLS = 2;
+
+const ROWS = 10;
+const COLS = 2;
 
 function Label(props){
+    
     let index = props.col + (props.row * COLS) + (props.page * ROWS * COLS); 
     
     const barcodeOptions = {
@@ -36,15 +38,14 @@ function Label(props){
     };
 
 
-    if(index >= props.data.length) return <div></div>; //Return empty label div to avoid array out of bounds error
+    if(index >= props.Items.length) return <div></div>; //Return empty label div to avoid array out of bounds error
       //change header keys here to display correct info from csv file
       return (<div className='label_book' > 
                 <table className="table_book">
                   <tbody>
-                    <tr><td className="category_book">{props.data[index]['Category']}</td>
-                    <td className="description_book">{props.data[index]['Description']}</td></tr>
+                    <tr><td className="description_book">{props.Items[index]['Description']}</td></tr>
                     {/**<tr><td className="barcode"><Barcode value={props.table[index].part_number.replace(/\s+/g, '')} {...barcodeOptions} /></td></tr> */}
-                    <tr><td className="barcode_book" colSpan="2"><Barcode value={props.data[index]["Part Number - New"]} {...barcodeOptions} /></td></tr>
+                    <tr><td className="barcode_book" colSpan="2"><Barcode value={props.Items[index]["Part Number"]} {...barcodeOptions} /></td></tr>
                   </tbody>
                 </table>
                 </div>);
@@ -60,7 +61,7 @@ function Row(props){
     return (<div className='label_row_book'> {labels} </div>)
   }
 function Page(props){
-  
+    
     let rows_data = [];
     for(let i = 0 ; i < ROWS ; i++){
         rows_data.push(<Row key={i} row={i} {...props} />);
@@ -70,21 +71,34 @@ function Page(props){
 
 function Render(props){
    
-    formatDataWithHeaders(props.data);
-   
-    let numberOfPages = parseInt(props.data.length / (ROWS * COLS));
-    if((props.data.length % (ROWS * COLS)) !== 0) numberOfPages += 1;
+    let numberOfPages = parseInt(props.Items.length / (ROWS * COLS));
+    if((props.Items.length % (ROWS * COLS)) !== 0) numberOfPages += 1;
         
     let pages = [];
     for (let i = 0 ; i < numberOfPages ; i++){
         pages.push(<Page key={i} page={i} {...props }/>);
     }
     
+    return(<div className="category_page_book"> {pages} </div>)
+}
+
+function RenderCategories(props){
+    let formatData = formatDataWithHeaders(props.data);
+
+    let categories = [];
+
+    for(let i = 0 ; i < formatData.length ; i++){
+        categories.push(<h3 key={`${i}-header`} className="category_header">{formatData[i].Category}</h3>);
+        
+        categories.push(<Render key={i} category={i} {...formatData[i]}/>);
+    }
+
     return(<>
         <Button variant="primary" type="button" className="clearButton" onClick={props.onClick}>Clear</Button>
-        {pages}
+        {categories}
     </>)
 }
+
 function formatDataWithHeaders(data){
     
     const resultMap = {};
@@ -115,7 +129,8 @@ function formatDataWithHeaders(data){
         Items: items
     }));
 
-    console.log(finalArray);
+    //console.log(finalArray);
+    return finalArray;
     
 }
 
@@ -204,7 +219,7 @@ class ScanningBook extends Component {
     
         return (<>
             { this.state.labels.length === 0 && <LabelBatch setter={this.setLabels}/>}
-            { (this.state.labels.length > 0) && <Render data={this.state.labels} onClick={this.clearClick} /> }
+            { (this.state.labels.length > 0) && <RenderCategories data={this.state.labels} onClick={this.clearClick} /> }
         </>);
       };
     }
