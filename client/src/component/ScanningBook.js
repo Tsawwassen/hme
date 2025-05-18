@@ -70,6 +70,7 @@ function Page(props){
 
 function Render(props){
    
+    formatDataWithHeaders(props.data);
    
     let numberOfPages = parseInt(props.data.length / (ROWS * COLS));
     if((props.data.length % (ROWS * COLS)) !== 0) numberOfPages += 1;
@@ -83,6 +84,39 @@ function Render(props){
         <Button variant="primary" type="button" className="clearButton" onClick={props.onClick}>Clear</Button>
         {pages}
     </>)
+}
+function formatDataWithHeaders(data){
+    
+    const resultMap = {};
+
+    data.forEach(item => {
+        const { Category, Description, "Part Number - New": newPN, "Part Number - Rental": rentalPN } = item;
+
+        // Initialize groups if not already present
+        if (!resultMap[Category]) resultMap[Category] = [];
+        if (!resultMap[`${Category}-Rental`]) resultMap[`${Category}-Rental`] = [];
+
+        // Add new part
+        resultMap[Category].push({
+            Description,
+            "Part Number": newPN
+        });
+
+        // Add rental part
+        resultMap[`${Category}-Rental`].push({
+            Description: `Rental ${Description}`,
+            "Part Number": rentalPN
+        });
+    });
+
+    // Flatten to an array
+    const finalArray = Object.entries(resultMap).map(([Category, items]) => ({
+        Category,
+        Items: items
+    }));
+
+    console.log(finalArray);
+    
 }
 
 
