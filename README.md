@@ -411,6 +411,13 @@ Improve the process for checking stale orders
 - - Biggest issue was the container padding pushing the table off the page
 - - If any other label types have issues, this would be my first thing to check
 
+## 05/19/2025
+- Improved the Scanning Book
+- - Items are split up by category
+- - Each category will print on its own page
+- - If there are more items in a category that go acrosse multiple pages, the remaining items will go on new pages
+- - App will add 'Rental' to the category and description to handle rental items
+
 
 
 ## QoL ToDos

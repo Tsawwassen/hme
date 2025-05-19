@@ -43,7 +43,7 @@ function Label(props){
       return (<div className='label_book' > 
                 <table className="table_book">
                   <tbody>
-                    <tr><td className="description_book">{props.Items[index]['Description']}</td></tr>
+                    <tr><td className="description_book" colSpan="2">{props.Items[index]['Description']}</td></tr>
                     {/**<tr><td className="barcode"><Barcode value={props.table[index].part_number.replace(/\s+/g, '')} {...barcodeOptions} /></td></tr> */}
                     <tr><td className="barcode_book" colSpan="2"><Barcode value={props.Items[index]["Part Number"]} {...barcodeOptions} /></td></tr>
                   </tbody>
@@ -76,6 +76,7 @@ function Render(props){
         
     let pages = [];
     for (let i = 0 ; i < numberOfPages ; i++){
+        if(i !== 0) pages.push(<div key={`spacer-${i}`} className="print-spacer" />);
         pages.push(<Page key={i} page={i} {...props }/>);
     }
     
@@ -89,7 +90,6 @@ function RenderCategories(props){
 
     for(let i = 0 ; i < formatData.length ; i++){
         categories.push(<h3 key={`${i}-header`} className="category_header">{formatData[i].Category}</h3>);
-        
         categories.push(<Render key={i} category={i} {...formatData[i]}/>);
     }
 
@@ -129,7 +129,6 @@ function formatDataWithHeaders(data){
         Items: items
     }));
 
-    //console.log(finalArray);
     return finalArray;
     
 }
