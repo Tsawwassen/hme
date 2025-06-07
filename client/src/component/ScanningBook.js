@@ -37,7 +37,7 @@ function Label(props){
         marginRight: 0
     };
 
-
+    
     if(index >= props.Items.length) return <div></div>; //Return empty label div to avoid array out of bounds error
       //change header keys here to display correct info from csv file
       return (<div className='label_book' > 
@@ -108,19 +108,22 @@ function formatDataWithHeaders(data){
 
         // Initialize groups if not already present
         if (!resultMap[Category]) resultMap[Category] = [];
-        if (!resultMap[`${Category}-Rental`]) resultMap[`${Category}-Rental`] = [];
 
         // Add new part
         resultMap[Category].push({
             Description,
             "Part Number": newPN
         });
-
-        // Add rental part
-        resultMap[`${Category}-Rental`].push({
-            Description: `Rental ${Description}`,
-            "Part Number": rentalPN
-        });
+       // Added a check to see if a rental part number exists to prevent empty labels from getting rendered
+        if(!(rentalPN === '')){
+            if (!resultMap[`${Category}-Rental`]) resultMap[`${Category}-Rental`] = [];
+            // Add rental part
+            resultMap[`${Category}-Rental`].push({
+                Description: `Rental ${Description}`,
+                "Part Number": rentalPN
+            });
+        }
+        
     });
 
     // Flatten to an array
