@@ -26,6 +26,7 @@ function Navigation() {
                         /**<Nav.Link href="/staleOrder">Stale Order</Nav.Link>**/
                         }
                         <Nav.Link href="/labels">Labels</Nav.Link>
+                        <Nav.Link href="/commission">Commission</Nav.Link>
                         {/** <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                             <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                             <NavDropdown.Item href="#action/3.2">
