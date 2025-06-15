@@ -13,6 +13,7 @@ import Home from './component/Home.js';
 import Inventory from './component/Inventory.js';
 import StaleOrder from './component/StaleOrder.js';
 import Labels from './component/Labels.js';
+import Commission from './component/Commission.js';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
               <Route path="inventory" element={<Inventory />} />
               <Route path="staleOrder" element={<StaleOrder />} />
               <Route path="labels" element={<Labels />} />
+              <Route path="commission" element={<Commission />} />
           </Routes>
       </BrowserRouter>
     </Container>
