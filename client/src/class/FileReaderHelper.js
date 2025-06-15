@@ -117,6 +117,17 @@ class FileReaderHelper {
             return {status: true, message:""};
         }
     }
+
+    static validExcelFileCheck(filePath){
+        
+        if(typeof filePath === "undefined"){  //Check if a file has been selected to uplaod
+            return { status: false, message:"Please select a file to upload" };
+        }else if (!(filePath.type === "application/vnd.ms-excel")){                 //Check if the selected file is a Excel file
+            return { status: false, message:"Upload file must be a Excel file" };
+        }else{                                                                      //Select file is valid
+            return {status: true, message:""};
+        }
+    }
 }
 
 export default FileReaderHelper;
