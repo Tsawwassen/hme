@@ -418,6 +418,12 @@ Improve the process for checking stale orders
 - - If there are more items in a category that go acrosse multiple pages, the remaining items will go on new pages
 - - App will add 'Rental' to the category and description to handle rental items
 
+## 06/14/2025
+- Create commission report
+- - Tool takes two files and combines them
+- - Reason for this tool is one file (AR Report) has the order numbers and sales, and the InvByRep has the order number and sales rep
+- - The final report will add the sales rep to the AR report file.
+
 
 
 ## QoL ToDos
